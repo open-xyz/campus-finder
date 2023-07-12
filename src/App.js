@@ -1,4 +1,5 @@
 import "./App.css";
+import SelectCategory from "./components/Category/SelectCategory";
 import Hero from "./components/Hero/Hero";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <div>
         <Hero />
       </div>
+      <SelectCategory/>
     </div>
   );
 }
