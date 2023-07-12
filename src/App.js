@@ -1,14 +1,13 @@
 import "./App.css";
 import SelectCategory from "./components/Category/SelectCategory";
 import Hero from "./components/Hero/Hero";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
     <div className="App">
-      <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-      <div>
+      <Navbar/>
+      <div style={{marginTop:"50px"}}>
         <Hero />
       </div>
       <SelectCategory/>
