@@ -8,10 +8,11 @@
   justify-content: center;
 }
 .hero {
+  border: 2px solid black;
   margin: 4rem 0 0 0;
   display: flex;
   justify-content: space-between;
-  width: 59.375rem;
+  width: 60%;
   height: 16.375rem;
 }
 .hero__middle {

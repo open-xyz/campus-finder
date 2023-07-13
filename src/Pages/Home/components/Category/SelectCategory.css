@@ -5,15 +5,14 @@
   font-family: SFProDispaly;
   font-weight: 400;
   margin: 7.5rem 0 0 0;
+  width: 60%;
+  border: 2px solid black;
 }
 
 .selectcategory div {
   align-self: center;
 }
 
-.selectcategory h1 {
-  margin-left: 12rem;
-}
 .selectcategory-main {
   display: flex;
   justify-content: space-evenly;
