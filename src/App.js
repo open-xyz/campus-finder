@@ -1,6 +1,6 @@
 import "./App.css";
 import Home from "./Pages/Home/Home";
-import College from "./Pages/College/Home";
+import College from "./Pages/College/College";
 import Navbar from "./Pages/Navbar/Navbar/Navbar";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
