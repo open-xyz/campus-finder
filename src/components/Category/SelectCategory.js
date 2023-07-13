@@ -54,7 +54,7 @@ const SelectCategory = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
 export default SelectCategory;

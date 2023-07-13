@@ -1,24 +1,26 @@
 .selectcategory {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   font-family: SFProDispaly;
+  position: relative;
+  height: 50vh;
+  width: 100%;
+  /* border: 1px solid black; */
+  padding: 3rem;
   font-weight: 400;
   margin: 7.5rem 0 0 0;
 }
 
-.selectcategory div {
+/* .selectcategory div {
   align-self: center;
-}
-
-.selectcategory h1 {
-  margin-left: 12rem;
-}
+} */
 .selectcategory-main {
   display: flex;
   justify-content: space-evenly;
   margin-top: 2rem;
   width: 59.365rem;
+  /* border: 1px solid red; */
   height: 12.75rem;
   flex-shrink: 0;
 }
@@ -26,8 +28,12 @@
   color: #000;
   font-size: 2rem;
   font-style: normal;
+  width: 100%;
   font-weight: 700;
   line-height: normal;
+  left: 29%;
+  top: -0.1rem;
+  position: absolute;
 }
 .card__logo img {
   width: 4.0625rem;
@@ -73,12 +79,21 @@
     flex-direction: column;
     height: 120vh;
     width: 100%;
+    justify-content: flex-start;
     align-items: center;
   }
-  .card{
+  .card {
+    /* width: 100%; */
+    margin-bottom:0.5rem;
+    margin-left: 3.5rem;
+  }
+  .selectcategory {
+    width: 100%;
+    height:max-content;
     display: flex;
     flex-direction: row;
-    height: 5rem;
-    width: 100%;
+  }
+  .selectcategory-heading{
+    left:2.5rem;
   }
 }
