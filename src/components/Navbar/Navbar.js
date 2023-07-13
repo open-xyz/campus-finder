@@ -3,12 +3,10 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
-  // { name: 'Dashboard', href: '#', current: true },
   { name: 'Home', href: '#', current: false },
   { name: 'School', href: '#', current: false },
   { name: 'Colleges', href: '#', current: false },
   { name: 'Investors', href: '#', current: false },
-  ,
 ]
 
 function classNames(...classes) {
@@ -54,7 +52,7 @@ function Navbar() {
                         href={item.href}
                         className={classNames(
                           item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          'rounded-md px-3 py-2 text-xl font-medium'
+                          'rounded-md px-3 py-2 lg:text-xl font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
                       >
