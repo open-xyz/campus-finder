@@ -1,20 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
 .hero-main {
-  width: 100vw;
-  /* background-color: red; */
+  width: 100%;
   height: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .hero {
-  /* border: 5px solid black; */
   margin: 4rem 0 0 0;
   display: flex;
   justify-content: space-between;
   width: 59.375rem;
   height: 16.375rem;
+}
+.hero__middle {
+  width: 39.0625rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .hero__left img {
   width: 9.3125rem;
@@ -36,7 +42,6 @@
   font-size: 3.5rem;
   text-align: center;
   font-style: normal;
-  font-weight: 400;
   line-height: normal;
 }
 
@@ -50,21 +55,22 @@
   line-height: normal;
 }
 
-.button button {
+.search-bar button {
+  position: relative;
+  right: 0.5rem;
   background-color: #ffd700;
   width: 6.5625rem;
   height: 2.4375rem;
-  flex-shrink: 0;
   border-radius: 0.4375rem;
   color: #000;
   font-family: SFProDispaly;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   text-align: center;
   font-weight: 300;
   line-height: normal;
 }
 
-.button {
+.search-bar {
   display: flex;
   align-items: center;
   width: 33.5625rem;
@@ -75,6 +81,12 @@
   background: #fff;
   margin: 3rem 0 0 0;
 }
+input {
+  outline: none;
+  border: none;
+  font-family: SFProDispaly;
+  font-size: 1.25rem;
+}
 
 input::placeholder {
   color: #444;
@@ -83,4 +95,48 @@ input::placeholder {
   font-style: normal;
   font-weight: 300;
   line-height: normal;
+}
+
+.heading span {
+  width: 11.5rem !important;
+  display: inline-block;
+}
+
+select {
+  font-size: 1.25rem;
+  padding: 0.5rem 2rem 0.5rem 1rem;
+  background-color: #fff;
+  color: #444;
+  outline: none;
+}
+
+.custom-select {
+  position: relative;
+}
+
+.custom-background {
+  position: absolute;
+  display: block;
+  width: 2rem;
+  height: 100%;
+  background-color: #fff;
+  top: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.custom-arrow img {
+  position: absolute;
+  right: 11%;
+  top: 40%;
+  pointer-events: none;
+}
+
+.line {
+  position: relative;
+  right: 0.5rem;
+  width: 0.1875rem;
+  height: 2.375rem;
+  background: #c0c0c0;
+  margin-right: 0.5rem;
 }

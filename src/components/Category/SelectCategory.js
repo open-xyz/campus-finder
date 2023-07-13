@@ -5,95 +5,55 @@ import investorlogo from "../Category/selectcategoryimages/875bb98a-f031-4517-85
 import "./SelectCategory.css";
 const SelectCategory = () => {
   return (
-    <div className="selectcategory">
-    <h1 className='selectcategory-heading'>Select Your Category</h1>
-    <div className='selectcategory-main'>
-    <div className="card">
-      <div className="card__logo">
-      <img src={schoollogo} alt="" srcset="" />
-      </div>
-      <div className="card__course">
-      <h3>Find Perfect School</h3>
-      <h3>For You</h3>
-      </div>
-      <div className="card__button">
-      <button className='btn' type='button'>Explore School</button>
-      </div>
-      </div>
-      <div className="card">
-      <div className="card__logo">
-      <img src={collegelogo} alt="" srcset="" />
-      </div>
-      <div className="card__course">
-      <h3>Find Perfect College</h3>
-      <h3>For You</h3>
-      </div>
-      <div className="card__button">
-      <button className='btn' type='button'>Explore College</button>
-      </div>
-      </div>
-      <div className="card">
-      <div className="card__logo">
-      <img src={investorlogo} alt="" srcset="" />
-      </div>
-      <div className="card__course">
-      <h3>Find Perfect Investor</h3>
-      <h3>For You</h3>
-      </div>
-      <div className="card__button">
-      <button className='btn' type='button'>Explore Investors</button>
-      </div>
-      </div>
-    </div>
-    <div>
-    </div>
-      <h1 className="selectcategory-heading">Select Your Category</h1>
-      <div className="selectcategory-main">
-        <div className="card">
-          <div className="card__logo">
-            <img src={schoollogo} alt="" srcset="" />
+    <>
+      <div className="selectcategory">
+        <h1 className="selectcategory-heading">Select Your Category</h1>
+        <div className="selectcategory-main">
+          <div className="card">
+            <div className="card__logo">
+              <img src={schoollogo} alt="" srcset="" />
+            </div>
+            <div className="card__course">
+              <h3>Find Perfect School</h3>
+              <h3>For You</h3>
+            </div>
+            <div className="card__button">
+              <button className="btn" type="button">
+                Explore School
+              </button>
+            </div>
           </div>
-          <div className="card__course">
-            <h3>Find Perfect School</h3>
-            <h3>For You</h3>
+          <div className="card">
+            <div className="card__logo">
+              <img src={collegelogo} alt="" srcset="" />
+            </div>
+            <div className="card__course">
+              <h3>Find Perfect College</h3>
+              <h3>For You</h3>
+            </div>
+            <div className="card__button">
+              <button className="btn" type="button">
+                Explore College
+              </button>
+            </div>
           </div>
-          <div className="card__button">
-            <button className="btn" type="button">
-              Explore School
-            </button>
-          </div>
-        </div>
-        <div className="card">
-          <div className="card__logo">
-            <img src={collegelogo} alt="" srcset="" />
-          </div>
-          <div className="card__course">
-            <h3>Find Perfect College</h3>
-            <h3>For You</h3>
-          </div>
-          <div className="card__button">
-            <button className="btn" type="button">
-              Explore College
-            </button>
-          </div>
-        </div>
-        <div className="card">
-          <div className="card__logo">
-            <img src={investorlogo} alt="" srcset="" />
-          </div>
-          <div className="card__course">
-            <h3>Find Perfect Investor</h3>
-            <h3>For You</h3>
-          </div>
-          <div className="card__button">
-            <button className="btn" type="button">
-              Explore Investors
-            </button>
+          <div className="card">
+            <div className="card__logo">
+              <img src={investorlogo} alt="" srcset="" />
+            </div>
+            <div className="card__course">
+              <h3>Find Perfect Investor</h3>
+              <h3>For You</h3>
+            </div>
+            <div className="card__button">
+              <button className="btn" type="button">
+                Explore Investors
+              </button>
+            </div>
           </div>
         </div>
       </div>
-      <div></div>
-    </div>
+    </>
   );
 };
 
