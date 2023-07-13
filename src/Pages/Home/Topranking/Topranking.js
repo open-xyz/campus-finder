@@ -121,7 +121,7 @@ export default function Topranking() {
             <div className="school-name">
               <div className="img">
                 <img
-                  src="https://www.educationworld.in/wp-content/uploads/2018/04/Dhirubhai.png"
+                  src="https://images.collegedunia.com/public/college_data/images/logos/1431953162ccgsygdygw.jpg?h=80&w=80&mode=stretch"
                   alt=""
                 />
               </div>
@@ -140,7 +140,7 @@ export default function Topranking() {
             <div className="school-name">
               <div className="img">
                 <img
-                  src="https://images.uniapply.com/uploads/college/image/logo/4610/webp/The_Cathedral_and_John_Connon_School_2536_Logo_1.webp"
+                  src="https://www.ictmumbai.edu.in/img/ICT-mumbai-logo.png"
                   alt=""
                 />
               </div>
@@ -159,7 +159,7 @@ export default function Topranking() {
             <div className="school-name">
               <div className="img">
                 <img
-                  src="https://upload.wikimedia.org/wikipedia/en/a/a7/Bombay_Scottish_School_Logo.png"
+                  src="https://images.collegedunia.com/public/college_data/images/logos/1394005224National%20Institute%20of%20Industrial%20Engineering.png?h=80&w=80&mode=stretch"
                   alt=""
                 />
               </div>
@@ -178,7 +178,7 @@ export default function Topranking() {
             <div className="school-name">
               <div className="img">
                 <img
-                  src="https://images.uniapply.com/uploads/college/image/logo/4610/Jamnabai_Narsee_School_2488_Logo_1.jpg"
+                  src="https://images.collegedunia.com/public/college_data/images/logos/1413914280vmji.jpg?h=80&w=80&mode=stretch"
                   alt=""
                 />
               </div>
@@ -197,7 +197,7 @@ export default function Topranking() {
             <div className="school-name">
               <div className="img">
                 <img
-                  src="https://images.uniapply.com/uploads/college/image/logo/4610/The_Aditya_Birla_Integrated_School_3050_Logo_1.jpg"
+                  src="https://images.collegedunia.com/public/college_data/images/logos/16336900566237748820344441900178615267475362148777984n.png?h=80&w=80&mode=stretch"
                   alt=""
                 />
               </div>
