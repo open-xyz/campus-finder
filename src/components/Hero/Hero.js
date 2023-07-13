@@ -3,6 +3,8 @@ import "./Hero.css";
 import { TypeAnimation } from "react-type-animation";
 import LeftLogo from "./HeroImages/left.png";
 import RightLogo from "./HeroImages/right.png";
+import Arrow from "./HeroImages/arrow.svg";
+import Search from "./HeroImages/search.svg";
 
 export default function Hero() {
   return (
@@ -36,7 +38,20 @@ export default function Hero() {
           <div className="sub-heading">
             "Dream big, excel beyond limits - Welcome to Your Dream School!"
           </div>
-          <div className="button">
+          <div className="search-bar">
+            <div className="custom-select">
+              <select>
+                <option value="">All</option>
+                <option value="">Schools</option>
+                <option value="">Colleges</option>
+              </select>
+              <span className="custom-background"></span>
+              <span className="custom-arrow">
+                <img src={Arrow} alt="arrow" />
+              </span>
+            </div>
+            <div className="line"></div>
+            <img style={{ marginRight: "0.8rem" }} src={Search} alt="" />
             <input type="tel" id="phone" name="phone" placeholder="Search..." />
             <button>Search</button>
           </div>
