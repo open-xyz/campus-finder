@@ -1,16 +1,26 @@
 import "./App.css";
 import Home from "./Pages/Home/Home";
+import College from "./Pages/College/Home";
 import Navbar from "./Pages/Navbar/Navbar/Navbar";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/college",
+    element: <College />,
+  },
+]);
 
 function App() {
   return (
-    <BrowserRouter>
+    <div>
       <Navbar />
-      <Routes>
-        <Route path="/" element={Home} />
-      </Routes>
-    </BrowserRouter>
+      <RouterProvider router={router} />
+    </div>
   );
 }
 
