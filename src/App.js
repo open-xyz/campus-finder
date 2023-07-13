@@ -8,6 +8,14 @@ function App() {
       <Navbar />
       <Hero />
       <SelectCategory />
+
+
+function App() {
+  return (
+    <div className="App">
+      <Navbar/>
+      <Hero />
+      <SelectCategory/>  
     </div>
   );
 }
