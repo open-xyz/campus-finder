@@ -75,4 +75,10 @@
     width: 100%;
     align-items: center;
   }
+  .card{
+    display: flex;
+    flex-direction: row;
+    height: 5rem;
+    width: 100%;
+  }
 }
