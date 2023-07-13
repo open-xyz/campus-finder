@@ -1,5 +1,6 @@
 import React from "react";
 import "./Hero.css";
+import { TypeAnimation } from "react-type-animation";
 import LeftLogo from "./HeroImages/left.png";
 import RightLogo from "./HeroImages/right.png";
 
@@ -12,7 +13,25 @@ export default function Hero() {
         </div>
         <div className="hero__middle">
           <div className="heading">
-            Find & Search <br /> You Dream School
+            Find & Search <br /> Your Dream{" "}
+            <span>
+              <TypeAnimation
+                sequence={[
+                  // Same substring at the start will only be typed once, initially
+                  "School",
+                  1000,
+                  "College",
+                  1000,
+                  "Investor",
+                  1000,
+                  "Campus",
+                  1000,
+                ]}
+                speed={{ type: "keyStrokeDelayInMs", value: 200 }}
+                style={{ fontSize: "3.5rem" }}
+                omitDeletionAnimation={true}
+              />
+            </span>
           </div>
           <div className="sub-heading">
             "Dream big, excel beyond limits - Welcome to Your Dream School!"

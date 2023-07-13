@@ -26,3 +26,24 @@
       format("woff2"),
     url("../public/assets/fonts/sfprodisplaybold-webfont.woff") format("woff");
 }
+
+/* ScrollBar */
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgb(19, 19, 19);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6f6e72;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #0f0c2d;
+}

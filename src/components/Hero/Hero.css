@@ -1,20 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
 .hero-main {
-  width: 100vw;
-  /* background-color: red; */
+  width: 100%;
   height: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .hero {
-  /* border: 5px solid black; */
   margin: 4rem 0 0 0;
   display: flex;
   justify-content: space-between;
   width: 59.375rem;
   height: 16.375rem;
+}
+.hero__middle {
+  width: 39.0625rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .hero__left img {
   width: 9.3125rem;
@@ -83,4 +89,9 @@ input::placeholder {
   font-style: normal;
   font-weight: 300;
   line-height: normal;
+}
+
+.heading span {
+  width: 11.5rem !important;
+  display: inline-block;
 }
