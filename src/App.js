@@ -1,15 +1,16 @@
 import "./App.css";
-import SelectCategory from "./components/Category/SelectCategory";
-import Hero from "./components/Hero/Hero";
-import Navbar from "./components/Navbar/Navbar";
+import Home from "./Pages/Home/Home";
+import Navbar from "./Pages/Navbar/Navbar/Navbar";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
+    <BrowserRouter>
       <Navbar />
-      <Hero />
-      <SelectCategory />
-    </div>
+      <Routes>
+        <Route path="/" element={Home} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
