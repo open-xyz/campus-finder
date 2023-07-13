@@ -112,8 +112,8 @@ export default function Topranking() {
         <div className="school-table">
           <div className="school-table__heading">
             <div className="utility ranks">Rank</div>
-            <div className="utility school-name-school">School</div>
-            <div className="utility board">Board</div>
+            <div className="utility school-name-school">College</div>
+            <div className="utility board">NIRF Rating</div>
             <div className="utility fees">Fees</div>
           </div>
           <div className="school school-row-1">
@@ -126,16 +126,14 @@ export default function Topranking() {
                 />
               </div>
               <div className="school-name-text">
-                <div className="head">
-                  Dhirubhai Ambani <br /> International School
-                </div>
-                <div className="sub-head">Bandra, Mumbai </div>
+                <div className="head">IIT Bombay</div>
+                <div className="sub-head">Mumbai, Maharashtra</div>
               </div>
             </div>
             <div className="board">
-              Cambridge, <br /> International, <br /> IB, IGCSE
+              NIRF ranking <span>3</span> out of 200 in 2023
             </div>
-            <div className="fees">₹ 50K- 4L</div>
+            <div className="fees">₹ 2.28 L</div>
           </div>
           <div className="school school-row-1">
             <div className="rank">#2</div>
@@ -147,12 +145,14 @@ export default function Topranking() {
                 />
               </div>
               <div className="school-name-text">
-                <div className="head">The Cathedral and John Connon</div>
-                <div className="sub-head">Fort, Mumbai </div>
+                <div className="head">ICT Mumbai</div>
+                <div className="sub-head">Mumbai, Maharashtra</div>
               </div>
             </div>
-            <div className="board">ICSE</div>
-            <div className="fees">₹ 51.6K- 6L</div>
+            <div className="board">
+              NIRF ranking <span>24</span> out of 200 in 2023
+            </div>
+            <div className="fees">₹ 95 K</div>
           </div>
           <div className="school school-row-1">
             <div className="rank">#3</div>
@@ -164,12 +164,14 @@ export default function Topranking() {
                 />
               </div>
               <div className="school-name-text">
-                <div className="head">Bombay Scottish School</div>
-                <div className="sub-head">Mahim, Mumbai </div>
+                <div className="head">NITIE Mumbai</div>
+                <div className="sub-head">Mumbai, Maharashtra </div>
               </div>
             </div>
-            <div className="board">ICSE and ISC</div>
-            <div className="fees">₹ 90K- 1.05L</div>
+            <div className="board">
+              NIRF ranking <span>66</span> out of 200 in 2023
+            </div>
+            <div className="fees">₹ 5.98 L</div>
           </div>
           <div className="school school-row-1">
             <div className="rank">#4</div>
@@ -181,12 +183,14 @@ export default function Topranking() {
                 />
               </div>
               <div className="school-name-text">
-                <div className="head">Jamnabai Narsee School</div>
-                <div className="sub-head">Bandra, Mumbai </div>
+                <div className="head">VJTI Mumbai</div>
+                <div className="sub-head">Mumbai, Maharashtra </div>
               </div>
             </div>
-            <div className="board">ICSE</div>
-            <div className="fees">₹ 4.2K- 51K</div>
+            <div className="board">
+              NIRF ranking <span>101</span> out of 200 in 2023
+            </div>
+            <div className="fees">₹ 84.05 K</div>
           </div>{" "}
           <div style={{ borderBottom: "none" }} className="school school-row-1">
             <div className="rank">#5</div>
@@ -198,12 +202,14 @@ export default function Topranking() {
                 />
               </div>
               <div className="school-name-text">
-                <div className="head">Aditya Birla Integrated School</div>
-                <div className="sub-head">Fort, Mumbai </div>
+                <div className="head">SPIT Mumbai</div>
+                <div className="sub-head">Mumbai, Maharashtra </div>
               </div>
             </div>
-            <div className="board">IGCSE</div>
-            <div className="fees">₹ 38.3K- 5.4L</div>
+            <div className="board">
+              NIRF ranking <span>167</span> out of 200 in 2023
+            </div>
+            <div className="fees">₹ 1.70 L</div>
           </div>
         </div>
       </div>

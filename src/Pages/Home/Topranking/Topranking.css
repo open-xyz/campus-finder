@@ -103,3 +103,26 @@
   font-weight: 300;
   line-height: normal;
 }
+
+.college-ranking .rank {
+  width: 20%;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.college-ranking .board {
+  width: 40%;
+  margin-left: -1.5rem;
+}
+.college-ranking .fees {
+  width: 20%;
+  text-align: center;
+}
+.college-ranking .school-name-school {
+  width: 20%;
+}
+
+.board span {
+  font-weight: 500;
+}
