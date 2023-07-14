@@ -1,0 +1,243 @@
+.school-section {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  margin-top: 5rem;
+}
+.school-filter {
+  width: 22%;
+  display: flex;
+  height: 100%;
+  /* height: 52.5rem; */
+  border: 1px solid black;
+}
+.school-main {
+  width: 42%;
+  height: 100%;
+  /* border: 1px solid red; */
+  margin-left: 4rem;
+}
+.school-search {
+  /* border: 1px solid green; */
+  width: 100%;
+  height: 5.9375rem;
+  display: flex;
+  flex-shrink: 0;
+}
+.school-search h1 {
+  color: #000;
+  font-family: SF Pro Display;
+  font-size: 1.55rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  /* border: 1px solid purple; */
+  width: 20%;
+  margin: auto;
+  margin-left: 1.2rem;
+}
+.search-bar-school {
+  display: flex;
+  align-items: center;
+  width: 33.5625rem;
+  height: 3.75rem;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  border: 2px solid #000;
+  background: #fff;
+}
+.search-bar-school button {
+  position: relative;
+  right: 0.5rem;
+  background-color: #ffd700;
+  width: 6.5625rem;
+  height: 2.4375rem;
+  border-radius: 0.4375rem;
+  color: #000;
+  font-family: SFProDispaly;
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: 300;
+  line-height: normal;
+}
+.filter__main {
+  width: 100%;
+  height: 3.9375rem;
+  color: #fff;
+  display: flex;
+  /* border: 1px solid orangered; */
+  border-radius: 0.9375rem 0.9375rem 0rem 0rem;
+  background: #0f0c2d;
+}
+.filter__heading {
+  width: 50%;
+  /* border: 1px solid white; */
+  padding: 4% 5%;
+}
+.filter__heading h1 span {
+  color: #fff;
+  font-family: SF Pro Display;
+  font-size: 1.55rem;
+  font-style: normal;
+  /* border: 1px solid gainsboro; */
+  font-weight: 500;
+  line-height: normal;
+}
+.filter__clear {
+  /* margin-top: 2%; */
+  display: flex;
+  width: 50%;
+  /* border: 1px solid white; */
+  padding: 4% 10%;
+}
+.filter__clear button {
+  border: 1px solid white;
+  border-radius: 2px;
+  height: fit-content;
+  width: fit-content;
+  margin-left: 5%;
+}
+.school-filter {
+  display: flex;
+  flex-direction: column;
+}
+.filter-ownership {
+  display: flex;
+  flex-direction: column;
+  padding: 3% 0% 0% 10%;
+  width: 100%;
+}
+.ownership__heading h1 {
+  color: #000;
+  font-family: SF Pro Display;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 1rem;
+}
+.ownership__type div label {
+  color: #000;
+  font-family: SF Pro Display;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-left: 0.4rem;
+}
+.ownership__type {
+  margin-top: 1rem;
+}
+hr {
+  width: 100%;
+  height: 0.1875rem;
+  background: #dbd9d9;
+  margin-top: 1rem;
+}
+.filter-boxes {
+  margin-top: 1rem;
+}
+.school-result {
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1rem;
+  /* border: 1px solid orangered; */
+  height: 8.625rem;
+  border-radius: 0.625rem;
+  background: #fff;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.school-result__rank {
+  /* border: 1px solid red; */
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+.school-result__img {
+  border: 1px solid black;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0rem 0.5rem;
+}
+.school-result__details {
+  /* border: 3px solid purple; */
+  width:100%;
+  margin-left: 0.3rem;
+  padding: 0.3rem;
+}
+.rank__number{
+  text-align: center;
+  font-size: 2rem;
+}
+.rank__city{
+  font-size: 1.2rem;
+}
+.school-result__img img{
+  height: 80%;
+  width: 80%;
+}
+.seprator{
+  height:1.5rem;
+  width: 0.21rem;
+  background-color: #000;
+}
+.school-shortdetail{
+  display: flex;
+  margin: 0.71rem 0rem;
+  /* border: 1px solid black; */
+}
+.school-name{
+  /* border: 1px solid blue; */
+  width: 100%;
+  font-weight: bolder;
+}
+.school-name span{
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.shortdetal__location{
+  margin-left: 0.5rem;
+}
+.shortdetal__location span{
+  margin: 0rem 1rem;
+}
+.school__rating span {
+  margin: 0rem 1rem;
+}
+.school__fees span{
+  margin: 0rem 1rem;
+}
+.school-board{
+  display: flex;
+  justify-content: space-between;
+}
+.visitschool{
+  margin-left: 1rem;
+}
+.visitschool button{
+  background-color: #ffd700;;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 10rem;
+}
+.src-button button{
+  position: relative;
+  left: 9rem;
+  background-color: #ffd700;
+  width: 6.5625rem;
+  height: 2.4375rem;
+  border-radius: 0.4375rem;
+  color: #000;
+  /* border: 1px solid red; */
+  font-family: SFProDispaly;
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: 300;
+  line-height: normal;
+}
