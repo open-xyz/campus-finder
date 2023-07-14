@@ -1,6 +1,7 @@
 import React from "react";
 import "../School/School.css";
 import "../Home/components/Hero/Hero.css";
+import schoollogo from "./image 10.png"
 // import { TypeAnimation } from "react-type-animation";
 import Arrow from "../Home/components/Hero/HeroImages/arrow.svg";
 import Search from "../Home/components/Hero/HeroImages/search.svg";
@@ -137,7 +138,23 @@ const School = () => {
               </div>
             </div>
           </div>
-          <div className="school-result"></div>
+          <div className="school-result">
+          <div className="school-result__rank">
+          <div className="rank__number">1</div>
+          <div className="rank__city">(Mumbai)</div>
+          </div>
+          <div className="school-result__img">
+          <img src={schoollogo} alt="School logo" srcset="" />
+          </div>
+          <div className="school-result__details">
+          <div className="school-name">St Fransis D'Assisi High School</div>
+          <div className="school-shortdetail">
+          <div className="shortdetal__location">
+          <i class="fa-solid fa-location-dot"></i><span>Borivali,Mumbai</span>
+          </div>
+          </div>
+          </div>
+          </div>
         </div>
       </div>
     </div>
