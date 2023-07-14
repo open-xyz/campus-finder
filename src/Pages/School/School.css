@@ -66,9 +66,15 @@
   width: 100%;
   height: 2.9375rem;
   color: #fff;
+  display: flex;
   border: 1px solid orangered;
   border-radius: 0.9375rem 0.9375rem 0rem 0rem;
   background: #0f0c2d;
+}
+.filter__heading{
+    width: 50%;
+    /* border: 1px solid white; */
+    padding-left: 5%;
 }
 .filter__heading h1 span {
   color: #fff;
@@ -80,6 +86,21 @@
   line-height: normal;
 }
 .filter__heading h1{
-    margin-top: 2%;
+    margin-top: 5%;
+    margin-left: 5%;
+   
+}
+.filter__clear{
+    /* margin-top: 2%; */
+    display: flex;
+    width: 50% ;
+    /* border: 1px solid white; */
+    padding: 2% 10% ;
+}
+.filter__clear button{
+    border: 1px solid white;
+    border-radius: 2px;
+    height: fit-content;
+    width: fit-content;
     margin-left: 5%;
 }
