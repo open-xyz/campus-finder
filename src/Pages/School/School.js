@@ -252,7 +252,6 @@ const School = () => {
           </div>
           </div>
           </div>
-
         </div>
       </div>
     </div>
