@@ -1,0 +1,128 @@
+.top-section {
+  margin-top: 3rem;
+  width: 60%;
+  font-size: 1.375rem;
+  line-height: normal;
+  font-family: SFProdispaly;
+  font-weight: 300;
+}
+.school-table {
+  margin-top: 1.5rem;
+  margin-bottom: 3.5rem;
+  border: 0.125rem solid black;
+
+  border-radius: 1.3rem 1.3rem 0.9375rem 0.9375rem;
+  /* background-color: red; */
+}
+
+.school-table__heading {
+  display: flex;
+  background: #0f0c2d;
+  border-radius: 0.9375rem 0.9375rem 0rem 0rem;
+  color: #fff;
+  height: 4.1875rem;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.school {
+  display: flex;
+  /* justify-content: space-around; */
+  align-items: center;
+  border-bottom: 0.125rem solid #000;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.school-name {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.school-name .img img {
+  width: 3rem;
+}
+.school-name-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.school-name-text .head {
+  font-weight: 400;
+}
+
+.school-name-text .sub-head {
+  font-size: 0.875rem;
+}
+
+.rank {
+  width: 20%;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.ranks {
+  width: 20%;
+  text-align: center;
+  font-size: 1.5rem;
+}
+.school-name,
+.school-name-school {
+  width: 40%;
+}
+
+.board {
+  width: 20%;
+  padding-left: 1rem;
+}
+.fees {
+  width: 20%;
+  text-align: center;
+}
+.utility {
+  text-align: center;
+}
+.school-ranking h1 {
+  margin-bottom: 0.4rem;
+}
+.school-ranking h1,
+.college-ranking h1 {
+  color: #000;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.school-ranking p,
+.college-ranking p {
+  color: #000;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.college-ranking .rank {
+  width: 20%;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.college-ranking .board {
+  width: 40%;
+  margin-left: -1.5rem;
+}
+.college-ranking .fees {
+  width: 20%;
+  text-align: center;
+}
+.college-ranking .school-name-school {
+  width: 20%;
+}
+
+.board span {
+  font-weight: 500;
+}

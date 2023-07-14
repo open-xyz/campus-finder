@@ -1,14 +1,25 @@
 import "./App.css";
-import SelectCategory from "./components/Category/SelectCategory";
-import Hero from "./components/Hero/Hero";
-import Navbar from "./components/Navbar/Navbar";
+import Home from "./Pages/Home/Home";
+import College from "./Pages/College/College";
+import Navbar from "./Pages/Navbar/Navbar/Navbar";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/college",
+    element: <College />,
+  },
+]);
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Navbar />
-      <Hero />
-      <SelectCategory />
+      <RouterProvider router={router} />
     </div>
   );
 }
