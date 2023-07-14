@@ -147,10 +147,18 @@ const School = () => {
           <img src={schoollogo} alt="School logo" srcset="" />
           </div>
           <div className="school-result__details">
-          <div className="school-name">St Fransis D'Assisi High School</div>
+          <div className="school-name"><span>St Fransis D'Assisi High School</span></div>
           <div className="school-shortdetail">
           <div className="shortdetal__location">
-          <i class="fa-solid fa-location-dot"></i><span>Borivali,Mumbai</span>
+          <i class="fa-solid fa-location-dot"></i><span>Borivali, Mumbai</span>
+          </div>
+          <div className="seprator"></div>
+          <div className="school__rating">
+          <span>rating 4</span>
+          </div>
+          <div className="seprator"></div>
+          <div className="school__fees">
+          <span>50K - 1L</span>
           </div>
           </div>
           </div>
