@@ -9,6 +9,9 @@ const School = () => {
     <div>
       <div className="school-section">
       <div className="school-filter">
+      <div className="filter__main">
+      <div className="filter__heading"><h1><span>FILTERS</span></h1></div>
+      </div>
       </div>
       <div className="school-main">
       <div className="school-search">
