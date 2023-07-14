@@ -64,7 +64,7 @@
 }
 .filter__main {
   width: 100%;
-  height: 2.9375rem;
+  height: 3.9375rem;
   color: #fff;
   display: flex;
   border: 1px solid orangered;
@@ -74,7 +74,7 @@
 .filter__heading{
     width: 50%;
     /* border: 1px solid white; */
-    padding-left: 5%;
+    padding: 4% 5%;
 }
 .filter__heading h1 span {
   color: #fff;
@@ -85,17 +85,12 @@
   font-weight: 500;
   line-height: normal;
 }
-.filter__heading h1{
-    margin-top: 5%;
-    margin-left: 5%;
-   
-}
 .filter__clear{
     /* margin-top: 2%; */
     display: flex;
     width: 50% ;
     /* border: 1px solid white; */
-    padding: 2% 10% ;
+    padding: 4% 10% ;
 }
 .filter__clear button{
     border: 1px solid white;
@@ -103,4 +98,35 @@
     height: fit-content;
     width: fit-content;
     margin-left: 5%;
+}
+.school-filter{
+  display: flex;
+  flex-direction: column;
+}
+.filter-ownership{
+  display: flex;
+  flex-direction: column;
+  padding: 3% 0% 0% 10%;
+  width: 100%;
+}
+.ownership__heading h1{
+  color: #000;
+font-family: SF Pro Display;
+font-size: 1.5rem;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+margin-top: 1rem;
+}
+.ownership__type div label{
+  color: #000;
+font-family: SF Pro Display;
+font-size: 1.5rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+margin-left: 0.4rem;
+}
+.ownership__type{
+  margin-top: 1rem;
 }
