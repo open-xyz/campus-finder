@@ -67,14 +67,14 @@
   height: 3.9375rem;
   color: #fff;
   display: flex;
-  border: 1px solid orangered;
+  /* border: 1px solid orangered; */
   border-radius: 0.9375rem 0.9375rem 0rem 0rem;
   background: #0f0c2d;
 }
-.filter__heading{
-    width: 50%;
-    /* border: 1px solid white; */
-    padding: 4% 5%;
+.filter__heading {
+  width: 50%;
+  /* border: 1px solid white; */
+  padding: 4% 5%;
 }
 .filter__heading h1 span {
   color: #fff;
@@ -85,48 +85,57 @@
   font-weight: 500;
   line-height: normal;
 }
-.filter__clear{
-    /* margin-top: 2%; */
-    display: flex;
-    width: 50% ;
-    /* border: 1px solid white; */
-    padding: 4% 10% ;
+.filter__clear {
+  /* margin-top: 2%; */
+  display: flex;
+  width: 50%;
+  /* border: 1px solid white; */
+  padding: 4% 10%;
 }
-.filter__clear button{
-    border: 1px solid white;
-    border-radius: 2px;
-    height: fit-content;
-    width: fit-content;
-    margin-left: 5%;
+.filter__clear button {
+  border: 1px solid white;
+  border-radius: 2px;
+  height: fit-content;
+  width: fit-content;
+  margin-left: 5%;
 }
-.school-filter{
+.school-filter {
   display: flex;
   flex-direction: column;
 }
-.filter-ownership{
+.filter-ownership {
   display: flex;
   flex-direction: column;
   padding: 3% 0% 0% 10%;
   width: 100%;
 }
-.ownership__heading h1{
+.ownership__heading h1 {
   color: #000;
-font-family: SF Pro Display;
-font-size: 1.5rem;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-margin-top: 1rem;
+  font-family: SF Pro Display;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 1rem;
 }
-.ownership__type div label{
+.ownership__type div label {
   color: #000;
-font-family: SF Pro Display;
-font-size: 1.5rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-margin-left: 0.4rem;
+  font-family: SF Pro Display;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-left: 0.4rem;
 }
-.ownership__type{
+.ownership__type {
+  margin-top: 1rem;
+}
+hr {
+  width: 100%;
+  height: 0.1875rem;
+  background: #dbd9d9;
+  margin-top: 1rem;
+}
+.filter-boxes {
   margin-top: 1rem;
 }

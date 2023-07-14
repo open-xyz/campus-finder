@@ -23,73 +23,90 @@ const School = () => {
             </div>
           </div>
           <div className="filter-ownership">
-          <div className="ownership__heading">
-          <h1>School Ownership</h1></div>
-          <div className="ownership__type">
-          <div>
-      <input type="checkbox" id="govern_owned" name="govern_owned"/>
-      <label for="govern_owned">Public</label>
-    </div>
+            <div className="ownership__heading">
+              <h1>School Ownership</h1>
+            </div>
+            <div className="ownership__type">
+              <div classname="filter-boxes">
+                <input type="checkbox" id="govern_owned" name="govern_owned" />
+                <label for="govern_owned">Public</label>
+              </div>
 
-    <div>
-      <input type="checkbox" id="private_owned" name="private_owned"/>
-      <label for="private_owned">Private</label>
-    </div>
+              <div classname="filter-boxes">
+                <input
+                  type="checkbox"
+                  id="private_owned"
+                  name="private_owned"
+                />
+                <label for="private_owned">Private</label>
+              </div>
+            </div>
           </div>
-          </div>
+          <hr />
           <div className="filter-ownership">
-          <div className="ownership__heading">
-          <h1>School Board</h1></div>
-          <div className="ownership__type">
-          <div>
-      <input type="checkbox" id="state_board" name="state_board"/>
-      <label for="state_board">State</label>
-    </div>
+            <div className="ownership__heading">
+              <h1>School Board</h1>
+            </div>
+            <div className="ownership__type">
+              <div classname="filter-boxes">
+                <input type="checkbox" id="state_board" name="state_board" />
+                <label for="state_board">State</label>
+              </div>
 
-    <div>
-      <input type="checkbox" id="cbsc_board" name="cbsc_board"/>
-      <label for="cbsc_board">CBSC</label>
-    </div>
-    <div>
-      <input type="checkbox" id="icsc_board" name="icsc_board"/>
-      <label for="icsc_board">ICSC</label>
-    </div>
-    <div>
-      <input type="checkbox" id="ig_board" name="ig_board"/>
-      <label for="ig_board">IG</label>
-    </div>
+              <div classname="filter-boxes">
+                <input type="checkbox" id="cbsc_board" name="cbsc_board" />
+                <label for="cbsc_board">CBSC</label>
+              </div>
+              <div classname="filter-boxes">
+                <input type="checkbox" id="icsc_board" name="icsc_board" />
+                <label for="icsc_board">ICSC</label>
+              </div>
+              <div classname="filter-boxes">
+                <input type="checkbox" id="ig_board" name="ig_board" />
+                <label for="ig_board">IG</label>
+              </div>
+            </div>
           </div>
-          </div>
+          <hr />
           <div className="filter-ownership">
-          <div className="ownership__heading">
-          <h1>School Fees</h1></div>
-          <div className="ownership__type">
-          <div>
-      <input type="checkbox" id="lessthanten" name="lessthanten"/>
-      <label for="lessthanten"> 10K </label>
-    </div>
+            <div className="ownership__heading">
+              <h1>School Fees</h1>
+            </div>
+            <div className="ownership__type">
+              <div classname="filter-boxes">
+                <input type="checkbox" id="lessthanten" name="lessthanten" />
+                <label for="lessthanten">Below 10K </label>
+              </div>
 
-    <div>
-      <input type="checkbox" id="tentotwenty" name="tentotwenty"/>
-      <label for="tentotwenty">10K - 20K</label>
-    </div>
-    <div>
-    <input type="checkbox" id="twentytothirty" name="twentytothirty"/>
-    <label for="twentytothirty">20K- 30K</label>
-  </div>
-  <div>
-  <input type="checkbox" id="thirtytoforty" name="thirtytoforty"/>
-  <label for="thirtytoforty">30K -40K</label>
-</div>
-<div>
-<input type="checkbox" id="fortytofifty" name="fortytofifty"/>
-<label for="fortytofifty">40K -50K</label>
-</div>
-<div>
-<input type="checkbox" id="abovefifty" name="abovefifty"/>
-<label for="abovefifty">50K</label>
-</div>
-          </div>
+              <div classname="filter-boxes">
+                <input type="checkbox" id="tentotwenty" name="tentotwenty" />
+                <label for="tentotwenty">10K - 20K</label>
+              </div>
+              <div classname="filter-boxes">
+                <input
+                  type="checkbox"
+                  id="twentytothirty"
+                  name="twentytothirty"
+                />
+                <label for="twentytothirty">20K- 30K</label>
+              </div>
+              <div classname="filter-boxes">
+                <input
+                  type="checkbox"
+                  id="thirtytoforty"
+                  name="thirtytoforty"
+                />
+                <label for="thirtytoforty">30K -40K</label>
+              </div>
+              <div classname="filter-boxes">
+                <input type="checkbox" id="fortytofifty" name="fortytofifty" />
+                <label for="fortytofifty">40K -50K</label>
+              </div>
+              <div classname="filter-boxes">
+                <input type="checkbox" id="abovefifty" name="abovefifty" />
+                <label for="abovefifty">Above 50K</label>
+              </div>
+            </div>
           </div>
         </div>
         <div className="school-main">
@@ -120,7 +137,7 @@ const School = () => {
               </div>
             </div>
           </div>
-          <div className="school-result">search result</div>
+          <div className="school-result"></div>
         </div>
       </div>
     </div>
