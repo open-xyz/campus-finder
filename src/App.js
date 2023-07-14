@@ -3,7 +3,11 @@ import Home from "./Pages/Home/Home";
 import College from "./Pages/College/College";
 import Navbar from "./Pages/Navbar/Navbar/Navbar";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import Footer from "./Pages/Footer/Footer";
+
+import School from "./Pages/School/School";
+
 
 const router = createBrowserRouter([
   {
@@ -13,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/college",
     element: <College />,
+  },
+  {
+    path: "/school",
+    element: <School/>,
   },
 ]);
 
