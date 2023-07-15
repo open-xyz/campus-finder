@@ -7,14 +7,14 @@ const School = () => {
   const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedOwnership, setSelectedOwnership] = useState("");
   const [selectedFees, setSelectedFees] = useState("");
-  const [selectedSpecialization, setSelectedSpecialization] = useState("");
+  const [selectedBoard, setselectedBoard] = useState("");
   const [selectedExam, setSelectedExam] = useState("");
   const [isOwnershipExpanded, setIsOwnershipExpanded] = useState(true);
   const [isLocationExpanded, setIsLocationExpanded] = useState(true);
   const [isFeesExpanded, setIsFeesExpanded] = useState(true);
-  const [isSpecializationExpanded, setIsSpecializationExpanded] =
+  const [isBoadrExpanded, setIsBoadrExpanded] =
     useState(true);
-  const [isExamExpanded, setIsExamExpanded] = useState(true);
+  // const [isExamExpanded, setIsExamExpanded] = useState(true);
 
   const handleLocationChange = (event) => {
     const { value } = event.target;
@@ -37,15 +37,15 @@ const School = () => {
 
   const handleSpecializationChange = (event) => {
     const { value } = event.target;
-    setSelectedSpecialization((prevSelected) =>
+    setselectedBoard((prevSelected) =>
       prevSelected === value ? "" : value
     );
   };
 
-  const handleExamChange = (event) => {
-    const { value } = event.target;
-    setSelectedExam((prevSelected) => (prevSelected === value ? "" : value));
-  };
+  // const handleExamChange = (event) => {
+  //   const { value } = event.target;
+  //   setSelectedExam((prevSelected) => (prevSelected === value ? "" : value));
+  // };
 
   const toggleOwnershipExpand = () => {
     setIsOwnershipExpanded((prevState) => !prevState);
@@ -59,19 +59,19 @@ const School = () => {
     setIsFeesExpanded((prevState) => !prevState);
   };
 
-  const toggleSpecializationExpand = () => {
-    setIsSpecializationExpanded((prevState) => !prevState);
+  const toggleBoardExpand = () => {
+    setIsBoadrExpanded((prevState) => !prevState);
   };
 
-  const toggleExamExpand = () => {
-    setIsExamExpanded((prevState) => !prevState);
-  };
+  // const toggleExamExpand = () => {
+  //   setIsExamExpanded((prevState) => !prevState);
+  // };
 
   // const clearFilters = () => {
   //   setSelectedLocation("");
   //   setSelectedOwnership("");
   //   setSelectedFees("");
-  //   setSelectedSpecialization("");
+  //   setselectedBoard("");
   //   setSelectedExam("");
   // };
 
@@ -79,19 +79,19 @@ const School = () => {
     setSelectedLocation("");
     setSelectedOwnership("");
     setSelectedFees("");
-    setSelectedSpecialization("");
+    setselectedBoard("");
     setSelectedExam("");
     setIsOwnershipExpanded(false);
     setIsLocationExpanded(false);
     setIsFeesExpanded(false);
-    setIsSpecializationExpanded(false);
-    setIsExamExpanded(false);
+    setIsBoadrExpanded(false);
+    // setIsExamExpanded(false);
   };
 
   // Function to filter colleges based on selected filters
   // const filterColleges = () => {
     // Implement your logic to filter colleges based on the selected filters
-    // You can use the selectedLocation, selectedOwnership, selectedFees, selectedSpecialization, and selectedExam variables to apply the filters
+    // You can use the selectedLocation, selectedOwnership, selectedFees, selectedBoard, and selectedExam variables to apply the filters
     // You can store the filtered colleges in a state variable and display them in the college-list section
   // };
   
@@ -127,12 +127,12 @@ const School = () => {
                 <span className="clear-option">x</span>
               </span>
             )}
-            {selectedSpecialization && (
+            {selectedBoard && (
               <span
                 className="selected-option"
-                onClick={() => setSelectedSpecialization("")}
+                onClick={() => setselectedBoard("")}
               >
-                {selectedSpecialization}
+                {selectedBoard}
                 <span className="clear-option">x</span>
               </span>
             )}
@@ -151,7 +151,7 @@ const School = () => {
             {selectedOwnership ||
             selectedLocation ||
             selectedFees ||
-            selectedSpecialization ||
+            selectedBoard ||
             selectedExam ? (
               <button onClick={clearAll}>Clear All</button>
             ) : null}
@@ -349,82 +349,82 @@ const School = () => {
             <div>
               <div
                 className={`dropdown ${
-                  isSpecializationExpanded ? "expanded" : ""
+                  isBoadrExpanded ? "expanded" : ""
                 }`}
               >
-                <label htmlFor="specialization">Specialization:</label>
+                <label htmlFor="specialization">Board:</label>
                 <div>
                   <button
                     className="toggle-button"
-                    onClick={toggleSpecializationExpand}
+                    onClick={toggleBoardExpand}
                   >
-                    {isSpecializationExpanded ? "▲" : "▼"}
+                    {isBoadrExpanded ? "▲" : "▼"}
                   </button>
-                  {isSpecializationExpanded && (
+                  {isBoadrExpanded && (
                     <div className="options">
                       <div className="option">
                         <input
                           type="checkbox"
-                          id="computer"
+                          id="State"
                           name="specialization"
-                          value="Computer"
-                          checked={selectedSpecialization === "Computer"}
+                          value="State"
+                          checked={selectedBoard === "State"}
                           onChange={handleSpecializationChange}
                         />
-                        <label htmlFor="computer" className="checkbox-label">
-                          Computer
+                        <label htmlFor="State" className="checkbox-label">
+                          State
                         </label>
                       </div>
                       <div className="option">
                         <input
                           type="checkbox"
-                          id="mechanical"
+                          id="ICSE"
                           name="specialization"
-                          value="Mechanical"
-                          checked={selectedSpecialization === "Mechanical"}
+                          value="ICSE"
+                          checked={selectedBoard === "ICSE"}
                           onChange={handleSpecializationChange}
                         />
-                        <label htmlFor="mechanical" className="checkbox-label">
-                          Mechanical
+                        <label htmlFor="ICSE" className="checkbox-label">
+                          ICSE
                         </label>
                       </div>
                       <div className="option">
                         <input
                           type="checkbox"
-                          id="electrical"
+                          id="CBSC"
                           name="specialization"
-                          value="Electrical"
-                          checked={selectedSpecialization === "Electrical"}
+                          value="CBSC"
+                          checked={selectedBoard === "CBSC"}
                           onChange={handleSpecializationChange}
                         />
-                        <label htmlFor="electrical" className="checkbox-label">
-                          Electrical
+                        <label htmlFor="CBSC" className="checkbox-label">
+                          CBSC
                         </label>
                       </div>
                       <div className="option">
                         <input
                           type="checkbox"
-                          id="electronics"
+                          id="IG"
                           name="specialization"
-                          value="Electronics"
-                          checked={selectedSpecialization === "Electronics"}
+                          value="IG"
+                          checked={selectedBoard === "IG"}
                           onChange={handleSpecializationChange}
                         />
-                        <label htmlFor="electronics" className="checkbox-label">
-                          Electronics
+                        <label htmlFor="IG" className="checkbox-label">
+                          IG
                         </label>
                       </div>
                       <div className="option">
                         <input
                           type="checkbox"
-                          id="it"
+                          id="Other"
                           name="specialization"
-                          value="IT"
-                          checked={selectedSpecialization === "IT"}
+                          value="Other"
+                          checked={selectedBoard === "Other"}
                           onChange={handleSpecializationChange}
                         />
-                        <label htmlFor="it" className="checkbox-label">
-                          IT
+                        <label htmlFor="Other" className="checkbox-label">
+                          Other
                         </label>
                       </div>
                     </div>
@@ -433,7 +433,7 @@ const School = () => {
               </div>
             </div>
           </div>
-          <div className="line"></div>
+          {/* <div className="line"></div>
           <div className="exam">
             <div>
               <div className={`dropdown ${isExamExpanded ? "expanded" : ""}`}>
@@ -475,7 +475,7 @@ const School = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="school-main">
           <div className="school-search">
