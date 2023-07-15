@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./College.css";
+import Clear from "./collegeImages/clear.svg";
 
 export default function College() {
   const [selectedLocation, setSelectedLocation] = useState("");
@@ -154,322 +155,371 @@ export default function College() {
               <button onClick={clearAll}>Clear All</button>
             ) : null}
           </div>
-          <div className="ownership">
-            <div
-              className={`dropdown ${isOwnershipExpanded ? "expanded" : ""}`}
-            >
-              <label htmlFor="ownership">Ownership:</label>
-              <div>
-                <button
-                  className="toggle-button"
-                  onClick={toggleOwnershipExpand}
+          <div className="filter-component">
+            <div className="filter-text">
+              <div className="text">FILTERS</div>
+              <div className="clear-button">
+                <div className="clear-text">Clear All</div>
+                <div className="clear-png">
+                  <img src={Clear} alt="" />
+                </div>
+              </div>
+            </div>
+            <div className="filters">
+              <div className="ownership">
+                <div
+                  className={`dropdown ${
+                    isOwnershipExpanded ? "expanded" : ""
+                  }`}
                 >
-                  {isOwnershipExpanded ? "▲" : "▼"}
-                </button>
-                {isOwnershipExpanded && (
-                  <div className="options">
-                    <div className="option">
-                      <input
-                        type="checkbox"
-                        id="public"
-                        name="ownership"
-                        value="Public"
-                        checked={selectedOwnership === "Public"}
-                        onChange={handleOwnershipChange}
-                      />
-                      <label htmlFor="public" className="checkbox-label">
-                        Public
-                      </label>
+                  <div>
+                    <div className="filter-heading">
+                      <label htmlFor="ownership">Ownership</label>
+                      <button
+                        className="toggle-button"
+                        onClick={toggleOwnershipExpand}
+                      >
+                        {isOwnershipExpanded ? "▲" : "▼"}
+                      </button>
                     </div>
-                    <div className="option">
-                      <input
-                        type="checkbox"
-                        id="private"
-                        name="ownership"
-                        value="Private"
-                        checked={selectedOwnership === "Private"}
-                        onChange={handleOwnershipChange}
-                      />
-                      <label htmlFor="private" className="checkbox-label">
-                        Private
-                      </label>
+                    {isOwnershipExpanded && (
+                      <div className="options">
+                        <div className="option">
+                          <input
+                            type="checkbox"
+                            id="public"
+                            name="ownership"
+                            value="Public"
+                            checked={selectedOwnership === "Public"}
+                            onChange={handleOwnershipChange}
+                          />
+                          <label htmlFor="public" className="checkbox-label">
+                            Public
+                          </label>
+                        </div>
+                        <div className="option">
+                          <input
+                            type="checkbox"
+                            id="private"
+                            name="ownership"
+                            value="Private"
+                            checked={selectedOwnership === "Private"}
+                            onChange={handleOwnershipChange}
+                          />
+                          <label htmlFor="private" className="checkbox-label">
+                            Private
+                          </label>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="line"></div>
+              <div className="location">
+                <div>
+                  <div
+                    className={`dropdown ${
+                      isLocationExpanded ? "expanded" : ""
+                    }`}
+                  >
+                    <div>
+                      <div className="filter-heading">
+                        <label htmlFor="location">Location:</label>
+                        <button
+                          className="toggle-button"
+                          onClick={toggleLocationExpand}
+                        >
+                          {isLocationExpanded ? "▲" : "▼"}
+                        </button>
+                      </div>
+                      {isLocationExpanded && (
+                        <div className="options">
+                          <div className="option">
+                            <input
+                              type="checkbox"
+                              id="mumbai"
+                              name="location"
+                              value="Mumbai"
+                              checked={selectedLocation === "Mumbai"}
+                              onChange={handleLocationChange}
+                            />
+                            <label htmlFor="mumbai" className="checkbox-label">
+                              Mumbai
+                            </label>
+                          </div>
+                          <div className="option">
+                            <input
+                              type="checkbox"
+                              id="pune"
+                              name="location"
+                              value="Pune"
+                              checked={selectedLocation === "Pune"}
+                              onChange={handleLocationChange}
+                            />
+                            <label htmlFor="pune" className="checkbox-label">
+                              Pune
+                            </label>
+                          </div>
+                          <div className="option">
+                            <input
+                              type="checkbox"
+                              id="thane"
+                              name="location"
+                              value="Thane"
+                              checked={selectedLocation === "Thane"}
+                              onChange={handleLocationChange}
+                            />
+                            <label htmlFor="thane" className="checkbox-label">
+                              Thane
+                            </label>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
-                )}
+                </div>
               </div>
-            </div>
-          </div>
-          <div className="line"></div>
-          <div className="location">
-            <div>
-              <div
-                className={`dropdown ${isLocationExpanded ? "expanded" : ""}`}
-              >
-                <label htmlFor="location">Location:</label>
+              <div className="line"></div>
+              <div className="fees">
                 <div>
-                  <button
-                    className="toggle-button"
-                    onClick={toggleLocationExpand}
+                  <div
+                    className={`dropdown ${isFeesExpanded ? "expanded" : ""}`}
                   >
-                    {isLocationExpanded ? "▲" : "▼"}
-                  </button>
-                  {isLocationExpanded && (
-                    <div className="options">
-                      <div className="option">
-                        <input
-                          type="checkbox"
-                          id="mumbai"
-                          name="location"
-                          value="Mumbai"
-                          checked={selectedLocation === "Mumbai"}
-                          onChange={handleLocationChange}
-                        />
-                        <label htmlFor="mumbai" className="checkbox-label">
-                          Mumbai
-                        </label>
+                    <div>
+                      <div className="filter-heading">
+                        <label htmlFor="fees">Fees</label>
+                        <button
+                          className="toggle-button"
+                          onClick={toggleFeesExpand}
+                        >
+                          {isFeesExpanded ? "▲" : "▼"}
+                        </button>
                       </div>
-                      <div className="option">
-                        <input
-                          type="checkbox"
-                          id="pune"
-                          name="location"
-                          value="Pune"
-                          checked={selectedLocation === "Pune"}
-                          onChange={handleLocationChange}
-                        />
-                        <label htmlFor="pune" className="checkbox-label">
-                          Pune
-                        </label>
-                      </div>
-                      <div className="option">
-                        <input
-                          type="checkbox"
-                          id="thane"
-                          name="location"
-                          value="Thane"
-                          checked={selectedLocation === "Thane"}
-                          onChange={handleLocationChange}
-                        />
-                        <label htmlFor="thane" className="checkbox-label">
-                          Thane
-                        </label>
-                      </div>
+                      {isFeesExpanded && (
+                        <div className="options">
+                          <div className="option">
+                            <input
+                              type="checkbox"
+                              id="fees-1"
+                              name="fees"
+                              value="1 Lakh"
+                              checked={selectedFees === "1 Lakh"}
+                              onChange={handleFeesChange}
+                            />
+                            <label htmlFor="fees-1" className="checkbox-label">
+                              1 Lakh
+                            </label>
+                          </div>
+                          <div className="option">
+                            <input
+                              type="checkbox"
+                              id="fees-2"
+                              name="fees"
+                              value="1-2 Lakh"
+                              checked={selectedFees === "1-2 Lakh"}
+                              onChange={handleFeesChange}
+                            />
+                            <label htmlFor="fees-2" className="checkbox-label">
+                              1-2 Lakh
+                            </label>
+                          </div>
+                          <div className="option">
+                            <input
+                              type="checkbox"
+                              id="fees-3"
+                              name="fees"
+                              value="2-3 Lakh"
+                              checked={selectedFees === "2-3 Lakh"}
+                              onChange={handleFeesChange}
+                            />
+                            <label htmlFor="fees-3" className="checkbox-label">
+                              2-3 Lakh
+                            </label>
+                          </div>
+                          <div className="option">
+                            <input
+                              type="checkbox"
+                              id="fees-4"
+                              name="fees"
+                              value="3-5 Lakh"
+                              checked={selectedFees === "3-5 Lakh"}
+                              onChange={handleFeesChange}
+                            />
+                            <label htmlFor="fees-4" className="checkbox-label">
+                              3-5 Lakh
+                            </label>
+                          </div>
+                          <div className="option">
+                            <input
+                              type="checkbox"
+                              id="fees-5"
+                              name="fees"
+                              value="6 Lakh"
+                              checked={selectedFees === "6 Lakh"}
+                              onChange={handleFeesChange}
+                            />
+                            <label htmlFor="fees-5" className="checkbox-label">
+                              6 Lakh
+                            </label>
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  )}
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="line"></div>
-          <div className="fees">
-            <div>
-              <div className={`dropdown ${isFeesExpanded ? "expanded" : ""}`}>
-                <label htmlFor="fees">Fees:</label>
+              <div className="line"></div>
+              <div className="specialization">
                 <div>
-                  <button className="toggle-button" onClick={toggleFeesExpand}>
-                    {isFeesExpanded ? "▲" : "▼"}
-                  </button>
-                  {isFeesExpanded && (
-                    <div className="options">
-                      <div className="option">
-                        <input
-                          type="checkbox"
-                          id="fees-1"
-                          name="fees"
-                          value="1 Lakh"
-                          checked={selectedFees === "1 Lakh"}
-                          onChange={handleFeesChange}
-                        />
-                        <label htmlFor="fees-1" className="checkbox-label">
-                          1 Lakh
-                        </label>
-                      </div>
-                      <div className="option">
-                        <input
-                          type="checkbox"
-                          id="fees-2"
-                          name="fees"
-                          value="1-2 Lakh"
-                          checked={selectedFees === "1-2 Lakh"}
-                          onChange={handleFeesChange}
-                        />
-                        <label htmlFor="fees-2" className="checkbox-label">
-                          1-2 Lakh
-                        </label>
-                      </div>
-                      <div className="option">
-                        <input
-                          type="checkbox"
-                          id="fees-3"
-                          name="fees"
-                          value="2-3 Lakh"
-                          checked={selectedFees === "2-3 Lakh"}
-                          onChange={handleFeesChange}
-                        />
-                        <label htmlFor="fees-3" className="checkbox-label">
-                          2-3 Lakh
-                        </label>
-                      </div>
-                      <div className="option">
-                        <input
-                          type="checkbox"
-                          id="fees-4"
-                          name="fees"
-                          value="3-5 Lakh"
-                          checked={selectedFees === "3-5 Lakh"}
-                          onChange={handleFeesChange}
-                        />
-                        <label htmlFor="fees-4" className="checkbox-label">
-                          3-5 Lakh
-                        </label>
-                      </div>
-                      <div className="option">
-                        <input
-                          type="checkbox"
-                          id="fees-5"
-                          name="fees"
-                          value="6 Lakh"
-                          checked={selectedFees === "6 Lakh"}
-                          onChange={handleFeesChange}
-                        />
-                        <label htmlFor="fees-5" className="checkbox-label">
-                          6 Lakh
-                        </label>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="line"></div>
-          <div className="specialization">
-            <div>
-              <div
-                className={`dropdown ${
-                  isSpecializationExpanded ? "expanded" : ""
-                }`}
-              >
-                <label htmlFor="specialization">Specialization:</label>
-                <div>
-                  <button
-                    className="toggle-button"
-                    onClick={toggleSpecializationExpand}
+                  <div
+                    className={`dropdown ${
+                      isSpecializationExpanded ? "expanded" : ""
+                    }`}
                   >
-                    {isSpecializationExpanded ? "▲" : "▼"}
-                  </button>
-                  {isSpecializationExpanded && (
-                    <div className="options">
-                      <div className="option">
-                        <input
-                          type="checkbox"
-                          id="computer"
-                          name="specialization"
-                          value="Computer"
-                          checked={selectedSpecialization === "Computer"}
-                          onChange={handleSpecializationChange}
-                        />
-                        <label htmlFor="computer" className="checkbox-label">
-                          Computer
-                        </label>
+                    <div>
+                      <div className="filter-heading">
+                        <label htmlFor="specialization">Specialization:</label>
+                        <button
+                          className="toggle-button"
+                          onClick={toggleSpecializationExpand}
+                        >
+                          {isSpecializationExpanded ? "▲" : "▼"}
+                        </button>
                       </div>
-                      <div className="option">
-                        <input
-                          type="checkbox"
-                          id="mechanical"
-                          name="specialization"
-                          value="Mechanical"
-                          checked={selectedSpecialization === "Mechanical"}
-                          onChange={handleSpecializationChange}
-                        />
-                        <label htmlFor="mechanical" className="checkbox-label">
-                          Mechanical
-                        </label>
-                      </div>
-                      <div className="option">
-                        <input
-                          type="checkbox"
-                          id="electrical"
-                          name="specialization"
-                          value="Electrical"
-                          checked={selectedSpecialization === "Electrical"}
-                          onChange={handleSpecializationChange}
-                        />
-                        <label htmlFor="electrical" className="checkbox-label">
-                          Electrical
-                        </label>
-                      </div>
-                      <div className="option">
-                        <input
-                          type="checkbox"
-                          id="electronics"
-                          name="specialization"
-                          value="Electronics"
-                          checked={selectedSpecialization === "Electronics"}
-                          onChange={handleSpecializationChange}
-                        />
-                        <label htmlFor="electronics" className="checkbox-label">
-                          Electronics
-                        </label>
-                      </div>
-                      <div className="option">
-                        <input
-                          type="checkbox"
-                          id="it"
-                          name="specialization"
-                          value="IT"
-                          checked={selectedSpecialization === "IT"}
-                          onChange={handleSpecializationChange}
-                        />
-                        <label htmlFor="it" className="checkbox-label">
-                          IT
-                        </label>
-                      </div>
+                      {isSpecializationExpanded && (
+                        <div className="options">
+                          <div className="option">
+                            <input
+                              type="checkbox"
+                              id="computer"
+                              name="specialization"
+                              value="Computer"
+                              checked={selectedSpecialization === "Computer"}
+                              onChange={handleSpecializationChange}
+                            />
+                            <label
+                              htmlFor="computer"
+                              className="checkbox-label"
+                            >
+                              Computer
+                            </label>
+                          </div>
+                          <div className="option">
+                            <input
+                              type="checkbox"
+                              id="mechanical"
+                              name="specialization"
+                              value="Mechanical"
+                              checked={selectedSpecialization === "Mechanical"}
+                              onChange={handleSpecializationChange}
+                            />
+                            <label
+                              htmlFor="mechanical"
+                              className="checkbox-label"
+                            >
+                              Mechanical
+                            </label>
+                          </div>
+                          <div className="option">
+                            <input
+                              type="checkbox"
+                              id="electrical"
+                              name="specialization"
+                              value="Electrical"
+                              checked={selectedSpecialization === "Electrical"}
+                              onChange={handleSpecializationChange}
+                            />
+                            <label
+                              htmlFor="electrical"
+                              className="checkbox-label"
+                            >
+                              Electrical
+                            </label>
+                          </div>
+                          <div className="option">
+                            <input
+                              type="checkbox"
+                              id="electronics"
+                              name="specialization"
+                              value="Electronics"
+                              checked={selectedSpecialization === "Electronics"}
+                              onChange={handleSpecializationChange}
+                            />
+                            <label
+                              htmlFor="electronics"
+                              className="checkbox-label"
+                            >
+                              Electronics
+                            </label>
+                          </div>
+                          <div className="option">
+                            <input
+                              type="checkbox"
+                              id="it"
+                              name="specialization"
+                              value="IT"
+                              checked={selectedSpecialization === "IT"}
+                              onChange={handleSpecializationChange}
+                            />
+                            <label htmlFor="it" className="checkbox-label">
+                              IT
+                            </label>
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  )}
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="line"></div>
-          <div className="exam">
-            <div>
-              <div className={`dropdown ${isExamExpanded ? "expanded" : ""}`}>
-                <label htmlFor="exam">Exam:</label>
+              <div className="line"></div>
+              <div className="exam">
                 <div>
-                  <button className="toggle-button" onClick={toggleExamExpand}>
-                    {isExamExpanded ? "▲" : "▼"}
-                  </button>
-                  {isExamExpanded && (
-                    <div className="options">
-                      <div className="option">
-                        <input
-                          type="checkbox"
-                          id="mht-cet"
-                          name="exam"
-                          value="MHT CET"
-                          checked={selectedExam === "MHT CET"}
-                          onChange={handleExamChange}
-                        />
-                        <label htmlFor="mht-cet" className="checkbox-label">
-                          MHT CET
-                        </label>
+                  <div
+                    className={`dropdown ${isExamExpanded ? "expanded" : ""}`}
+                  >
+                    <div>
+                      <div className="filter-heading">
+                        <label htmlFor="exam">Exam:</label>
+                        <button
+                          className="toggle-button"
+                          onClick={toggleExamExpand}
+                        >
+                          {isExamExpanded ? "▲" : "▼"}
+                        </button>
                       </div>
-                      <div className="option">
-                        <input
-                          type="checkbox"
-                          id="jee"
-                          name="exam"
-                          value="JEE"
-                          checked={selectedExam === "JEE"}
-                          onChange={handleExamChange}
-                        />
-                        <label htmlFor="jee" className="checkbox-label">
-                          JEE
-                        </label>
-                      </div>
+                      {isExamExpanded && (
+                        <div className="options">
+                          <div className="option">
+                            <input
+                              type="checkbox"
+                              id="mht-cet"
+                              name="exam"
+                              value="MHT CET"
+                              checked={selectedExam === "MHT CET"}
+                              onChange={handleExamChange}
+                            />
+                            <label htmlFor="mht-cet" className="checkbox-label">
+                              MHT CET
+                            </label>
+                          </div>
+                          <div className="option">
+                            <input
+                              type="checkbox"
+                              id="jee"
+                              name="exam"
+                              value="JEE"
+                              checked={selectedExam === "JEE"}
+                              onChange={handleExamChange}
+                            />
+                            <label htmlFor="jee" className="checkbox-label">
+                              JEE
+                            </label>
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  )}
+                  </div>
                 </div>
               </div>
             </div>
