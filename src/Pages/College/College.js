@@ -67,48 +67,77 @@ export default function College() {
   };
 
   const renderSelectedFilters = () => {
-    return (
-      <>
-        {selectedOwnership && (
-          <span
-            className="selected-option"
-            onClick={() => setSelectedOwnership("")}
-          >
-            {selectedOwnership}
-            <span className="clear-option">x</span>
-          </span>
-        )}
-        {selectedLocation && (
-          <span
-            className="selected-option"
-            onClick={() => setSelectedLocation("")}
-          >
-            {selectedLocation}
-            <span className="clear-option">x</span>
-          </span>
-        )}
-        {selectedFees && (
-          <span className="selected-option" onClick={() => setSelectedFees("")}>
-            {selectedFees}
-            <span className="clear-option">x</span>
-          </span>
-        )}
-        {selectedSpecialization && (
-          <span
-            className="selected-option"
-            onClick={() => setSelectedSpecialization("")}
-          >
-            {selectedSpecialization}
-            <span className="clear-option">x</span>
-          </span>
-        )}
-        {selectedExam && (
-          <span className="selected-option" onClick={() => setSelectedExam("")}>
-            {selectedExam}
-            <span className="clear-option">x</span>
-          </span>
-        )}
-      </>
+    const selectedFilters = [];
+
+    if (selectedOwnership) {
+      selectedFilters.push(
+        <span
+          className="selected-option"
+          onClick={() => setSelectedOwnership("")}
+          key="ownership"
+        >
+          {selectedOwnership}
+          <span className="clear-option">x</span>
+        </span>
+      );
+    }
+
+    if (selectedLocation) {
+      selectedFilters.push(
+        <span
+          className="selected-option"
+          onClick={() => setSelectedLocation("")}
+          key="location"
+        >
+          {selectedLocation}
+          <span className="clear-option">x</span>
+        </span>
+      );
+    }
+
+    if (selectedFees) {
+      selectedFilters.push(
+        <span
+          className="selected-option"
+          onClick={() => setSelectedFees("")}
+          key="fees"
+        >
+          {selectedFees}
+          <span className="clear-option">x</span>
+        </span>
+      );
+    }
+
+    if (selectedSpecialization) {
+      selectedFilters.push(
+        <span
+          className="selected-option"
+          onClick={() => setSelectedSpecialization("")}
+          key="specialization"
+        >
+          {selectedSpecialization}
+          <span className="clear-option">x</span>
+        </span>
+      );
+    }
+
+    if (selectedExam) {
+      selectedFilters.push(
+        <span
+          className="selected-option"
+          onClick={() => setSelectedExam("")}
+          key="exam"
+        >
+          {selectedExam}
+          <span className="clear-option">x</span>
+        </span>
+      );
+    }
+
+    return selectedFilters.length > 0 ? (
+      selectedFilters
+    ) : (
+      <div>No filters selected.</div>
     );
   };
 
@@ -118,11 +147,11 @@ export default function College() {
     setSelectedFees("");
     setSelectedSpecialization("");
     setSelectedExam("");
-    setIsOwnershipExpanded(false);
-    setIsLocationExpanded(false);
-    setIsFeesExpanded(false);
-    setIsSpecializationExpanded(false);
-    setIsExamExpanded(false);
+    setIsOwnershipExpanded(true);
+    setIsLocationExpanded(true);
+    setIsFeesExpanded(true);
+    setIsSpecializationExpanded(true);
+    setIsExamExpanded(true);
   };
 
   const filterColleges = () => {
@@ -161,10 +190,16 @@ export default function College() {
               selectedSpecialization ||
               selectedExam ? (
                 <div className="selected-filter">
-                  Selected Filter: {renderSelectedFilters()}
+                  <p>Selected Filter</p>
+                  <div className="selected-filter-filters">
+                    {renderSelectedFilters()}
+                  </div>
                 </div>
-              ) : null}
+              ) : (
+                <div className="no-filters">No filters selected.</div>
+              )}
             </div>
+
             <div className="filters">
               <div className="ownership">
                 <div
