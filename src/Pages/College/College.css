@@ -202,3 +202,39 @@ body {
   font-weight: 500;
   margin-bottom: 0.5rem;
 }
+
+.college-card {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+}
+
+.image img {
+  width: 4.6875rem;
+}
+.info-two {
+  display: flex;
+  align-items: center;
+}
+.info-four {
+  display: flex;
+  align-items: center;
+}
+.locations {
+  display: flex;
+  align-items: center;
+}
+
+.college-list {
+  background-color: red;
+}
+
+.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.9375rem;
+  height: 5.9375rem;
+  flex-shrink: 0;
+  border: 0.12rem solid #444444;
+}
