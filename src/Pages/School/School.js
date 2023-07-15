@@ -1,6 +1,8 @@
 import React , {useState}from "react";
 import "../School/School.css";
 import "../Home/components/Hero/Hero.css";
+import "../College/College.css"
+import Clear from "../College/collegeImages/clear.svg";
 import schoollogo from "./image 10.png"
 import Search from "../Home/components/Hero/HeroImages/search.svg";
 const School = () => {
@@ -8,7 +10,7 @@ const School = () => {
   const [selectedOwnership, setSelectedOwnership] = useState("");
   const [selectedFees, setSelectedFees] = useState("");
   const [selectedBoard, setselectedBoard] = useState("");
-  const [selectedExam, setSelectedExam] = useState("");
+  // const [selectedExam, setSelectedExam] = useState("");
   const [isOwnershipExpanded, setIsOwnershipExpanded] = useState(true);
   const [isLocationExpanded, setIsLocationExpanded] = useState(true);
   const [isFeesExpanded, setIsFeesExpanded] = useState(true);
@@ -35,7 +37,7 @@ const School = () => {
     setSelectedFees((prevSelected) => (prevSelected === value ? "" : value));
   };
 
-  const handleSpecializationChange = (event) => {
+  const handleBoardChange = (event) => {
     const { value } = event.target;
     setselectedBoard((prevSelected) =>
       prevSelected === value ? "" : value
@@ -80,7 +82,7 @@ const School = () => {
     setSelectedOwnership("");
     setSelectedFees("");
     setselectedBoard("");
-    setSelectedExam("");
+    // setSelectedExam("");
     setIsOwnershipExpanded(false);
     setIsLocationExpanded(false);
     setIsFeesExpanded(false);
@@ -97,8 +99,9 @@ const School = () => {
   
   return (
     <div>
+      <div className="main">
       <div className="school-section">
-      <div className="college-filter">
+      <div className="school-filter">
           <div className="selected-options">
             {selectedOwnership && (
               <span
@@ -136,7 +139,7 @@ const School = () => {
                 <span className="clear-option">x</span>
               </span>
             )}
-            {selectedExam && (
+            {/* {selectedExam && (
               <span
                 className="selected-option"
                 onClick={() => setSelectedExam("")}
@@ -144,18 +147,28 @@ const School = () => {
                 {selectedExam}
                 <span className="clear-option">x</span>
               </span>
-            )}
+            )} */}
           </div>
           <div className="clear-filters">
             {/* <button onClick={clearFilters}>Clear Filters</button> */}
             {selectedOwnership ||
             selectedLocation ||
             selectedFees ||
-            selectedBoard ||
-            selectedExam ? (
+            selectedBoard? (
               <button onClick={clearAll}>Clear All</button>
             ) : null}
           </div>
+          <div className="filter-component">
+          <div className="filter-text">
+              <div className="text">FILTERS</div>
+              <div className="clear-button">
+                <div className="clear-text">Clear All</div>
+                <div className="clear-png">
+                  <img src={Clear} alt="" />
+                </div>
+              </div>
+            </div>
+            <div className="filters">
           <div className="ownership">
             <div
               className={`dropdown ${isOwnershipExpanded ? "expanded" : ""}`}
@@ -233,27 +246,27 @@ const School = () => {
                       <div className="option">
                         <input
                           type="checkbox"
-                          id="pune"
+                          id="Vasai"
                           name="location"
-                          value="Pune"
-                          checked={selectedLocation === "Pune"}
+                          value="Vasai"
+                          checked={selectedLocation === "Vasai"}
                           onChange={handleLocationChange}
                         />
-                        <label htmlFor="pune" className="checkbox-label">
-                          Pune
+                        <label htmlFor="Vasai" className="checkbox-label">
+                          Vasai
                         </label>
                       </div>
                       <div className="option">
                         <input
                           type="checkbox"
-                          id="thane"
+                          id="Virar"
                           name="location"
-                          value="Thane"
-                          checked={selectedLocation === "Thane"}
+                          value="Virar"
+                          checked={selectedLocation === "Virar"}
                           onChange={handleLocationChange}
                         />
-                        <label htmlFor="thane" className="checkbox-label">
-                          Thane
+                        <label htmlFor="Virar" className="checkbox-label">
+                          Virar
                         </label>
                       </div>
                     </div>
@@ -278,12 +291,12 @@ const School = () => {
                           type="checkbox"
                           id="fees-1"
                           name="fees"
-                          value="1 Lakh"
-                          checked={selectedFees === "1 Lakh"}
+                          value="below 10K"
+                          checked={selectedFees === "below 10K"}
                           onChange={handleFeesChange}
                         />
                         <label htmlFor="fees-1" className="checkbox-label">
-                          1 Lakh
+                          below 10K
                         </label>
                       </div>
                       <div className="option">
@@ -291,12 +304,12 @@ const School = () => {
                           type="checkbox"
                           id="fees-2"
                           name="fees"
-                          value="1-2 Lakh"
-                          checked={selectedFees === "1-2 Lakh"}
+                          value="10K - 30K"
+                          checked={selectedFees === "10K - 30K"}
                           onChange={handleFeesChange}
                         />
                         <label htmlFor="fees-2" className="checkbox-label">
-                          1-2 Lakh
+                          10K - 30K
                         </label>
                       </div>
                       <div className="option">
@@ -304,12 +317,12 @@ const School = () => {
                           type="checkbox"
                           id="fees-3"
                           name="fees"
-                          value="2-3 Lakh"
-                          checked={selectedFees === "2-3 Lakh"}
+                          value="30K - 50K"
+                          checked={selectedFees === "30K - 50K"}
                           onChange={handleFeesChange}
                         />
                         <label htmlFor="fees-3" className="checkbox-label">
-                          2-3 Lakh
+                          30K - 50K
                         </label>
                       </div>
                       <div className="option">
@@ -317,12 +330,12 @@ const School = () => {
                           type="checkbox"
                           id="fees-4"
                           name="fees"
-                          value="3-5 Lakh"
-                          checked={selectedFees === "3-5 Lakh"}
+                          value="50K - 70K"
+                          checked={selectedFees === "50K - 70K"}
                           onChange={handleFeesChange}
                         />
                         <label htmlFor="fees-4" className="checkbox-label">
-                          3-5 Lakh
+                          50K - 70K
                         </label>
                       </div>
                       <div className="option">
@@ -330,12 +343,12 @@ const School = () => {
                           type="checkbox"
                           id="fees-5"
                           name="fees"
-                          value="6 Lakh"
-                          checked={selectedFees === "6 Lakh"}
+                          value="70K - 1L"
+                          checked={selectedFees === "70K - 1L"}
                           onChange={handleFeesChange}
                         />
                         <label htmlFor="fees-5" className="checkbox-label">
-                          6 Lakh
+                          70K - 1L
                         </label>
                       </div>
                     </div>
@@ -369,7 +382,7 @@ const School = () => {
                           name="specialization"
                           value="State"
                           checked={selectedBoard === "State"}
-                          onChange={handleSpecializationChange}
+                          onChange={handleBoardChange}
                         />
                         <label htmlFor="State" className="checkbox-label">
                           State
@@ -382,7 +395,7 @@ const School = () => {
                           name="specialization"
                           value="ICSE"
                           checked={selectedBoard === "ICSE"}
-                          onChange={handleSpecializationChange}
+                          onChange={handleBoardChange}
                         />
                         <label htmlFor="ICSE" className="checkbox-label">
                           ICSE
@@ -395,7 +408,7 @@ const School = () => {
                           name="specialization"
                           value="CBSC"
                           checked={selectedBoard === "CBSC"}
-                          onChange={handleSpecializationChange}
+                          onChange={handleBoardChange}
                         />
                         <label htmlFor="CBSC" className="checkbox-label">
                           CBSC
@@ -408,7 +421,7 @@ const School = () => {
                           name="specialization"
                           value="IG"
                           checked={selectedBoard === "IG"}
-                          onChange={handleSpecializationChange}
+                          onChange={handleBoardChange}
                         />
                         <label htmlFor="IG" className="checkbox-label">
                           IG
@@ -421,7 +434,7 @@ const School = () => {
                           name="specialization"
                           value="Other"
                           checked={selectedBoard === "Other"}
-                          onChange={handleSpecializationChange}
+                          onChange={handleBoardChange}
                         />
                         <label htmlFor="Other" className="checkbox-label">
                           Other
@@ -433,52 +446,11 @@ const School = () => {
               </div>
             </div>
           </div>
-          {/* <div className="line"></div>
-          <div className="exam">
-            <div>
-              <div className={`dropdown ${isExamExpanded ? "expanded" : ""}`}>
-                <label htmlFor="exam">Exam:</label>
-                <div>
-                  <button className="toggle-button" onClick={toggleExamExpand}>
-                    {isExamExpanded ? "▲" : "▼"}
-                  </button>
-                  {isExamExpanded && (
-                    <div className="options">
-                      <div className="option">
-                        <input
-                          type="checkbox"
-                          id="mht-cet"
-                          name="exam"
-                          value="MHT CET"
-                          checked={selectedExam === "MHT CET"}
-                          onChange={handleExamChange}
-                        />
-                        <label htmlFor="mht-cet" className="checkbox-label">
-                          MHT CET
-                        </label>
-                      </div>
-                      <div className="option">
-                        <input
-                          type="checkbox"
-                          id="jee"
-                          name="exam"
-                          value="JEE"
-                          checked={selectedExam === "JEE"}
-                          onChange={handleExamChange}
-                        />
-                        <label htmlFor="jee" className="checkbox-label">
-                          JEE
-                        </label>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div> */}
+          </div>
+        </div>
         </div>
         <div className="school-main">
-          <div className="school-search">
+          {/* <div className="school-search">
             <h1>Search School</h1>
             <div className="hero__middle">
               <div className="search-bar-school">
@@ -494,7 +466,7 @@ const School = () => {
                 
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="school-result">
           <div className="school-result__rank">
           <div className="rank__number">1</div>
@@ -621,6 +593,7 @@ const School = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };
