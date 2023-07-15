@@ -10,14 +10,11 @@ const School = () => {
   const [selectedOwnership, setSelectedOwnership] = useState("");
   const [selectedFees, setSelectedFees] = useState("");
   const [selectedBoard, setselectedBoard] = useState("");
-  // const [selectedExam, setSelectedExam] = useState("");
   const [isOwnershipExpanded, setIsOwnershipExpanded] = useState(true);
   const [isLocationExpanded, setIsLocationExpanded] = useState(true);
   const [isFeesExpanded, setIsFeesExpanded] = useState(true);
-  const [isBoadrExpanded, setIsBoadrExpanded] =
-    useState(true);
-  // const [isExamExpanded, setIsExamExpanded] = useState(true);
-
+  const [isBoadrExpanded, setIsBoadrExpanded] = useState(true);
+  
   const handleLocationChange = (event) => {
     const { value } = event.target;
     setSelectedLocation((prevSelected) =>
@@ -44,11 +41,6 @@ const School = () => {
     );
   };
 
-  // const handleExamChange = (event) => {
-  //   const { value } = event.target;
-  //   setSelectedExam((prevSelected) => (prevSelected === value ? "" : value));
-  // };
-
   const toggleOwnershipExpand = () => {
     setIsOwnershipExpanded((prevState) => !prevState);
   };
@@ -65,37 +57,16 @@ const School = () => {
     setIsBoadrExpanded((prevState) => !prevState);
   };
 
-  // const toggleExamExpand = () => {
-  //   setIsExamExpanded((prevState) => !prevState);
-  // };
-
-  // const clearFilters = () => {
-  //   setSelectedLocation("");
-  //   setSelectedOwnership("");
-  //   setSelectedFees("");
-  //   setselectedBoard("");
-  //   setSelectedExam("");
-  // };
-
   const clearAll = () => {
     setSelectedLocation("");
     setSelectedOwnership("");
     setSelectedFees("");
     setselectedBoard("");
-    // setSelectedExam("");
     setIsOwnershipExpanded(false);
     setIsLocationExpanded(false);
     setIsFeesExpanded(false);
     setIsBoadrExpanded(false);
-    // setIsExamExpanded(false);
   };
-
-  // Function to filter colleges based on selected filters
-  // const filterColleges = () => {
-    // Implement your logic to filter colleges based on the selected filters
-    // You can use the selectedLocation, selectedOwnership, selectedFees, selectedBoard, and selectedExam variables to apply the filters
-    // You can store the filtered colleges in a state variable and display them in the college-list section
-  // };
   
   return (
     <div>
@@ -139,15 +110,6 @@ const School = () => {
                 <span className="clear-option">x</span>
               </span>
             )}
-            {/* {selectedExam && (
-              <span
-                className="selected-option"
-                onClick={() => setSelectedExam("")}
-              >
-                {selectedExam}
-                <span className="clear-option">x</span>
-              </span>
-            )} */}
           </div>
           <div className="clear-filters">
             {/* <button onClick={clearFilters}>Clear Filters</button> */}
