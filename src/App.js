@@ -19,8 +19,8 @@ function App() {
           <Route path="/college" element={<College />} />
           <Route path="/school" element={<School />} />
         </Routes>
-        <Footer />
       </div>
+      <Footer />
     </Router>
   );
 }
