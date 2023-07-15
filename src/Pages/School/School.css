@@ -4,20 +4,74 @@
   display: flex;
   /* align-items: center; */
   justify-content: center;
-  margin-top: 5rem;
+  /* margin-top: 5rem; */
 }
 .school-filter {
-  width: 22%;
+  width: 30%;
+  min-height: 100%;
+}
+.school-section{
   display: flex;
+  gap: 5%;
+  width: 70%;
   height: 100%;
-  /* height: 52.5rem; */
-  border: 1px solid black;
+  /* background-color: black; */
+}
+.main {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
+  font-family: SFProDispaly;
+}
+.filter-text {
+  height: 2.9375rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.7rem 0.7rem 0rem 0rem;
+  background: #0f0c2d;
+  color: #fff;
+  padding: 0 0.9rem;
+}
+.line {
+  height: 0.1875rem;
+  background-color: #dbd9d9;
+  width: 105%;
+}
+.fees {
+  width: 100%;
+  text-align: start;
+}
+
+.fees .options {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align checkboxes to the left */
+}
+
+.clear-button {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+.filter-component {
+  height: 100%;
+}
+.filters {
+  overflow-x: hidden;
+  background-color: #fff;
+  overflow-y: scroll;
+  min-height: 250px;
+  max-height: 85%;
 }
 .school-main {
-  width: 42%;
+  width: 70%;
   height: 100%;
   /* border: 1px solid red; */
-  margin-left: 4rem;
+  /* margin-left: 4rem; */
 }
 .school-search {
   /* border: 1px solid green; */
@@ -61,83 +115,6 @@
   text-align: center;
   font-weight: 300;
   line-height: normal;
-}
-.filter__main {
-  width: 100%;
-  height: 3.9375rem;
-  color: #fff;
-  display: flex;
-  /* border: 1px solid orangered; */
-  border-radius: 0.9375rem 0.9375rem 0rem 0rem;
-  background: #0f0c2d;
-}
-.filter__heading {
-  width: 50%;
-  /* border: 1px solid white; */
-  padding: 4% 5%;
-}
-.filter__heading h1 span {
-  color: #fff;
-  font-family: SF Pro Display;
-  font-size: 1.55rem;
-  font-style: normal;
-  /* border: 1px solid gainsboro; */
-  font-weight: 500;
-  line-height: normal;
-}
-.filter__clear {
-  /* margin-top: 2%; */
-  display: flex;
-  width: 50%;
-  /* border: 1px solid white; */
-  padding: 4% 10%;
-}
-.filter__clear button {
-  border: 1px solid white;
-  border-radius: 2px;
-  height: fit-content;
-  width: fit-content;
-  margin-left: 5%;
-}
-.school-filter {
-  display: flex;
-  flex-direction: column;
-}
-.filter-ownership {
-  display: flex;
-  flex-direction: column;
-  padding: 3% 0% 0% 10%;
-  width: 100%;
-}
-.ownership__heading h1 {
-  color: #000;
-  font-family: SF Pro Display;
-  font-size: 1.5rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  margin-top: 1rem;
-}
-.ownership__type div label {
-  color: #000;
-  font-family: SF Pro Display;
-  font-size: 1.5rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin-left: 0.4rem;
-}
-.ownership__type {
-  margin-top: 1rem;
-}
-hr {
-  width: 100%;
-  height: 0.1875rem;
-  background: #dbd9d9;
-  margin-top: 1rem;
-}
-.filter-boxes {
-  margin-top: 1rem;
 }
 .school-result {
   display: flex;
