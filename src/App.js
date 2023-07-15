@@ -10,7 +10,10 @@ function App() {
   return (
     <Router>
       <div>
-        <Navbar />
+        <div style={{ position: "sticky", top: "0", zIndex: "1" }}>
+          {" "}
+          <Navbar />
+        </div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/college" element={<College />} />
