@@ -20,6 +20,10 @@ body {
   /* background-color: black; */
 }
 
+.clear-button:hover {
+  cursor: pointer;
+}
+
 .college-filter {
   width: 30%;
   min-height: 100%;

@@ -66,13 +66,51 @@ export default function College() {
     setIsExamExpanded((prevState) => !prevState);
   };
 
-  // const clearFilters = () => {
-  //   setSelectedLocation("");
-  //   setSelectedOwnership("");
-  //   setSelectedFees("");
-  //   setSelectedSpecialization("");
-  //   setSelectedExam("");
-  // };
+  const renderSelectedFilters = () => {
+    return (
+      <>
+        {selectedOwnership && (
+          <span
+            className="selected-option"
+            onClick={() => setSelectedOwnership("")}
+          >
+            {selectedOwnership}
+            <span className="clear-option">x</span>
+          </span>
+        )}
+        {selectedLocation && (
+          <span
+            className="selected-option"
+            onClick={() => setSelectedLocation("")}
+          >
+            {selectedLocation}
+            <span className="clear-option">x</span>
+          </span>
+        )}
+        {selectedFees && (
+          <span className="selected-option" onClick={() => setSelectedFees("")}>
+            {selectedFees}
+            <span className="clear-option">x</span>
+          </span>
+        )}
+        {selectedSpecialization && (
+          <span
+            className="selected-option"
+            onClick={() => setSelectedSpecialization("")}
+          >
+            {selectedSpecialization}
+            <span className="clear-option">x</span>
+          </span>
+        )}
+        {selectedExam && (
+          <span className="selected-option" onClick={() => setSelectedExam("")}>
+            {selectedExam}
+            <span className="clear-option">x</span>
+          </span>
+        )}
+      </>
+    );
+  };
 
   const clearAll = () => {
     setSelectedLocation("");
@@ -87,7 +125,6 @@ export default function College() {
     setIsExamExpanded(false);
   };
 
-  // Function to filter colleges based on selected filters
   const filterColleges = () => {
     // Implement your logic to filter colleges based on the selected filters
     // You can use the selectedLocation, selectedOwnership, selectedFees, selectedSpecialization, and selectedExam variables to apply the filters
@@ -98,72 +135,35 @@ export default function College() {
     <div className="main">
       <div className="college-component">
         <div className="college-filter">
-          <div className="selected-options">
-            {selectedOwnership && (
-              <span
-                className="selected-option"
-                onClick={() => setSelectedOwnership("")}
-              >
-                {selectedOwnership}
-                <span className="clear-option">x</span>
-              </span>
-            )}
-            {selectedLocation && (
-              <span
-                className="selected-option"
-                onClick={() => setSelectedLocation("")}
-              >
-                {selectedLocation}
-                <span className="clear-option">x</span>
-              </span>
-            )}
-            {selectedFees && (
-              <span
-                className="selected-option"
-                onClick={() => setSelectedFees("")}
-              >
-                {selectedFees}
-                <span className="clear-option">x</span>
-              </span>
-            )}
-            {selectedSpecialization && (
-              <span
-                className="selected-option"
-                onClick={() => setSelectedSpecialization("")}
-              >
-                {selectedSpecialization}
-                <span className="clear-option">x</span>
-              </span>
-            )}
-            {selectedExam && (
-              <span
-                className="selected-option"
-                onClick={() => setSelectedExam("")}
-              >
-                {selectedExam}
-                <span className="clear-option">x</span>
-              </span>
-            )}
-          </div>
-          <div className="clear-filters">
-            {/* <button onClick={clearFilters}>Clear Filters</button> */}
-            {selectedOwnership ||
-            selectedLocation ||
-            selectedFees ||
-            selectedSpecialization ||
-            selectedExam ? (
-              <button onClick={clearAll}>Clear All</button>
-            ) : null}
-          </div>
           <div className="filter-component">
             <div className="filter-text">
               <div className="text">FILTERS</div>
-              <div className="clear-button">
-                <div className="clear-text">Clear All</div>
-                <div className="clear-png">
-                  <img src={Clear} alt="" />
-                </div>
+
+              <div className="clear-filters">
+                {selectedOwnership ||
+                selectedLocation ||
+                selectedFees ||
+                selectedSpecialization ||
+                selectedExam ? (
+                  <div onClick={clearAll} className="clear-button">
+                    <div className="clear-text">Clear All</div>
+                    <div className="clear-png">
+                      <img src={Clear} alt="" />
+                    </div>
+                  </div>
+                ) : null}
               </div>
+            </div>
+            <div className="selected-filters">
+              {selectedOwnership ||
+              selectedLocation ||
+              selectedFees ||
+              selectedSpecialization ||
+              selectedExam ? (
+                <div className="selected-filter">
+                  Selected Filter: {renderSelectedFilters()}
+                </div>
+              ) : null}
             </div>
             <div className="filters">
               <div className="ownership">
