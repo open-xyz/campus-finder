@@ -10,7 +10,7 @@ export default function College() {
     {
       Name: "Viva Institute of Technology",
       Location: "palghar, Maharashtra",
-      "Private/Public": "Private",
+      Ownership: "Private",
       "University or Autonomous": "Affiliated with the University of Mumbai",
       "About College":
         "Viva Institute of Technology is a private engineering college located in Mumbai, Maharashtra, India. It is affiliated with the University of Mumbai.",
@@ -44,7 +44,7 @@ export default function College() {
     {
       Name: "Theem College of Engineering",
       Location: "palghar, Maharashtra",
-      "Private/Public": "Government",
+      Ownership: "Public",
       "University or Autonomous": "Affiliated with the University of Mumbai",
       "About College":
         "Theem College of Engineering is a Government engineering college located in palghar, Maharashtra, India. It is affiliated with the University of Mumbai.",
@@ -78,7 +78,7 @@ export default function College() {
     {
       Name: "St. John College of Engineering and Management",
       Location: "palghar, Maharashtra",
-      "Private/Public": "Private",
+      Ownership: "Private",
       "University or Autonomous": "Affiliated with the University of palghar",
       "About College":
         "St. John College of Engineering and Management is a private engineering college located in Mumbai, Maharashtra, India. It is affiliated with the University of Mumbai.",
@@ -112,7 +112,7 @@ export default function College() {
     {
       Name: "Sardar Patel Institute of Technology (SPIT)",
       location: "Mumbai, Maharashtra",
-      "private/public": "Private",
+      Ownership: "Private",
       "university or Autonomous": "Affiliated with the University of Mumbai",
       "About College":
         "SPIT is a private engineering college located in Mumbai, Maharashtra, India. It is affiliated with the University of Mumbai.",
@@ -140,7 +140,7 @@ export default function College() {
     {
       Name: "Vartak College of Engineering",
       Location: "palghar, Maharashtra",
-      "Private/Public": "Private",
+      Ownership: "Private",
       "University or Autonomous": "Affiliated with the University of Mumbai",
       "About College":
         "Vartak College of Engineering is a private engineering college located in Mumbai, Maharashtra, India. It is affiliated with the University of Mumbai.",
@@ -164,7 +164,7 @@ export default function College() {
     {
       Name: "Atharva College of Engineering",
       Location: "Mumbai, Maharashtra",
-      "Private/Public": "Private",
+      Ownership: "Private",
       "University or Autonomous": "Affiliated with the University of Mumbai",
       "About College":
         "Atharva College of Engineering is a private engineering college located in Mumbai, Maharashtra, India. It is affiliated with the University of Mumbai.",
@@ -198,7 +198,7 @@ export default function College() {
     {
       Name: "Thakur College of Engineering",
       Location: "Mumbai, Maharashtra",
-      "Private/Public": "Private(Autonomous)",
+      Ownership: "Private",
       "University or Autonomous": "Affiliated with the University of Mumbai",
       "About College":
         "Thakur College of Engineering is a private engineering college located in Mumbai, Maharashtra, India. It is affiliated with the University of Mumbai.",
@@ -232,7 +232,7 @@ export default function College() {
     {
       Name: "St. Francis College of Engineering",
       Location: "Mumbai, Maharashtra",
-      "Private/Public": "Private",
+      Ownership: "Private",
       "University or Autonomous": "Affiliated with the University of Mumbai",
       "About College":
         "St. Francis College of Engineering is a private engineering college located in Mumbai, Maharashtra, India. It is affiliated with the University of Mumbai.",
@@ -266,7 +266,7 @@ export default function College() {
     {
       Name: "Rizvi College of Engineering",
       Location: "Mumbai, Maharashtra",
-      "Private/Public": "Private",
+      Ownership: "Private",
       "University or Autonomous": "Affiliated with the University of Mumbai",
       "About College":
         "Rizvi College of Engineering is a private engineering college located in Mumbai, Maharashtra, India. It is affiliated with the University of Mumbai.",
@@ -301,7 +301,7 @@ export default function College() {
     {
       Name: "Bharati Vidyapeeth Deemed University",
       Location: "Pune, Maharashtra",
-      "Private/Public": "Deemed University",
+      Ownership: "Public",
       "University or Autonomous": "Autonomous",
       "About College":
         "Bharati Vidyapeeth Deemed University is a prestigious educational institution located in Pune, Maharashtra, India. It is a deemed university recognized by the University Grants Commission (UGC) and offers a wide range of undergraduate and postgraduate programs in various disciplines.",
@@ -336,7 +336,7 @@ export default function College() {
     {
       Name: "DY Patil International University",
       Location: "Pune, Maharashtra",
-      "Private/Public": "Private",
+      Ownership: "Private",
       "University or Autonomous": "Deemed University",
       "About College":
         "DY Patil International University is a renowned private deemed university located in Pune, Maharashtra, India. The university offers a diverse range of undergraduate, postgraduate, and doctoral programs across various fields of study.",
@@ -371,7 +371,7 @@ export default function College() {
     {
       Name: "Rajgad Dnyanpeeth Technical Campus",
       Location: "Pune, Maharashtra",
-      "Private/Public": "Private",
+      Ownership: "Private",
       "University or Autonomous":
         "Affiliated with the Savitribai Phule Pune University",
       "About College":
@@ -480,6 +480,16 @@ export default function College() {
         return false;
       });
     }
+
+    //Filter by ownership
+    if (selectedOwnership.length > 0) {
+      filtered = filtered.filter(
+        (college) =>
+          college.Ownership &&
+          college.Ownership.toLowerCase() === selectedOwnership.toLowerCase()
+      );
+    }
+
     // Filter by search query
     if (searchQuery.length > 0) {
       filtered = filtered.filter((college) =>
@@ -507,14 +517,20 @@ export default function College() {
 
   useEffect(() => {
     filterColleges();
-  }, [selectedLocation, selectedFees]);
+  }, [selectedLocation, selectedFees, selectedOwnership]);
 
   const handleOwnershipChange = (event) => {
     const { value } = event.target;
-    setSelectedOwnership((prevSelected) =>
-      prevSelected === value ? "" : value
-    );
+    setSelectedOwnership(value);
+    console.log(value);
   };
+
+  // const handleOwnershipChange = (event) => {
+  //   const { value } = event.target;
+  //   setSelectedOwnership((prevSelected) =>
+  //     prevSelected === value ? "" : value
+  //   );
+  // };
 
   // const handleFeesChange = (event) => {
   //   const { value } = event.target;
