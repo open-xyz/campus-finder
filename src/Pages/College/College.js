@@ -417,6 +417,7 @@ export default function College() {
     useState(true);
   const [isExamExpanded, setIsExamExpanded] = useState(true);
   const [filteredColleges, setFilteredColleges] = useState(colleges);
+  const [searchQuery, setSearchQuery] = useState("");
   // const filterColleges = () => {
   //   let filtered = colleges;
 
@@ -479,6 +480,13 @@ export default function College() {
         return false;
       });
     }
+    // Filter by search query
+    if (searchQuery.length > 0) {
+      filtered = filtered.filter((college) =>
+        college.Name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
     setFilteredColleges(filtered);
   };
 
@@ -487,6 +495,10 @@ export default function College() {
     setSelectedLocation(value);
   };
 
+  const handleSearchChange = (event) => {
+    const { value } = event.target;
+    setSearchQuery(value);
+  };
   const handleFeesChange = (event) => {
     const { value } = event.target;
     setSelectedFees(value);
@@ -1037,7 +1049,17 @@ export default function College() {
               <div>
                 <img src={Search} alt="" />
               </div>
-              <input type="text" placeholder="Search..." />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                onKeyPress={(event) => {
+                  if (event.key === "Enter") {
+                    filterColleges();
+                  }
+                }}
+                placeholder="Search..."
+              />
               <button onClick={filterColleges}>Search</button>
             </div>
           </div>
