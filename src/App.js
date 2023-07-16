@@ -1,36 +1,27 @@
 import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import College from "./Pages/College/College";
 import Navbar from "./Pages/Navbar/Navbar/Navbar";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
 import Footer from "./Pages/Footer/Footer";
-
 import School from "./Pages/School/School";
-
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/college",
-    element: <College />,
-  },
-  {
-    path: "/school",
-    element: <School/>,
-  },
-]);
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <RouterProvider router={router} />
-      <Footer/>
-    </div>
+    <Router>
+      <div>
+        <div style={{ position: "sticky", top: "0", zIndex: "1" }}>
+          {" "}
+          <Navbar />
+        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/college" element={<College />} />
+          <Route path="/school" element={<School />} />
+        </Routes>
+      </div>
+      <Footer />
+    </Router>
   );
 }
 
