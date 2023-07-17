@@ -15,35 +15,49 @@ import { Fragment, useState, useEffect } from "react";
   }
   function Navbar() {
     const [userDetails, setUserDetails] = useState({ name: "", email: "", avatar: "" });
-    const host = "http://localhost:4080"
+    const host = "http://localhost:4080";
     useEffect(() => {
+      // Fetch user details from the server
       const fetchUserDetails = async () => {
         try {
-          const response = await fetch(`${host}/api/users/getUserDetails`, {
+          // Get the token from the cookies
+          const token = Cookies.get("token");
+          console.log(token);
+          if (!token) {
+            console.log("not token");
+            return;
+          }
+  
+          const response = await fetch(`${host}/api/get-user-details`, {
             method: "GET",
             headers: {
-              'Content-Type': 'application/json',
-              'token': `Bearer ${Cookies.get("token")}`
+              
+              "token": `Bearer ${token}`,
             },
           });
-          const data = await response.json();
-          console.log("Data received from the backend:", data);
-          if (data.success) {
+  
+          if (response.ok) {
+            const data = await response.json();
+            console.log("data",data);
             setUserDetails(data.data);
+          } else {
+            // Handle error when fetching user details
           }
         } catch (error) {
-          console.error(error);
+          // Handle error when fetching user details
         }
       };
+  
       fetchUserDetails();
-    }, []);
+    }, []); 
+
     useEffect(() => {
       if (userDetails.avatar) {
         const avatarUrl = `data:image/jpeg;base64,${userDetails.avatar}`;
         setUserDetails(prevState => ({ ...prevState, avatar: avatarUrl }));
       }
     }, [userDetails.avatar]);
-  
+   	
     return (
       <Disclosure as="nav" style={{ backgroundColor: "#0F0C2D" }}>
         {({ open }) => (
