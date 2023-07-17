@@ -412,23 +412,26 @@ const School = () => {
         </div>
         </div>
         <div className="school-main">
-          {/* <div className="school-search">
-            <h1>Search School</h1>
-            <div className="hero__middle">
-              <div className="search-bar-school">
-                <div className="line"></div>
-                <img style={{ marginRight: "0.8rem" }} src={Search} alt="" />
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  placeholder="Search..."
-                />
-                <div className="src-button"><button>Search</button></div>
-                
+        <div className="search">
+            <div className="heading">Search Colleges</div>
+            <div className="inputs">
+              <div>
+                <img src="" alt="" />
               </div>
+              <input
+                type="text"
+                value=""
+                onChange=""
+                // onKeyPress={(event) => {
+                //   if (event.key === "Enter") {
+                //     filterColleges();
+                //   }
+                // }}
+                placeholder="Search..."
+              />
+              <button>Search</button>
             </div>
-          </div> */}
+          </div>
           <div className="school-result">
           <div className="school-result__rank">
           <div className="rank__number">1</div>
