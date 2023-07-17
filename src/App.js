@@ -5,6 +5,8 @@ import College from "./Pages/College/College";
 import Navbar from "./Pages/Navbar/Navbar/Navbar";
 import Footer from "./Pages/Footer/Footer";
 import School from "./Pages/School/School";
+import Login from "./Pages/Login/Login";
+import Singup from "./Pages/Signup/Signup";
 
 function App() {
   return (
@@ -18,6 +20,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/college" element={<College />} />
           <Route path="/school" element={<School />} />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/signup" element={<Singup/>} />
+
         </Routes>
       </div>
       <Footer />

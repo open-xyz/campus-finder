@@ -4,8 +4,15 @@ import Clear from "./collegeImages/clear.svg";
 import Location from "./collegeImages/location.svg";
 import Dot from "./collegeImages/dot.svg";
 import Search from "./collegeImages/search.svg";
+import usePageTitle from '../layout/metaData'
 
 export default function College() {
+
+  // page title
+  const pageTitle="colleges | campusFinder"
+  usePageTitle(pageTitle)
+
+
   const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedOwnership, setSelectedOwnership] = useState("");
   const [selectedFees, setSelectedFees] = useState("");
