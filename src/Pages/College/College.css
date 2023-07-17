@@ -1,15 +1,21 @@
+html {
+  font-size: 16px;
+}
+
 body {
   background-color: #f3f2ef;
+  font-size: 1rem;
 }
 
 .main {
   height: 100vh;
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   margin-top: 5rem;
   font-family: SFProDispaly;
+  overflow: hidden;
 }
 
 .college-component {
@@ -17,14 +23,18 @@ body {
   gap: 5%;
   width: 70%;
   height: 100%;
-  /* background-color: black; */
+  overflow: hidden;
+}
+
+.clear-button:hover {
+  cursor: pointer;
 }
 
 .college-filter {
   width: 30%;
   min-height: 100%;
-  /* background-color: red; */
-  /* border: 2px solid pink; */
+  position: sticky;
+  top: 0;
 }
 
 .filters {
@@ -34,6 +44,7 @@ body {
   min-height: 250px;
   max-height: 85%;
 }
+
 .line {
   height: 0.1875rem;
   background-color: #dbd9d9;
@@ -41,33 +52,40 @@ body {
 }
 
 .main-college {
-  width: 60%;
+  width: 70%;
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 1rem;
+  overflow-y: auto;
 }
 
-.search {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 5.9375rem;
-  /* border: 2px solid pink; */
+.selected-filters {
+  background-color: #fff;
+  border: 0;
+  padding-top: 0.5rem;
+  border-bottom: 0.1875rem solid #dbd9d9;
 }
 
-.search .input {
-  border: 3px solid green;
+.no-filters {
+  color: #999;
+  margin-top: 0.2rem;
+  border-bottom: none;
+}
+
+.selected-filter-filters {
+  background-color: #fff;
 }
 
 .college-list {
   width: 100%;
   height: 100%;
-  /* border: 2px solid pink; */
+  margin-top: 1rem;
 }
 
 .filter-component {
+  position: sticky;
+  top: 0;
   height: 100%;
 }
 
@@ -81,6 +99,7 @@ body {
   color: #fff;
   padding: 0 0.9rem;
 }
+
 .clear-button {
   display: flex;
   align-items: center;
@@ -89,9 +108,6 @@ body {
 
 .filter-heading {
   width: 100%;
-  /* background-color: pink; */
-  display: flex;
-  justify-content: space-between;
 }
 
 .fees {
@@ -101,7 +117,7 @@ body {
 .fees .options {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align checkboxes to the left */
+  align-items: flex-start;
 }
 
 .option {
@@ -121,4 +137,219 @@ body {
 
 .filter-heading label {
   margin-bottom: 0.5rem;
+}
+
+.selected-option {
+  font-family: SFProDispaly;
+  background-color: #fff;
+  color: #333;
+  padding: 4px 8px;
+  border: 1px solid #333;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.selected-option:hover {
+  text-decoration: line-through;
+}
+
+.clear-option {
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+.selected-filter p {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.college-card {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 1.5rem 0.3rem 1.5rem 0;
+  border-radius: 0.625rem;
+  background: #fff;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.image {
+  margin-right: 2.5rem;
+}
+
+.image img {
+  width: 4.6875rem;
+}
+
+.info-two {
+  margin: 0.2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.info-four {
+  color: #36c;
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.info-four:nth-child(n):hover {
+  cursor: pointer;
+}
+
+.locations {
+  display: flex;
+  align-items: center;
+}
+
+.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.9375rem;
+  height: 5.9375rem;
+  flex-shrink: 0;
+  border: 0.12rem solid #444444;
+}
+
+.rank-ranks {
+  color: #000;
+  font-family: SFProDispaly;
+  font-size: 2.25em;
+  font-weight: 500;
+}
+
+.rank-ranking-institute {
+  color: #444;
+  font-family: SFProDispaly;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.college-card .collge-info .collge-name {
+  color: #000;
+  font-family: SFProDispaly;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.star-rating {
+  font-size: 0;
+  display: flex;
+  gap: -1rem;
+}
+
+.star-rating > span:nth-child(n) {
+  margin-top: 0.15rem;
+  margin-right: -0.5rem;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+}
+
+.rating .rate {
+  padding-right: 0.5rem;
+}
+
+.star {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url("./collegeImages/star.svg");
+  background-repeat: no-repeat;
+}
+
+.college-fees span,
+.salary span {
+  color: #444444;
+}
+
+.search {
+  /* background-color: red; */
+  justify-content: space-around;
+}
+
+.search .heading {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.inputs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 23.4375rem;
+  height: 2.61869rem;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  border: 2px solid #000;
+  align-items: center;
+}
+
+input::placeholder {
+  color: #444;
+  font-family: SFProDispaly;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 1.7rem 0rem;
+  border-radius: 0.625rem;
+}
+
+.search .heading {
+  font-size: 1.25rem;
+}
+
+.inputs button {
+  border-radius: 0.4375rem;
+  background: #ffd700;
+  padding: 0.2rem 0.5rem;
+  margin-right: 0.5rem;
+}
+
+/* image */
+.search img {
+  margin-left: 0.5rem;
+}
+
+@media only screen and (max-width: 1306px) {
+  html {
+    font-size: 15px;
+  }
+
+  body {
+    background-color: #f3f2ef;
+    font-size: 1rem;
+  }
+
+  .main-college {
+    width: 75%;
+  }
+  .college-component {
+    width: 75%;
+  }
 }
