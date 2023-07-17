@@ -4,6 +4,7 @@ import "../Home/components/Hero/Hero.css";
 import "../College/College.css";
 import Clear from "../College/collegeImages/clear.svg";
 import schoollogo from "./image 10.png";
+import Search from "../College/collegeImages/search.svg"
 // import Search from "../Home/components/Hero/HeroImages/search.svg";
 const School = () => {
   const [selectedLocation, setSelectedLocation] = useState("");
@@ -14,6 +15,67 @@ const School = () => {
   const [isLocationExpanded, setIsLocationExpanded] = useState(true);
   const [isFeesExpanded, setIsFeesExpanded] = useState(true);
   const [isBoadrExpanded, setIsBoadrExpanded] = useState(true);
+  const [filteredSchools, setFilteredSchools] = useState(colleges);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filterColleges = () => {
+    let filtered = colleges;
+
+    // Filter by location
+    if (selectedLocation.length > 0) {
+      filtered = filtered.filter(
+        (college) =>
+          college.Location &&
+          college.Location.toLowerCase().includes(
+            selectedLocation.toLowerCase()
+          )
+      );
+    }
+
+    // Filter by fees range
+    if (selectedFees.length > 0) {
+      filtered = filtered.filter((college) => {
+        if (college["Course Offered"]) {
+          const courseFees = parseInt(
+            college["Course Offered"][0].replace(/,/g, "")
+          );
+          const [lowerRange, upperRange] = selectedFees.split("-");
+
+          if (selectedFees === "below 10K") {
+            return courseFees < 10000;
+          } else if (selectedFees === "70K - 1L") {
+            return courseFees > 100000;
+          } else if (upperRange) {
+            return (
+              courseFees >= parseInt(lowerRange) * 100000 &&
+              courseFees <= parseInt(upperRange) * 100000
+            );
+          }
+        }
+        return false;
+      });
+    }
+
+    //Filter by ownership
+    if (selectedOwnership.length > 0) {
+      filtered = filtered.filter(
+        (college) =>
+          college.Ownership &&
+          college.Ownership.toLowerCase() === selectedOwnership.toLowerCase()
+      );
+    }
+
+    // Filter by search query
+    if (searchQuery.length > 0) {
+      filtered = filtered.filter((college) =>
+        college.Name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    setFilteredSchools(filtered);
+  };
+
+
 
   const handleLocationChange = (event) => {
     const { value } = event.target;
@@ -437,23 +499,26 @@ const School = () => {
             </div>
           </div>
           <div className="school-main">
-            {/* <div className="school-search">
-            <h1>Search School</h1>
-            <div className="hero__middle">
-              <div className="search-bar-school">
-                <div className="line"></div>
-                <img style={{ marginRight: "0.8rem" }} src={Search} alt="" />
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  placeholder="Search..."
-                />
-                <div className="src-button"><button>Search</button></div>
-                
+          <div className="search">
+            <div className="heading">Search Colleges</div>
+            <div className="inputs">
+              <div>
+                <img src={Search} alt="" />
               </div>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                onKeyPress={(event) => {
+                  if (event.key === "Enter") {
+                    filterColleges();
+                  }
+                }}
+                placeholder="Search..."
+              />
+              <button onClick={filterColleges}>Search</button>
             </div>
-          </div> */}
+          </div>
             <div className="school-result">
               <div className="school-result__rank">
                 <div className="rank__number">1</div>
