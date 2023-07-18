@@ -4,13 +4,36 @@ import Clear from "./collegeImages/clear.svg";
 import Location from "./collegeImages/location.svg";
 import Dot from "./collegeImages/dot.svg";
 import Search from "./collegeImages/search.svg";
+
+import usePageTitle from "../layout/metaData";
+
+
 import colleges from "./college_api";
+
 import { useCollegeContext } from "../../context/collegeContext";
 import { Link } from "react-router-dom";
+// import colleges from "./college_api";
+
+// export default function College() {
+//   const colleges = useCollegeContext();
+
+// const [selectedLocation, setSelectedLocation] = useState("");
+
+export default function College() {
+  const [colleges, setColleges] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:4080/api/colleges")
+      .then((response) => response.json())
+      .then((data) => setColleges(data))
+      .catch((error) => console.error("Error fetching colleges:", error));
+  }, []);
+
 
 import usePageTitle from "../layout/metaData";
 
 export default function College() {
+
   // page title
   const pageTitle = "colleges | campusFinder";
   usePageTitle(pageTitle);
@@ -26,8 +49,12 @@ export default function College() {
   const [isSpecializationExpanded, setIsSpecializationExpanded] =
     useState(true);
   const [isExamExpanded, setIsExamExpanded] = useState(true);
-  const [filteredColleges, setFilteredColleges] = useState(colleges);
+  const [filteredColleges, setFilteredColleges] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  useEffect(() => {
+    setFilteredColleges(colleges.collegeList || []);
+  }, [colleges]);
+
   // const filterColleges = () => {
   //   let filtered = colleges;
 
@@ -53,27 +80,92 @@ export default function College() {
   //   filterColleges();
   // }, [selectedLocation]);
 
+  // useEffect(() => {
+  //   const filterColleges = () => {
+  //     let filtered = filteredColleges;
+
+  //     // Filter by location
+  //     if (selectedLocation.length > 0) {
+  //       filtered = filtered.filter(
+  //         (college) =>
+  //           college.location &&
+  //           college.location.city &&
+  //           college.location.city
+  //             .toLowerCase()
+  //             .includes(selectedLocation.toLowerCase())
+  //       );
+  //     }
+
+  //     // Filter by fees range
+  //     if (selectedFees.length > 0) {
+  //       filtered = filtered.filter((college) => {
+  //         if (college["Course Offered"]) {
+  //           const courseFees = parseInt(
+  //             college["Course Offered"][0].replace(/,/g, "")
+  //           );
+  //           const [lowerRange, upperRange] = selectedFees.split("-");
+
+  //           if (selectedFees === "1 Lakh") {
+  //             return courseFees < 100000;
+  //           } else if (selectedFees === "6 Lakh") {
+  //             return courseFees > 600000;
+  //           } else if (upperRange) {
+  //             return (
+  //               courseFees >= parseInt(lowerRange) * 100000 &&
+  //               courseFees <= parseInt(upperRange) * 100000
+  //             );
+  //           }
+  //         }
+  //         return false;
+  //       });
+  //     }
+
+  //     // Filter by ownership
+  //     if (selectedOwnership.length > 0) {
+  //       filtered = filtered.filter(
+  //         (college) =>
+  //           college.Ownership &&
+  //           college.Ownership.toLowerCase() === selectedOwnership.toLowerCase()
+  //       );
+  //     }
+
+  //     // Filter by search query
+  //     if (searchQuery.length > 0) {
+  //       filtered = filtered.filter((college) =>
+  //         college.name.toLowerCase().includes(searchQuery.toLowerCase())
+  //       );
+  //     }
+
+  //     setFilteredColleges(filtered);
+  //   };
+
+  //   filterColleges(); // Initial filter when the dependencies change
+  // }, [
+  //   filteredColleges,
+  //   selectedLocation,
+  //   selectedFees,
+  //   selectedOwnership,
+  //   searchQuery,
+  // ]);
+
   const filterColleges = () => {
-    let filtered = colleges;
+    let filtered = colleges.collegeList || [];
 
     // Filter by location
-    if (selectedLocation.length > 0) {
+    if (selectedLocation) {
       filtered = filtered.filter(
         (college) =>
-          college.Location &&
-          college.Location.toLowerCase().includes(
-            selectedLocation.toLowerCase()
-          )
+          college.location &&
+          college.location.city &&
+          college.location.city.toLowerCase() === selectedLocation.toLowerCase()
       );
     }
 
     // Filter by fees range
     if (selectedFees.length > 0) {
       filtered = filtered.filter((college) => {
-        if (college["Course Offered"]) {
-          const courseFees = parseInt(
-            college["Course Offered"][0].replace(/,/g, "")
-          );
+        if (college) {
+          const courseFees = college.fees.BE;
           const [lowerRange, upperRange] = selectedFees.split("-");
 
           if (selectedFees === "1 Lakh") {
@@ -103,7 +195,7 @@ export default function College() {
     // Filter by search query
     if (searchQuery.length > 0) {
       filtered = filtered.filter((college) =>
-        college.Name.toLowerCase().includes(searchQuery.toLowerCase())
+        college.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
 
@@ -199,7 +291,9 @@ export default function College() {
       selectedFilters.push(
         <span
           className="selected-option"
-          onClick={() => setSelectedLocation("")}
+          onClick={() => {
+            setSelectedLocation("");
+          }}
           key="location"
         >
           {selectedLocation}
@@ -265,6 +359,7 @@ export default function College() {
     setIsFeesExpanded(true);
     setIsSpecializationExpanded(true);
     setIsExamExpanded(true);
+    setFilteredColleges(colleges.collegeList || []);
   };
 
   return (
@@ -345,6 +440,7 @@ export default function College() {
                             id="private"
                             name="ownership"
                             value="Private"
+                            onClick={filterColleges}
                             checked={selectedOwnership === "Private"}
                             onChange={handleOwnershipChange}
                           />
@@ -702,26 +798,28 @@ export default function College() {
                     </div>
                   </div>
                   <div className="image">
-                    <img
-                      src="https://images.shiksha.com/mediadata/images/1605086820phpSFQlAR.jpg"
-                      alt="college_logo"
-                    />
+                    <img src={college.images.logo_img} alt="college_logo" />
                   </div>
                   <div className="collge-info">
-                    <div className="collge-name">{college.Name}</div>
+                    <Link to={`/colleges/${college.name}`}>
+                      <div className="collge-name">{college.name}</div>
+                    </Link>
+
                     <div className="info-two">
                       <div className="locations">
                         <div className="img">
                           <img src={Location} alt="location" />
                         </div>
-                        <div className="address">{college.Location}</div>
+                        <div className="address">
+                          {college.location && college.location.city}
+                        </div>
                       </div>
                       <div className="verticalline">|</div>
                       <div className="rating">
-                        <div className="rate">{college.Rating}</div>
+                        <div className="rate">{college.ratings}</div>
                         <div className="star-rating">
                           {Array.from(
-                            { length: Math.floor(college.Rating) },
+                            { length: Math.floor(college.ratings) },
                             (_, i) => (
                               <span className="star" key={i}></span>
                             )
@@ -730,27 +828,30 @@ export default function College() {
                       </div>
                       <div className="verticalline">|</div>
                       <div className="college-fees">
-                        <span>Fees:</span> ₹ {college["Course Offered"][0]}
+                        <span>Fees:</span> ₹ {college.fees.BE}
                       </div>
                     </div>
                     <div className="info-three">
                       <div className="salary">
-                        <span>Salary:</span> ₹ {college.Salary}
+                        <span>Salary:</span> ₹ {college.package}
                       </div>
                     </div>
                     <div className="info-four">
-                      <div className="admission">Admission</div>
+                      <div className="admission">
+                        <Link to={`/colleges/${college.name}`}>Admission</Link>
+                      </div>
                       <div className="dot">
                         <img src={Dot} alt="dot" />
                       </div>
-                      <div className="coursesandfees">Courses & Fees</div>
+                      <Link to={`/colleges/${college.name}`}>
+                        Courses & Fees
+                      </Link>
                       <div className="dot">
                         <img src={Dot} alt="dot" />
                       </div>
-                      <div className="placement">Placement</div>
+                      <Link to={`/colleges/${college.name}`}>Placement</Link>
                     </div>
                   </div>
-                  <Link to={`/colleges/${college.Name}`}>Hello</Link>
                 </div>
               ))
             ) : (

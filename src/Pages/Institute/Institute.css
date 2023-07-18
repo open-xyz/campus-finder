@@ -1,0 +1,303 @@
+.institute-banner-section {
+  width: 67.6875rem;
+  height: 21rem;
+  background-color: white;
+  border-radius: 1rem;
+  position: relative;
+  border-radius: 0.75rem;
+}
+
+.institute-banner {
+  object-fit: cover;
+}
+.institute-logo {
+  object-fit: cover;
+}
+.institute-main {
+  /* height: 250vh; */
+  width: 100%;
+}
+.institute-banner {
+  width: 100%;
+  height: 14.125rem;
+}
+.institute-logo {
+  width: 8.375rem;
+  height: 8.375rem;
+  flex-shrink: 0;
+  position: absolute;
+  bottom: 2%;
+  /* z-index: 2; */
+}
+.banner-detail {
+  width: 70%;
+  margin-left: 20%;
+  /* border: 1px solid yellow; */
+  justify-content: space-between;
+  position: relative;
+  display: flex;
+}
+.banner-detail__name {
+  /* border: 1px solid red; */
+  width: 70%;
+}
+.small-detail {
+  display: flex;
+  margin-top: 1rem;
+}
+.small-detail-govern {
+  /* border: 1px solid black; */
+  background-color: black;
+  color: white;
+  width: 3.875rem;
+  padding-left: 0.5%;
+}
+
+.save-btn {
+  position: absolute;
+  bottom: 10%;
+  right: 0%;
+}
+.institute-aboutus {
+  width: 67.6875rem;
+  border-radius: 1rem;
+  background-color: white;
+  padding: 1rem;
+  color: #000;
+  font-family: SF Pro Display;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.institute-information {
+  width: 67.6875rem;
+  display: flex;
+  gap: 2rem;
+  color: #000;
+  font-family: SF Pro Display;
+  line-height: normal;
+}
+.information-left {
+  width: 50%;
+  padding: 2.5rem;
+  /* border: 1px solid black; */
+  background-color: white;
+  height: 24.8125rem;
+  border-radius: 1rem;
+}
+.information-right {
+  width: 50%;
+  /* border: 1px solid black; */
+  background-color: white;
+  height: 24.8125rem;
+  border-radius: 1rem;
+}
+.exam-info-span {
+  color: #0f0c2d;
+  font-family: SF Pro Display;
+  font-weight: bolder;
+  font-size: 1.775rem;
+  font-style: normal;
+  line-height: normal;
+}
+.course-info-span {
+  color: #0f0c2d;
+  font-family: SF Pro Display;
+  font-weight: bolder;
+  font-size: 1.775rem;
+  font-style: normal;
+  line-height: normal;
+}
+.fees-info-span {
+  color: #0f0c2d;
+  font-family: SF Pro Display;
+  font-weight: bolder;
+  font-size: 1.775rem;
+  font-style: normal;
+  line-height: normal;
+  /* margin-bottom: 1rem; */
+}
+.exam-info-span2 {
+  color: #000;
+  font-family: SF Pro Display;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.fees-info-span2 {
+  color: #000;
+  font-family: SF Pro Display;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 1rem;
+}
+.course-info-span2 {
+  color: #000;
+  font-family: SF Pro Display;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.exam-info h3 {
+  margin: 2% 0%;
+}
+.course-info h3 {
+  margin: 2% 0%;
+}
+.fees-info h3 {
+  margin: 2% 0%;
+}
+.info-common {
+  display: flex;
+  margin-top: 1rem;
+}
+.information-right {
+  padding: 2rem;
+}
+.contact-detail {
+  margin: 0.5rem 5rem;
+}
+.contact-detail h1 {
+  color: #000;
+  font-family: SF Pro Display;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.common-head {
+  color: #444;
+  font-family: SF Pro Display;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.common-main {
+  margin-left: 5rem;
+}
+.button-to-webite {
+  width: 100%;
+}
+.button-to-webite button {
+  margin-top: 1.2rem;
+  margin-left: 8rem;
+}
+hr {
+  margin: 1rem 0rem;
+}
+.institute-rating {
+  /* border: 1px solid red; */
+  background-color: white;
+  border-radius: 1rem;
+  width: 67.6875rem;
+  padding: 3rem;
+  display: flex;
+  justify-content: space-between;
+  color: #000;
+  font-family: SF Pro Display;
+  line-height: normal;
+}
+.left-rating {
+  width: 50%;
+  /* border: 1px solid black; */
+  display: flex;
+  /* padding: 2rem; */
+}
+.right-rating {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  /* border: 1px solid black; */
+}
+.rating-detail h5 {
+  font-size: 1.3rem;
+}
+.rating-detail h1 {
+  font-size: 2rem;
+}
+.rating-svg h1 {
+  color: #000;
+  font-family: SF Pro Display;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.rating-svg h1 span {
+  color: #000;
+  font-family: SF Pro Display;
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.rating-svg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid red; */
+  width: fit-content;
+}
+.rating-svg img {
+  width: 2.5rem;
+  height: 2.471rem;
+  flex-shrink: 0;
+  margin-right: 1rem;
+}
+.faq {
+  width: 67.6875rem;
+}
+.identity h1 {
+  color: #000;
+  font-family: SF Pro Display;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: bolder;
+  line-height: normal;
+}
+.identity h2 {
+  color: #000;
+  font-family: SF Pro Display;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.reviews {
+  width: 67.6875rem;
+  /* border: 1px solid red; */
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+.reviewer-name {
+  display: flex;
+  gap: 1rem;
+}
+.summarized-review {
+  margin-top: 3rem;
+  color: #000;
+  font-family: SF Pro Display;
+  font-size: 1.375rem;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+}
+.placements-review {
+  margin: 1rem 0rem;
+}
+.placements-review p span {
+  font-weight: bolder;
+}
+.infrastructure-review p span {
+  font-weight: bolder;
+}
+.infrastructure-review {
+  margin: 1rem 0rem;
+}

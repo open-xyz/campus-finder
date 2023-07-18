@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useCollegeContext } from "../../context/collegeContext";
 import "./SingleCollege.css";
@@ -6,11 +6,24 @@ import Arrow from "./collegeImages/arrow.svg";
 
 export default function SingleCollege() {
   const { collegeName } = useParams();
-  const colleges = useCollegeContext();
+  // const colleges = useCollegeContext();
+  const [colleges, setColleges] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:4080/api/colleges")
+      .then((response) => response.json())
+      .then((data) => setColleges(data))
+      .catch((error) => console.error("Error fetching colleges:", error));
+  }, []);
+
+  const [filteredColleges, setFilteredColleges] = useState([]);
+  useEffect(() => {
+    setFilteredColleges(colleges.collegeList || []);
+  }, [colleges]);
 
   // Find the selected college based on the collegeName parameter
-  const selectedCollege = colleges.find(
-    (college) => college.Name === collegeName
+  const selectedCollege = filteredColleges.find(
+    (college) => college.name === collegeName
   );
 
   if (!selectedCollege) {
