@@ -2,6 +2,10 @@ import React from "react";
 import "../Institute/Institute.css";
 import Banner from "../Institute/Institute_logo/viva-institute-of-technology-vit-thane.jpg";
 import Logo from "../Institute/Institute_logo/download.png";
+import Mail from "../Institute/Institute_logo/image 17.png";
+import Rating from "../Institute/Institute_logo/image 18.png";
+import Star from "../Institute/Institute_logo/ic_round-star.svg";
+import Profile from "../Institute/Institute_logo/carbon_user-avatar-filled.svg";
 const Institute = () => {
   return (
     <div style={{ backgroundColor: "#F3F2EF" }}>
@@ -64,12 +68,252 @@ const Institute = () => {
         <div className="institute-information container mx-auto mt-8">
           <div className="information-left">
             <div className="exam-info">
-              <h5><span className="exam-info-span">Accepted Exams</span></h5>
-              <h3><span className="exam-info-span2">JEE MAIN , MHT-CET</span></h3>
+              <h5>
+                <span className="exam-info-span font-bold">
+                  Accepted Exams:
+                </span>
+              </h5>
+              <h3>
+                <span className="exam-info-span2">JEE MAIN , MHT-CET</span>
+              </h3>
             </div>
-            <hr style={{width:"26rem", height:"0.0625rem",backgroundColor:"#DBDBDB"}} />
+            <hr />
+            <div className="course-info">
+              <h5>
+                <span className="course-info-span font-bold">
+                  Courses Offered:
+                </span>
+              </h5>
+              <h3>
+                <span className="course-info-span2">BE , M-TECH</span>
+              </h3>
+            </div>
+            <hr />
+            <div className="institute-fees">
+              <h5>
+                <span className="fees-info-span font-bold">Fees:</span>
+              </h5>
+              <h3>
+                <span className="fees-info-span2">
+                  Bachlor of Technology(BE)
+                </span>
+              </h3>
+              <h5>
+                <span className="fees-info-span font-bold">10000</span>
+              </h5>
+              <h3>
+                <span className="fees-info-span2">
+                  Master in Technology(MCA)
+                </span>
+              </h3>
+              <h5>
+                <span className="fees-info-span font-bold">110000</span>
+              </h5>
+            </div>
           </div>
-          <div className="information-right"></div>
+
+          <div className="information-right">
+            <div className="contact-info info-common">
+              <div className="contact-img">
+                <img src={Mail} alt="" />
+              </div>
+              <div className="contact-detail">
+                <h4>
+                  <span>Viva Institute Of Techhology</span>
+                </h4>
+                <h1>
+                  <span>Contact Information</span>
+                </h1>
+              </div>
+            </div>
+            <div className="address-info info-common">
+              <div className="address-heading common-head">Address: </div>
+              <div className="address-detail common-main">
+                <h4>
+                  <span>
+                    FVF5+H75, Shirgaon, Veer Sawarkar road, Virar(East),
+                    Tal-Vasai, Chandansar, Virar, Maharashtra 401303
+                  </span>
+                </h4>
+              </div>
+            </div>
+            <hr />
+            <div className="phone-info info-common">
+              <div className="contact-img common-head">Phone: </div>
+              <div className="contact-detail common-main">
+                <h4>
+                  <span> +2222-20202-22</span>
+                </h4>
+              </div>
+            </div>
+            <hr />
+            <div className="email-info info-common">
+              <div className="contact-img common-head">E-Mail: </div>
+              <div className="contact-detail common-main">
+                <h4>
+                  <span>Vivatechnology@gmail.org</span>
+                </h4>
+              </div>
+            </div>
+            <div className="button-to-webite">
+              <button className="btn">Go To College Website</button>
+            </div>
+          </div>
+        </div>
+        <div className="institute-rating container mx-auto mt-8">
+          <div className="left-rating">
+            <div className="rating-img">
+              <img src={Rating} alt="" srcset="" />
+            </div>
+            <div className="rating-detail">
+              <h5>
+                <span>Viva Institute Of Technology</span>
+              </h5>
+              <h1>
+                <span className="font-extrabold">
+                  Stuents Rating And Review
+                </span>
+              </h1>
+            </div>
+          </div>
+          <div className="right-rating">
+            <div className="rating-svg">
+              <img src={Star} alt="" srcset="" />
+              <h1>
+                <span>1.1</span>/5
+              </h1>
+            </div>
+          </div>
+        </div>
+        <div className="reviews container mx-auto mt-8">
+          <div className="reviewer-name">
+            <div className="profile-logo">
+              <img src={Profile} alt="" srcset="" />
+            </div>
+            <div className="identity">
+              <h1>
+                <span>Gaurav Madusudan Harayan</span>
+              </h1>
+              <h2>
+                <span>B.E. in Computer Engineering - Batch of 2023</span>
+              </h2>
+            </div>
+          </div>
+          <div className="summarized-review">
+            <h1>
+              <span>No Good Placements As Shown</span>
+            </h1>
+          </div>
+          <div className="placements-review"><p>
+              <span>Placements: </span>Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Quaerat porro minima repudiandae reiciendis
+              dolor incidunt veniam atque nam earum quae odit officia dolore
+              eveniet praesentium velit error qui tempora, vel perspiciatis
+              beatae asperiores optio corporis cumque. Beatae assumenda, saepe
+              ratione pariatur ex cumque? Suscipit officiis dolor in vitae
+              consequuntur vel.
+            </p></div>
+          <div className="infrastructure-review">
+            <p>
+              <span>Infrastructure: </span>Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Quaerat porro minima repudiandae reiciendis
+              dolor incidunt veniam atque nam earum quae odit officia dolore
+              eveniet praesentium velit error qui tempora, vel perspiciatis
+              beatae asperiores optio corporis cumque. Beatae assumenda, saepe
+              ratione pariatur ex cumque? Suscipit officiis dolor in vitae
+              consequuntur vel.
+            </p>
+          </div>
+        </div>
+        <div className="reviews container mx-auto mt-8">
+          <div className="reviewer-name">
+            <div className="profile-logo">
+              <img src={Profile} alt="" srcset="" />
+            </div>
+            <div className="identity">
+              <h1>
+                <span>Gaurav Madusudan Harayan</span>
+              </h1>
+              <h2>
+                <span>B.E. in Computer Engineering - Batch of 2023</span>
+              </h2>
+            </div>
+          </div>
+          <div className="summarized-review">
+            <h1>
+              <span>No Good Placements As Shown</span>
+            </h1>
+          </div>
+          <div className="placements-review"><p>
+              <span>Placements: </span>Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Quaerat porro minima repudiandae reiciendis
+              dolor incidunt veniam atque nam earum quae odit officia dolore
+              eveniet praesentium velit error qui tempora, vel perspiciatis
+              beatae asperiores optio corporis cumque. Beatae assumenda, saepe
+              ratione pariatur ex cumque? Suscipit officiis dolor in vitae
+              consequuntur vel.
+            </p></div>
+          <div className="infrastructure-review">
+            <p>
+              <span>Infrastructure: </span>Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Quaerat porro minima repudiandae reiciendis
+              dolor incidunt veniam atque nam earum quae odit officia dolore
+              eveniet praesentium velit error qui tempora, vel perspiciatis
+              beatae asperiores optio corporis cumque. Beatae assumenda, saepe
+              ratione pariatur ex cumque? Suscipit officiis dolor in vitae
+              consequuntur vel.
+            </p>
+          </div>
+        </div>
+        <div className="faq container mx-auto mt-8">
+          <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold mt-8 mb-4">
+              Frequently Asked Questions
+            </h1>
+
+            <div class="accordion">
+              {/* <!-- FAQ Item 1 --> */}
+              <div class="accordion-item">
+                <h2 class="accordion-title">
+                  <button class="flex justify-between items-center w-full py-2 px-4 bg-gray-200 hover:bg-gray-300">
+                    <span class="text-lg font-medium">Question 1?</span>
+                    <span class="accordion-icon">&#43;</span>
+                  </button>
+                </h2>
+                <div class="accordion-content">
+                  <p class="text-gray-700">Answer to Question 1.</p>
+                </div>
+              </div>
+
+              {/* <!-- FAQ Item 2 --> */}
+              <div class="accordion-item">
+                <h2 class="accordion-title">
+                  <button class="flex justify-between items-center w-full py-2 px-4 bg-gray-200 hover:bg-gray-300">
+                    <span class="text-lg font-medium">Question 2?</span>
+                    <span class="accordion-icon">&#43;</span>
+                  </button>
+                </h2>
+                <div class="accordion-content">
+                  <p class="text-gray-700">Answer to Question 2.</p>
+                </div>
+              </div>
+
+              {/* <!-- FAQ Item 3 --> */}
+              <div class="accordion-item">
+                <h2 class="accordion-title">
+                  <button class="flex justify-between items-center w-full py-2 px-4 bg-gray-200 hover:bg-gray-300">
+                    <span class="text-lg font-medium">Question 3?</span>
+                    <span class="accordion-icon">&#43;</span>
+                  </button>
+                </h2>
+                <div class="accordion-content">
+                  <p class="text-gray-700">Answer to Question 3.</p>
+                </div>
+              </div>
+
+              {/* <!-- Add more FAQ items as needed --> */}
+            </div>
+          </div>
         </div>
       </div>
     </div>
