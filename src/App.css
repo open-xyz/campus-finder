@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 body {
+
   font-family: "SFProDispaly";
+
+  background-color: red;
+
 }
 @font-face {
   font-family: "SFProDispaly";

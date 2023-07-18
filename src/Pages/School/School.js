@@ -7,15 +7,19 @@ import Clear from "../College/collegeImages/clear.svg";
 import schoollogo from "./image 10.png";
 // import Search from "../Home/components/Hero/HeroImages/search.svg";
 
+
 import usePageTitle from '../layout/metaData'
 
 
+// import schoollogo from "./image 10.png"
+import Search from "../Home/components/Hero/HeroImages/search.svg";
+import usePageTitle from "../layout/metaData";
+
+
 const School = () => {
-
-    // page title
-    const pageTitle="colleges | campusFinder"
-    usePageTitle(pageTitle)
-
+  // page title
+  const pageTitle = "colleges | campusFinder";
+  usePageTitle(pageTitle);
 
   const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedOwnership, setSelectedOwnership] = useState("");

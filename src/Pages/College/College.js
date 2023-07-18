@@ -4,7 +4,11 @@ import Clear from "./collegeImages/clear.svg";
 import Location from "./collegeImages/location.svg";
 import Dot from "./collegeImages/dot.svg";
 import Search from "./collegeImages/search.svg";
+
 import usePageTitle from "../layout/metaData";
+
+
+import colleges from "./college_api";
 
 import { useCollegeContext } from "../../context/collegeContext";
 import { Link } from "react-router-dom";
@@ -24,6 +28,11 @@ export default function College() {
       .then((data) => setColleges(data))
       .catch((error) => console.error("Error fetching colleges:", error));
   }, []);
+
+
+import usePageTitle from "../layout/metaData";
+
+export default function College() {
 
   // page title
   const pageTitle = "colleges | campusFinder";
