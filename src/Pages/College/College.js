@@ -4,16 +4,18 @@ import Clear from "./collegeImages/clear.svg";
 import Location from "./collegeImages/location.svg";
 import Dot from "./collegeImages/dot.svg";
 import Search from "./collegeImages/search.svg";
+import usePageTitle from '../layout/metaData'
 
 import { useCollegeContext } from "../../context/collegeContext";
 import { Link } from "react-router-dom";
+import colleges from "./college_api";
 
-export default function College() {
-  const colleges = useCollegeContext();
+// export default function College() {
+//   const colleges = useCollegeContext();
 
   // const [selectedLocation, setSelectedLocation] = useState("");
 
-import usePageTitle from '../layout/metaData'
+
 
 export default function College() {
 
