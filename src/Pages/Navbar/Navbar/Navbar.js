@@ -1,7 +1,7 @@
 import { Fragment, useState, useEffect } from "react";
   import { Disclosure, Menu, Transition } from "@headlessui/react";
   import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-  import { Link } from "react-router-dom";
+  import { Link,useNavigate } from "react-router-dom";
   import Cookies from "js-cookie"; 
   const navigation = [
     { name: "Home", href: "/", current: false },
@@ -14,50 +14,49 @@ import { Fragment, useState, useEffect } from "react";
     return classes.filter(Boolean).join(" ");
   }
   function Navbar() {
-    const [userDetails, setUserDetails] = useState({ name: "", email: "", avatar: "" });
-    const host = "http://localhost:4080";
-    useEffect(() => {
-      // Fetch user details from the server
-      const fetchUserDetails = async () => {
-        try {
-          // Get the token from the cookies
-          const token = Cookies.get("token");
-          console.log(token);
-          if (!token) {
-            console.log("not token");
-            return;
-          }
-  
-          const response = await fetch(`${host}/api/get-user-details`, {
-            method: "GET",
-            headers: {
-              
-              "token": `Bearer ${token}`,
-            },
-          });
-  
-          if (response.ok) {
-            const data = await response.json();
-            console.log("data",data);
-            setUserDetails(data.data);
-          } else {
-            // Handle error when fetching user details
-          }
-        } catch (error) {
-          // Handle error when fetching user details
-        }
-      };
-  
-      fetchUserDetails();
-    }, []); 
+    const [userDetails, setUserDetails] = useState({ name: '', email: '', avatar: '' });
+  const host = 'http://localhost:4080';
 
-    useEffect(() => {
-      if (userDetails.avatar) {
-        const avatarUrl = `data:image/jpeg;base64,${userDetails.avatar}`;
-        setUserDetails(prevState => ({ ...prevState, avatar: avatarUrl }));
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        const token = Cookies.get('token');
+        console.log(token);
+        if (!token) {
+          console.log('No token found');
+          return;
+        }
+        const response = await fetch(`${host}/api/users/getUserDetails`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            "token": token,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log('data', data);
+          setUserDetails(data.data);
+        } else {
+          console.log('Error fetching user details');
+        }
+      } catch (error) {
+        console.error('Error fetching user details:', error);
       }
-    }, [userDetails.avatar]);
-   	
+    };
+
+    fetchUserDetails();
+  }, []);
+
+  let Navigate = useNavigate();
+  const handleSignOut = () => {
+    Cookies.remove("token");
+    Navigate("/login");
+  };
+  const avatarURL = userDetails.avatar;
+  console.log(avatarURL);
+
     return (
       <Disclosure as="nav" style={{ backgroundColor: "#0F0C2D" }}>
         {({ open }) => (
@@ -126,8 +125,8 @@ import { Fragment, useState, useEffect } from "react";
                           <span className="sr-only">Open user menu</span>
                           <img
                             className="h-8 w-8 rounded-full"
-                            src={userDetails.avatar}
-                            alt=""
+                            src={avatarURL}
+                            alt="avater"
                           />
                         </Menu.Button>
                       </div>
@@ -169,15 +168,15 @@ import { Fragment, useState, useEffect } from "react";
                           </Menu.Item>
                           <Menu.Item>
                             {({ active }) => (
-                              <Link
-                                to="/login"
-                                className={classNames(
-                                  active ? "bg-gray-100" : "",
-                                  "block px-4 py-2 text-sm text-gray-700"
-                                )}
-                              >
-                                Sign out
-                              </Link>
+                             <button
+                             onClick={handleSignOut}
+                             className={classNames(
+                               "w-full text-left px-4 py-2 text-sm text-gray-700",
+                               active ? "bg-gray-100" : ""
+                             )}
+                           >
+                             Sign out
+                           </button>
                             )}
                           </Menu.Item>
                         </Menu.Items>
