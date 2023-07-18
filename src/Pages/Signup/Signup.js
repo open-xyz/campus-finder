@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { Link ,useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RxAvatar } from "react-icons/rx";
 import Cookies from "js-cookie";
 const Singup = () => {
@@ -9,36 +9,41 @@ const Singup = () => {
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
   const [avatar, setAvatar] = useState("");
-  
+
   let Navigate = useNavigate();
   const host = "http://localhost:4080";
 
   const signupSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch(`${host}/api/newuser`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email: email, password: password, name: name, avatar: avatar })
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        name: name,
+        avatar: avatar,
+      }),
     });
     const json = await response.json();
     console.log(json);
     if (json.success) {
       // Save the auth token and redirect
-      Cookies.set('token', json.token, { expires: 7 }); 
+      Cookies.set("token", json.token, { expires: 7 });
       Navigate("/login");
     } else {
       alert("Incorrect password. Please try again");
     }
-  }
+  };
 
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
     console.log(base64);
     setAvatar(base64 || "");
-  }
+  };
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -179,15 +184,15 @@ const Singup = () => {
 
 export default Singup;
 
-function convertToBase64(file){
+function convertToBase64(file) {
   return new Promise((resolve, reject) => {
     const fileReader = new FileReader();
     fileReader.readAsDataURL(file);
     fileReader.onload = () => {
-      resolve(fileReader.result)
+      resolve(fileReader.result);
     };
     fileReader.onerror = (error) => {
-      reject(error)
-    }
-  })
+      reject(error);
+    };
+  });
 }

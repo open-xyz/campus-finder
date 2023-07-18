@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../Institute/Institute.css";
 import Banner from "../Institute/Institute_logo/viva-institute-of-technology-vit-thane.jpg";
 import Logo from "../Institute/Institute_logo/download.png";
@@ -6,19 +6,96 @@ import Mail from "../Institute/Institute_logo/image 17.png";
 import Rating from "../Institute/Institute_logo/image 18.png";
 import Star from "../Institute/Institute_logo/ic_round-star.svg";
 import Profile from "../Institute/Institute_logo/carbon_user-avatar-filled.svg";
+import { useParams } from "react-router-dom";
+import { useCollegeContext } from "../../context/collegeContext";
 const Institute = () => {
+  const { collegeName } = useParams();
+  const collegeContext = useCollegeContext();
+  // const [colleges, setColleges] = useState([]);
+  const [savedColleges, setSavedColleges] = useState([]);
+
+  const [colleges, setColleges] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:4080/api/colleges")
+      .then((response) => response.json())
+      .then((data) => setColleges(data))
+      .catch((error) => console.error("Error fetching colleges:", error));
+  }, []);
+
+  const [filteredColleges, setFilteredColleges] = useState([]);
+  useEffect(() => {
+    setFilteredColleges(colleges.collegeList || []);
+  }, [colleges]);
+
+  const [isCollegeSaved, setIsCollegeSaved] = useState(() => {
+    const sv = localStorage.getItem("savedColleges");
+    const savedColleges = JSON.parse(sv);
+    return (
+      savedColleges &&
+      savedColleges.some((savedCollege) => savedCollege.name === collegeName)
+    );
+  });
+
+  useEffect(() => {
+    setColleges(collegeContext);
+  }, [collegeContext]);
+
+  useEffect(() => {
+    const savedCollegesData = localStorage.getItem("savedColleges");
+    if (savedCollegesData) {
+      setSavedColleges(JSON.parse(savedCollegesData));
+    }
+  }, []);
+
+  // useEffect(() => {
+  //   localStorage.setItem("savedColleges", JSON.stringify(savedColleges));
+  // }, [savedColleges]);
+
+  const selectedCollege = filteredColleges.find(
+    (college) => college.name === collegeName
+  );
+
+  const handleSave = () => {
+    if (isCollegeSaved) {
+      // College is already saved, so remove it
+      const updatedSavedColleges = savedColleges.filter(
+        (savedCollege) => savedCollege.name !== selectedCollege.name
+      );
+      setSavedColleges(updatedSavedColleges);
+      localStorage.setItem(
+        "savedColleges",
+        JSON.stringify(updatedSavedColleges)
+      );
+      setIsCollegeSaved(false);
+    } else {
+      // College is not saved, so add it
+      const updatedSavedColleges = [...savedColleges, selectedCollege];
+      setSavedColleges(updatedSavedColleges);
+      localStorage.setItem(
+        "savedColleges",
+        JSON.stringify(updatedSavedColleges)
+      );
+      setIsCollegeSaved(true);
+    }
+  };
+
+  if (!selectedCollege) {
+    return <div>College not found.</div>;
+  }
+
   return (
     <div style={{ backgroundColor: "#F3F2EF" }}>
       <div class="institute-main ">
         <div className="institute-banner-section container mx-auto mt-8">
           <img
-            src={Banner}
             className="institute-banner rounded-lg"
+            src={selectedCollege.images.college_img[0]}
             alt=""
             srcset=""
           />
           <img
-            src={Logo}
+            src={selectedCollege.images.logo_img}
             className="institute-logo border-2 border-black rounded-lg ml-6 mb-6"
             alt=""
             srcset=""
@@ -27,7 +104,7 @@ const Institute = () => {
             <div className="banner-detail__name">
               <h1>
                 <span className="font-bold text-3xl">
-                  VIVA INSTITUTE OF TECHNOLOGY
+                  {selectedCollege.name}
                 </span>{" "}
               </h1>
               <div className="small-detail">
@@ -36,12 +113,19 @@ const Institute = () => {
                   <span>Virar, Palghar</span>
                 </h1>
                 <div className="small-detail-govern ml-3 rounded">Private</div>
-                <div className="small-detail-university ml-3 ">University</div>
+                <div className="small-detail-university ml-3 ">
+                  University {savedColleges.length}{" "}
+                </div>
               </div>
             </div>
-            <button className="btn save-btn border-2 border-red-900">
+            <button
+              onClick={handleSave}
+              className="btn save-btn border-2 border-red-900"
+            >
               <i class="fa-regular fa-bookmark">
-                <span className="ml-2">SAVE</span>
+                <span className="ml-2">
+                  {isCollegeSaved ? "SAVED" : "SAVE"}
+                </span>
               </i>
             </button>
           </div>
@@ -50,18 +134,7 @@ const Institute = () => {
           <div class="container mx-auto px-4">
             <h1 class="text-3xl font-bold mt-8 mb-4">About Institute</h1>
             <p class="text-lg text-gray-700">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              quis libero risus. Nullam consectetur quam eget dolor eleifend, ut
-              tincidunt erat accumsan. Vestibulum finibus iaculis quam, vel
-              efficitur eros ultricies vel. Nam pellentesque euismod dolor, et
-              tincidunt ex. Sed a ultricies ante, eget convallis erat. Aliquam
-              erat volutpat. Sed tempor dui ex, eu auctor risus interdum et.
-              Nulla facilisi. Cras sit amet tincidunt lacus. Donec euismod
-              consectetur velit non ultrices. Phasellus mattis tellus purus, in
-              congue urna efficitur non. Aenean sed elit consequat, dapibus enim
-              in, eleifend enim. Vivamus fringilla velit ut lectus ultricies
-              auctor. Aliquam varius maximus justo, sit amet elementum urna
-              scelerisque at. Suspendisse potenti. Nunc quis risus felis.
+              {selectedCollege["About College"]}
             </p>
           </div>
         </div>
@@ -130,10 +203,7 @@ const Institute = () => {
               <div className="address-heading common-head">Address: </div>
               <div className="address-detail common-main">
                 <h4>
-                  <span>
-                    FVF5+H75, Shirgaon, Veer Sawarkar road, Virar(East),
-                    Tal-Vasai, Chandansar, Virar, Maharashtra 401303
-                  </span>
+                  <span>{selectedCollege["College Address"]}</span>
                 </h4>
               </div>
             </div>
@@ -142,7 +212,7 @@ const Institute = () => {
               <div className="contact-img common-head">Phone: </div>
               <div className="contact-detail common-main">
                 <h4>
-                  <span> +2222-20202-22</span>
+                  <span>{selectedCollege.Phone}</span>
                 </h4>
               </div>
             </div>
@@ -151,12 +221,14 @@ const Institute = () => {
               <div className="contact-img common-head">E-Mail: </div>
               <div className="contact-detail common-main">
                 <h4>
-                  <span>Vivatechnology@gmail.org</span>
+                  <span> {selectedCollege.Email} </span>
                 </h4>
               </div>
             </div>
             <div className="button-to-webite">
-              <button className="btn">Go To College Website</button>
+              <a target="_blank" href={selectedCollege["College Link"]}>
+                <button className="btn">Go To College Website</button>
+              </a>
             </div>
           </div>
         </div>
@@ -204,7 +276,8 @@ const Institute = () => {
               <span>No Good Placements As Shown</span>
             </h1>
           </div>
-          <div className="placements-review"><p>
+          <div className="placements-review">
+            <p>
               <span>Placements: </span>Lorem ipsum dolor sit amet consectetur
               adipisicing elit. Quaerat porro minima repudiandae reiciendis
               dolor incidunt veniam atque nam earum quae odit officia dolore
@@ -212,16 +285,17 @@ const Institute = () => {
               beatae asperiores optio corporis cumque. Beatae assumenda, saepe
               ratione pariatur ex cumque? Suscipit officiis dolor in vitae
               consequuntur vel.
-            </p></div>
+            </p>
+          </div>
           <div className="infrastructure-review">
             <p>
-              <span>Infrastructure: </span>Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Quaerat porro minima repudiandae reiciendis
-              dolor incidunt veniam atque nam earum quae odit officia dolore
-              eveniet praesentium velit error qui tempora, vel perspiciatis
-              beatae asperiores optio corporis cumque. Beatae assumenda, saepe
-              ratione pariatur ex cumque? Suscipit officiis dolor in vitae
-              consequuntur vel.
+              <span>Infrastructure: </span>Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Quaerat porro minima repudiandae
+              reiciendis dolor incidunt veniam atque nam earum quae odit officia
+              dolore eveniet praesentium velit error qui tempora, vel
+              perspiciatis beatae asperiores optio corporis cumque. Beatae
+              assumenda, saepe ratione pariatur ex cumque? Suscipit officiis
+              dolor in vitae consequuntur vel.
             </p>
           </div>
         </div>
@@ -244,7 +318,8 @@ const Institute = () => {
               <span>No Good Placements As Shown</span>
             </h1>
           </div>
-          <div className="placements-review"><p>
+          <div className="placements-review">
+            <p>
               <span>Placements: </span>Lorem ipsum dolor sit amet consectetur
               adipisicing elit. Quaerat porro minima repudiandae reiciendis
               dolor incidunt veniam atque nam earum quae odit officia dolore
@@ -252,16 +327,17 @@ const Institute = () => {
               beatae asperiores optio corporis cumque. Beatae assumenda, saepe
               ratione pariatur ex cumque? Suscipit officiis dolor in vitae
               consequuntur vel.
-            </p></div>
+            </p>
+          </div>
           <div className="infrastructure-review">
             <p>
-              <span>Infrastructure: </span>Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Quaerat porro minima repudiandae reiciendis
-              dolor incidunt veniam atque nam earum quae odit officia dolore
-              eveniet praesentium velit error qui tempora, vel perspiciatis
-              beatae asperiores optio corporis cumque. Beatae assumenda, saepe
-              ratione pariatur ex cumque? Suscipit officiis dolor in vitae
-              consequuntur vel.
+              <span>Infrastructure: </span>Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Quaerat porro minima repudiandae
+              reiciendis dolor incidunt veniam atque nam earum quae odit officia
+              dolore eveniet praesentium velit error qui tempora, vel
+              perspiciatis beatae asperiores optio corporis cumque. Beatae
+              assumenda, saepe ratione pariatur ex cumque? Suscipit officiis
+              dolor in vitae consequuntur vel.
             </p>
           </div>
         </div>

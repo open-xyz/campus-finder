@@ -12,7 +12,6 @@ import Login from "./Pages/Login/Login";
 import Singup from "./Pages/Signup/Signup";
 import Institute from "./Pages/Institute/Institute";
 
-
 function App() {
   return (
     <Router>
@@ -24,14 +23,11 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/college" element={<College />} />
           <Route path="/school" element={<School />} />
-
-          <Route path="/colleges/:collegeName" element={<SingleCollege />} /> //
-          Add the new route for the single college page
-          <Route path="/institute" element={<Institute/>} />
-          <Route path="/login" element={<Login/>} />
-          <Route path="/signup" element={<Singup/>} />
-
-
+          <Route path="/colleges/:collegeName" element={<Institute />} /> // Add
+          the new route for the single college page
+          <Route path="/institute" element={<Institute />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Singup />} />
         </Routes>
       </div>
       <Footer />

@@ -1,35 +1,35 @@
 import { React, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { Link ,useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
 const Login = () => {
-  const host = "http://localhost:4080"
+  const host = "http://localhost:4080";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
 
   let Navigate = useNavigate();
   const loginSubmit = async (e) => {
-      e.preventDefault();
-      const response = await fetch(`${host}/api/login`, {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({email: email, password: password})
-      });
-      const json = await response.json()
-      console.log(json);
-      if (json.success){
-          // Save the auth token and redirect
-          Cookies.set('token', json.token, { expires: 7 }); 
-          Navigate("/");   
-      } else {
-          alert("Incorrect password. Please try again");
-      }
-  }
-
+    e.preventDefault();
+    const response = await fetch(`${host}/api/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: email, password: password }),
+    });
+    const json = await response.json();
+    console.log(json);
+    if (json.success) {
+      // Save the auth token and redirect
+      Cookies.set("token", json.token, { expires: 7 });
+      Navigate("/");
+    } else {
+      alert("Incorrect password. Please try again");
+    }
+    window.location.reload();
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -92,7 +92,7 @@ const Login = () => {
                 )}
               </div>
             </div>
-            <div className= "flex items-center justify-between">
+            <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input
                   type="checkbox"
@@ -124,7 +124,7 @@ const Login = () => {
                 Login
               </button>
             </div>
-            <div className= "w-full flex items-center">
+            <div className="w-full flex items-center">
               <h4>Not have any account?</h4>
               <Link to="/signup" className="text-blue-600 pl-2">
                 Sign Up

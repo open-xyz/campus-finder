@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  font-family: "SFProDispaly";
+}
 @font-face {
   font-family: "SFProDispaly";
   font-weight: 300;
