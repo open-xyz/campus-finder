@@ -1,55 +1,105 @@
 .institute-banner-section {
-  width: 100%;
-  height: 14.125rem;
-  border: 1px solid red;
+  width: 67.6875rem;
+  height: 21rem;
+  background-color: white;
+  border-radius: 1rem;
   position: relative;
+  border-radius: 0.75rem;
 }
 .institute-main {
-  height: 100vh;
+  height: 200vh;
+  width: 100%;
 }
 .institute-banner {
   width: 100%;
-  height: 60%;
+  height: 14.125rem;
 }
 .institute-logo {
   width: 8.375rem;
   height: 8.375rem;
   flex-shrink: 0;
   position: absolute;
-  bottom: 0%;
+  bottom: 2%;
   /* z-index: 2; */
 }
 .banner-detail {
   width: 70%;
   margin-left: 20%;
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
   justify-content: space-between;
+  position: relative;
   display: flex;
 }
-.banner-detail__name{
-border: 1px solid red;
-width: fit-content;
+.banner-detail__name {
+  /* border: 1px solid red; */
+  width: 70%;
 }
 .small-detail {
   display: flex;
+  margin-top: 1rem;
 }
 .small-detail-govern {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   background-color: black;
   color: white;
   width: 3.875rem;
   padding-left: 0.5%;
 }
-.institute-banner-section-save {
-  width: 8.9375rem;
-  height: 3.375rem;
+
+.save-btn {
+  position: absolute;
+  bottom: 10%;
+  right: 0%;
+}
+.institute-aboutus {
+  width: 67.6875rem;
+  border-radius: 1rem;
+  background-color: white;
+  padding: 1rem;
+  color: #000;
+  font-family: SF Pro Display;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.institute-information {
+  width: 67.6875rem;
+  display: flex;
+  gap: 2rem;
+  /* border-radius: 1rem;
+  background-color: white; */
+  padding: 1rem;
+  color: #000;
+  font-family: SF Pro Display;
+  border: 1px solid red;
+  /* font-size: 2rem;
+  font-style: normal;
+  font-weight: 500; */
+  line-height: normal;
+}
+.information-left {
+  width: 50%;
+  border: 1px solid black;
+  height: 24.8125rem;
+}
+.information-right {
+  width: 50%;
   border: 1px solid black;
 }
-.institute-banner-section-save{
-    display: flex;
-    gap: 1rem;
-    font-size: x-large;
-    padding: 0.7rem;
-    border-radius: 1rem;
-    cursor: pointer;
+.exam-info-span {
+  color: #0f0c2d;
+  font-family: SF Pro Display;
+  font-size: 1.375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.exam-info-span2 {
+  color: #000;
+  font-family: SF Pro Display;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
