@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "../School/School.css";
 import "../Home/components/Hero/Hero.css";
 import "../College/College.css";
@@ -7,14 +7,9 @@ import Clear from "../College/collegeImages/clear.svg";
 import schoollogo from "./image 10.png";
 // import Search from "../Home/components/Hero/HeroImages/search.svg";
 
-
-import usePageTitle from '../layout/metaData'
-
-
-// import schoollogo from "./image 10.png"
-import Search from "../Home/components/Hero/HeroImages/search.svg";
 import usePageTitle from "../layout/metaData";
 
+// import schoollogo from "./image 10.png"
 
 const School = () => {
   // page title

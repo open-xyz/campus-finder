@@ -6,11 +6,6 @@ import Dot from "./collegeImages/dot.svg";
 import Search from "./collegeImages/search.svg";
 
 import usePageTitle from "../layout/metaData";
-
-
-import colleges from "./college_api";
-
-import { useCollegeContext } from "../../context/collegeContext";
 import { Link } from "react-router-dom";
 // import colleges from "./college_api";
 
@@ -20,24 +15,16 @@ import { Link } from "react-router-dom";
 // const [selectedLocation, setSelectedLocation] = useState("");
 
 export default function College() {
-  const [colleges, setColleges] = useState([]);
-
+  // page title
+  const pageTitle = "colleges | campusFinder";
+  usePageTitle(pageTitle);
   useEffect(() => {
     fetch("http://localhost:4080/api/colleges")
       .then((response) => response.json())
       .then((data) => setColleges(data))
       .catch((error) => console.error("Error fetching colleges:", error));
   }, []);
-
-
-import usePageTitle from "../layout/metaData";
-
-export default function College() {
-
-  // page title
-  const pageTitle = "colleges | campusFinder";
-  usePageTitle(pageTitle);
-
+  const [colleges, setColleges] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedOwnership, setSelectedOwnership] = useState("");
   const [selectedFees, setSelectedFees] = useState("");
@@ -219,6 +206,7 @@ export default function College() {
 
   useEffect(() => {
     filterColleges();
+    // eslint-disable-next-line
   }, [selectedLocation, selectedFees, selectedOwnership]);
 
   const handleOwnershipChange = (event) => {
