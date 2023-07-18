@@ -1,0 +1,55 @@
+.institute-banner-section {
+  width: 100%;
+  height: 14.125rem;
+  border: 1px solid red;
+  position: relative;
+}
+.institute-main {
+  height: 100vh;
+}
+.institute-banner {
+  width: 100%;
+  height: 60%;
+}
+.institute-logo {
+  width: 8.375rem;
+  height: 8.375rem;
+  flex-shrink: 0;
+  position: absolute;
+  bottom: 0%;
+  /* z-index: 2; */
+}
+.banner-detail {
+  width: 70%;
+  margin-left: 20%;
+  border: 1px solid yellow;
+  justify-content: space-between;
+  display: flex;
+}
+.banner-detail__name{
+border: 1px solid red;
+width: fit-content;
+}
+.small-detail {
+  display: flex;
+}
+.small-detail-govern {
+  border: 1px solid black;
+  background-color: black;
+  color: white;
+  width: 3.875rem;
+  padding-left: 0.5%;
+}
+.institute-banner-section-save {
+  width: 8.9375rem;
+  height: 3.375rem;
+  border: 1px solid black;
+}
+.institute-banner-section-save{
+    display: flex;
+    gap: 1rem;
+    font-size: x-large;
+    padding: 0.7rem;
+    border-radius: 1rem;
+    cursor: pointer;
+}
