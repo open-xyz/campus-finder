@@ -7,8 +7,6 @@ import Clear from "../College/collegeImages/clear.svg";
 import schoollogo from "./image 10.png";
 // import Search from "../Home/components/Hero/HeroImages/search.svg";
 
-import schoollogo from "./image 10.png"
-import Search from "../Home/components/Hero/HeroImages/search.svg";
 import usePageTitle from '../layout/metaData'
 
 
