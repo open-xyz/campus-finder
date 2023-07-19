@@ -31,6 +31,7 @@ The Campus Finder Frontend offers a range of features to enhance the user experi
 - 🔍 Filter Options: Users can apply filters to refine their search results, such as filtering by location, rating, and more.
 - 🌟 Review and Rating: Users can read reviews and ratings for colleges and schools submitted by other users. They can also submit their own reviews and ratings to share their experiences.
 - 📚 Bookmarking: Users have the ability to bookmark their favorite colleges and schools for quick access and future reference.
+- 🔐 Authentication: To access certain features like submitting reviews or bookmarking, users need to create an account and log in to the app securely.
 
 ## 🛠️ Technologies Used
 
