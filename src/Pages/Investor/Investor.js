@@ -55,7 +55,7 @@ function Investor() {
               />
               <FaStar
                 className="stars"
-                size={50}
+                size={20}
                 color={
                   currentRating <= (hover || rating) ? "#ffc107" : "#e4e5e9"
                 }
@@ -65,13 +65,19 @@ function Investor() {
             </label>
           );
         })}
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Write a review</label>
+          <textarea
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            value={comment}
+            onChange={handleCommentChange}
+            placeholder="Write a comment..."
+            rows="3"
+          ></textarea>
+        </div>
         <p>Your rating is {rating}</p>
-        <textarea
-          value={comment}
-          onChange={handleCommentChange}
-          placeholder="Write a comment..."
-          rows={4}
-        ></textarea>
         <button onClick={handleSubmit}>Submit</button>
       </div>
     </>

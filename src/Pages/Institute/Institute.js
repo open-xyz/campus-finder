@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../Institute/Institute.css";
 import Banner from "../Institute/Institute_logo/viva-institute-of-technology-vit-thane.jpg";
 import Logo from "../Institute/Institute_logo/download.png";
@@ -9,6 +9,9 @@ import Profile from "../Institute/Institute_logo/carbon_user-avatar-filled.svg";
 import { useParams } from "react-router-dom";
 import { useCollegeContext } from "../../context/collegeContext";
 import Skeleton from "../College/SingleCollegeSkeleton";
+import { FaStar } from "react-icons/fa";
+import Cookies from "js-cookie";
+
 const Institute = () => {
   const { collegeName } = useParams();
   const collegeContext = useCollegeContext();
@@ -16,6 +19,46 @@ const Institute = () => {
   const [savedColleges, setSavedColleges] = useState([]);
 
   const [colleges, setColleges] = useState([]);
+  const ref = useRef(null);
+  const ref1 = useRef(null);
+  const [rating, setRating] = useState(null);
+  const [hover, setHover] = useState(null);
+  const [comment, setComment] = useState("");
+
+  const handleCommentChange = (e) => {
+    setComment(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const review = {
+      rating: rating,
+      comment: comment,
+      collegeId: selectedCollege._id,
+    };
+    const token = Cookies.get("token"); // Replace with your logic to get the token from cookies
+
+    fetch("http://localhost:4080/api/college/review", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        token: token,
+      },
+      body: JSON.stringify(review),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Review submitted:", data);
+        setRating(null);
+        setComment("");
+      })
+      .catch((error) => {
+        console.error("Error submitting review:", error);
+      });
+
+    window.location.reload();
+    closeModal();
+  };
 
   useEffect(() => {
     fetch("http://localhost:4080/api/colleges")
@@ -89,10 +132,16 @@ const Institute = () => {
       </div>
     );
   }
+  const getModal = () => {
+    ref.current.click();
+  };
+  const closeModal = () => {
+    ref1.current.click();
+  };
 
   return (
     <div style={{ backgroundColor: "#F3F2EF" }}>
-      <div class="institute-main ">
+      <div className="institute-main ">
         <div className="institute-banner-section container mx-auto mt-8">
           <img
             className="institute-banner rounded-lg"
@@ -115,7 +164,7 @@ const Institute = () => {
               </h1>
               <div className="small-detail">
                 <h1 className="small-detail-address ml-1">
-                  <i class="fa-solid fa-location-dot"></i>{" "}
+                  <i className="fa-solid fa-location-dot"></i>{" "}
                   <span>Virar, Palghar</span>
                 </h1>
                 <div className="small-detail-govern ml-3 rounded">Private</div>
@@ -125,21 +174,21 @@ const Institute = () => {
               </div>
             </div>
             <button
-              style={{ background: isCollegeSaved ? "yellow" : "#FFF" }}
+              style={{ background: isCollegeSaved ? "#FFD233" : "#FFF" }}
               onClick={handleSave}
               className="btn saves-btn "
             >
-              <i class="fa-regular fa-bookmark"></i>
+              <i className="fa-regular fa-bookmark"></i>
               <span>{isCollegeSaved ? "Saved" : "Save"}</span>
             </button>
           </div>
         </div>
         <div className="institute-aboutus container mx-auto mt-8">
-          <div class="container mx-auto px-4">
-            <h1 class="heading">About Institute</h1>
+          <div className="container mx-auto px-4">
+            <h1 className="heading">About Institute</h1>
             <div
               style={{ fontSize: "1rem", fontWeight: "400", marginTop: "1rem" }}
-              class="descp"
+              className="descp"
             >
               {selectedCollege.description}
             </div>
@@ -266,7 +315,7 @@ const Institute = () => {
             </div>
           </div>
         </div>
-        <div className="institute-rating container mx-auto mt-8 mb-8">
+        <div className="institute-rating container mx-auto mt-8 mb-2">
           <div className="left-rating">
             <div className="rating-img">
               <img src={Rating} alt="" srcset="" />
@@ -290,6 +339,115 @@ const Institute = () => {
               <h1>
                 <span>{selectedCollege.ratings.toFixed(1)}</span>/5
               </h1>
+            </div>
+          </div>
+        </div>
+        <div
+          onClick={getModal}
+          className="addyourreview container mx-auto mb-8"
+        >
+          {" "}
+          <div>
+            <img
+              style={{ width: "45px", marginLeft: "2rem" }}
+              src="https://img.icons8.com/?size=512&id=48129&format=png"
+              alt=""
+            />
+          </div>
+          <div style={{ fontSize: "1.2rem" }}>Add your Review</div>
+        </div>
+
+        <button
+          ref={ref}
+          style={{ display: "none" }}
+          type="button"
+          className="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Launch demo modal
+        </button>
+
+        <div
+          className="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">
+                  Add your Review
+                </h5>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="">
+                {[...Array(5)].map((star, index) => {
+                  const currentRating = index + 1;
+                  return (
+                    <label key={index}>
+                      <input
+                        type="radio"
+                        name="rating"
+                        value={currentRating}
+                        onClick={() => setRating(currentRating)}
+                      />
+                      <FaStar
+                        className="stars"
+                        size={20}
+                        color={
+                          currentRating <= (hover || rating)
+                            ? "#ffc107"
+                            : "#e4e5e9"
+                        }
+                        onMouseEnter={() => setHover(currentRating)}
+                        onMouseLeave={() => setHover(null)}
+                      />
+                    </label>
+                  );
+                })}
+
+                <form action="">
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1">
+                      Write a review
+                    </label>
+                    <textarea
+                      class="form-control"
+                      id="exampleFormControlTextarea1"
+                      value={comment}
+                      onChange={handleCommentChange}
+                      required
+                      placeholder="Write a comment..."
+                      rows="3"
+                    ></textarea>
+                  </div>
+                  <div className="modal-footer">
+                    <button
+                      ref={ref1}
+                      type="button"
+                      className="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button
+                      onClick={handleSubmit}
+                      type="button"
+                      className="btn btn-primary"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
