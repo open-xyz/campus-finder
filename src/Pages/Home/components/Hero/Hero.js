@@ -50,7 +50,7 @@ export default function Hero() {
                 <img src={Arrow} alt="arrow" />
               </span>
             </div>
-            <div className="line"></div>
+            <div className="lines"></div>
             <img style={{ marginRight: "0.8rem" }} src={Search} alt="" />
             <input type="tel" id="phone" name="phone" placeholder="Search..." />
             <button>Search</button>

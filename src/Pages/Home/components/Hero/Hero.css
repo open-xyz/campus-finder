@@ -132,7 +132,7 @@ select {
   pointer-events: none;
 }
 
-.line {
+.lines {
   position: relative;
   right: 0.5rem;
   width: 0.1875rem;

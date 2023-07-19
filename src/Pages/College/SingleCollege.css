@@ -1,0 +1,21 @@
+.component_main {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.college_section {
+  border: 2px solid red;
+  width: 75%;
+}
+
+.college_section .image_section .college_image {
+  background-color: pink;
+}
+.college_section .image_section .college_image img {
+  width: 100%;
+  height: 15rem;
+  object-fit: cover;
+  object-position: 0px calc(10% - 1.5rem);
+}

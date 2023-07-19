@@ -6,6 +6,13 @@
   position: relative;
   border-radius: 0.75rem;
 }
+
+.institute-banner {
+  object-fit: cover;
+}
+.institute-logo {
+  object-fit: cover;
+}
 .institute-main {
   /* height: 250vh; */
   width: 100%;
@@ -284,15 +291,15 @@ hr {
   font-weight: bold;
   line-height: normal;
 }
-.placements-review{
+.placements-review {
   margin: 1rem 0rem;
 }
-.placements-review p span{
-font-weight: bolder;
+.placements-review p span {
+  font-weight: bolder;
 }
-.infrastructure-review p span{
-font-weight: bolder;
+.infrastructure-review p span {
+  font-weight: bolder;
 }
-.infrastructure-review{
+.infrastructure-review {
   margin: 1rem 0rem;
 }

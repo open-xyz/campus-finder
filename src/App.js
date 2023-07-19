@@ -5,11 +5,10 @@ import College from "./Pages/College/College";
 import Navbar from "./Pages/Navbar/Navbar/Navbar";
 import Footer from "./Pages/Footer/Footer";
 import School from "./Pages/School/School";
-
 import SingleCollege from "./Pages/College/SingleCollege";
-
 import Login from "./Pages/Login/Login";
 import Singup from "./Pages/Signup/Signup";
+
 import Institute from "./Pages/Institute/Institute";
 import SingleSchool from "./Pages/Singleschool/SingleSchool";
 
@@ -26,6 +25,13 @@ function App() {
           <Route path="/college" element={<College />} />
           <Route path="/school" element={<School />} />
 
+          <Route path="/colleges/:collegeName" element={<Institute />} /> // Add
+          the new route for the single college page
+          <Route path="/institute" element={<Institute />} />
+
+          <Route path="/colleges/:collegeName" element={<SingleCollege />} /> //
+          Add the new route for the single college page
+
           <Route path="/colleges/:collegeName" element={<SingleCollege />} /> 
           Add the new route for the single college page
           <Route path="/institute" element={<Institute/>} />
@@ -34,9 +40,11 @@ function App() {
           <Route path="/signup" element={<Singup/>} />
 
 
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Singup />} />
         </Routes>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   );
 }
