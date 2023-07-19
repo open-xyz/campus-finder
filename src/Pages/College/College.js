@@ -7,6 +7,7 @@ import Search from "./collegeImages/search.svg";
 
 import usePageTitle from "../layout/metaData";
 import { Link } from "react-router-dom";
+import CollegeSkeleton from "./CollegeSkeleton";
 // import colleges from "./college_api";
 
 // export default function College() {
@@ -779,7 +780,7 @@ export default function College() {
               filteredColleges.map((college, index) => (
                 <div className="college-card" key={index}>
                   <div className="rank">
-                    <div className="rank-ranks">{index + 1}</div>
+                    <div className="rank-ranks">{college.ranking}</div>
                     <div className="rank-ranking-institute">
                       <div>NIRF '23</div>
                       <div>(All India)</div>
@@ -804,10 +805,10 @@ export default function College() {
                       </div>
                       <div className="verticalline">|</div>
                       <div className="rating">
-                        <div className="rate">{college.ratings}</div>
+                        <div className="rate">{college.ratings.toFixed(1)}</div>
                         <div className="star-rating">
                           {Array.from(
-                            { length: Math.floor(college.ratings) },
+                            { length: Math.floor(college.ratings.toFixed(1)) },
                             (_, i) => (
                               <span className="star" key={i}></span>
                             )
@@ -843,7 +844,7 @@ export default function College() {
                 </div>
               ))
             ) : (
-              <p>No colleges found.</p>
+              <CollegeSkeleton cards={8} />
             )}
           </div>
         </div>

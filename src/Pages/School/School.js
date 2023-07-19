@@ -13,7 +13,7 @@ import usePageTitle from "../layout/metaData";
 
 const School = () => {
   // page title
-  const pageTitle = "colleges | campusFinder";
+  const pageTitle = "Schools | campusFinder";
   usePageTitle(pageTitle);
 
   const [selectedLocation, setSelectedLocation] = useState("");
