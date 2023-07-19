@@ -1,80 +1,70 @@
-#!/bin/bash
+# Campus Finder
 
-# Directory App
+# 🎓🏫🔍🌟📚
 
-# The Directory App is a web application built using the MERN stack (MongoDB, Express.js, React.js, and Node.js). It serves as a comprehensive platform that assists students in finding and exploring various schools, colleges, and investors.
+**The Campus Finder is an app that allows users to discover colleges, schools, and potential investors. It offers a user-friendly interface with a wide range of features, including search options, filtering capabilities, and a review and rating system, all protected by authentication. Users can also bookmark their favorite colleges and schools for easy access.**
 
-# Features
+## 🚀 Quick Start
 
-# - User Authentication: The app provides secure user authentication functionality, allowing users to create accounts, log in, and log out.
-# - Review Management: Users can read and submit reviews for schools and colleges, helping others make informed decisions.
-# - Profile Editing: Users have the ability to edit and update their profiles, providing personal information and preferences.
-# - CRUD APIs: The app exposes CRUD (Create, Read, Update, Delete) APIs for managing schools and colleges within the platform.
+Follow these steps to quickly set up and run the Campus Finder Frontend:
+1. Clone the repository:   
+```
+git clone https://github.com/chetandivekar/campus-finder.git
+```
+2. Navigate to the frontend directory:
+```
+cd campus-finder/
+```
+3. Install dependencies:
+```
+nmp install
+```
+4. Start the development server:
+```
+npm Start
+```
+5. Open your browser and visit `http://localhost:3000` to see the app running.
 
-# Prerequisites
+## 🧰 Features
+The Campus Finder Frontend offers a range of features to enhance the user experience:
+- 🏫 College and School Search: Users can search for colleges and schools based on criteria such as name, location, or courses offered.
+- 🔍 Filter Options: Users can apply filters to refine their search results, such as filtering by location, rating, and more.
+- 🌟 Review and Rating: Users can read reviews and ratings for colleges and schools submitted by other users. They can also submit their own reviews and ratings to share their experiences.
+- 📚 Bookmarking: Users have the ability to bookmark their favorite colleges and schools for quick access and future reference.
 
-# Before running the Directory App, ensure that the following prerequisites are installed:
+## 📂 Project Structure
 
-# - Node.js: Node.js is a JavaScript runtime required to run the server-side code. Make sure you have Node.js installed (version 12 or above).
-# - npm: npm is the package manager for Node.js, used to install project dependencies.
+The frontend project has the following structure:
 
-# Installation
+```
+ ├── public/                  # Static files and HTML template
+ ├── src/                     # Source code directory
+ │   ├── assets/              # Images, icons, and other assets
+ │   ├── components/          # Reusable components
+ │   ├── pages/               # Individual pages of the app
+ │   ├── services/            # API services for server communication
+ │   ├── styles/              # CSS stylesheets
+ │   ├── App.js               # Main application component
+ │   └── index.js             # Entry point of the application
+ ├── .env.example             # Example environment variables file
+ ├── package.json             # Node.js dependencies and scripts
+ └── README.md                # Documentation (you're here!)
+ 
+```
 
-# Follow these steps to install and set up the Directory App:
+## 🛠️ Technologies Used
 
-# 1. Clone the repository:
+The Campus Finder Frontend is built using the following technologies and libraries:
 
-#    ```
-#    git clone https://github.com/your-username/directory-app.git
-#    ```
+- React.js: A JavaScript library for building user interfaces.
+- React Router: A routing library for React.js applications.
+- Fetch: A promise-based HTTP client for making API requests.
+- Material-UI: A popular UI component library for React.js.
+- CSS: Cascading Style Sheets for styling the components.
 
-# 2. Navigate to the project directory:
+## Contributing
 
-#    ```
-#    cd directory-app
-#    ```
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
 
-# 3. Install the dependencies:
-
-#    ```
-#    npm install
-#    ```
-
-# 4. Set up the environment variables:
-#    - Rename the `.env.example` file to `.env`.
-#    - Open the `.env` file and provide the required configuration values, such as database credentials, API keys, etc.
-
-# 5. Set up the database:
-#    - Create a new database for the Directory App, preferably using MongoDB.
-#    - Update the `.env` file with the appropriate database connection details.
-
-# 6. Run the database migrations:
-#    ```
-#    npm run migrate
-#    ```
-
-# 7. Start the application:
-#    ```
-#    npm start
-#    ```
-
-# 8. The Directory App will be accessible at `http://localhost:3000`.
-
-# Usage
-
-# Once the Directory App is up and running, you can use it as follows:
-
-# - User Registration/Login: Users can create an account by registering with their email and password. They can then log in using their credentials to access the platform.
-# - Review Management: Users can search for schools and colleges and read reviews submitted by others. They can also submit their own reviews to share their experiences.
-# - Profile Editing: Users can edit their profiles to update personal information, preferences, and any other relevant details.
-# - CRUD Operations: The provided APIs allow CRUD operations on schools and colleges, enabling administrators to manage the directory effectively.
-
-# Contributing
-
-# Contributions to the Directory App are welcome! If you have any ideas, bug reports, or feature requests, please submit them via the issue tracker on the project's GitHub repository. Feel free to fork the repository and submit pull requests as well.
-
-# When contributing code, please follow the existing code style and ensure that tests pass before submitting your changes.
-
-# License
-
-# The Directory App is released under the [MIT License](https://opensource.org/licenses/MIT).
+Please make sure to update tests as appropriate.
