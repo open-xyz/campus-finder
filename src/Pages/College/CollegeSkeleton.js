@@ -9,13 +9,13 @@ export default function CollegeSkeleton({ cards }) {
     .map((item) => (
       <div className="skeleton-main">
         <div className="skeleton-left">
-          <Skeleton width={60} height={100} />
+          <Skeleton style={{ zIndex: "0" }} width={60} height={100} />
         </div>
         <div className="skeleton-middle">
-          <Skeleton width={60} height={100} />
+          <Skeleton style={{ zIndex: "0" }} width={60} height={100} />
         </div>
         <div className="skeleton-right">
-          <Skeleton count={4} style={{ marginBottom: "0.5rem" }} />
+          <Skeleton style={{ zIndex: "0", marginBottom: "0.5rem" }} count={4} />
         </div>
       </div>
     ));

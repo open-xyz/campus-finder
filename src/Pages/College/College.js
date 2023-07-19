@@ -37,10 +37,18 @@ export default function College() {
   const [isSpecializationExpanded, setIsSpecializationExpanded] =
     useState(true);
   const [isExamExpanded, setIsExamExpanded] = useState(true);
+  const [showSkeleton, setShowSkeleton] = useState(true);
   const [filteredColleges, setFilteredColleges] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   useEffect(() => {
     setFilteredColleges(colleges.collegeList || []);
+  }, [colleges]);
+
+  useEffect(() => {
+    setFilteredColleges(colleges.collegeList || []);
+    setTimeout(() => {
+      setShowSkeleton(false);
+    }, 400);
   }, [colleges]);
 
   // const filterColleges = () => {
@@ -776,7 +784,9 @@ export default function College() {
           </div>
 
           <div className="college-list">
-            {filteredColleges.length > 0 ? (
+            {showSkeleton ? (
+              <CollegeSkeleton cards={8} />
+            ) : filteredColleges.length > 0 ? (
               filteredColleges.map((college, index) => (
                 <div className="college-card" key={index}>
                   <div className="rank">
@@ -844,7 +854,7 @@ export default function College() {
                 </div>
               ))
             ) : (
-              <CollegeSkeleton cards={8} />
+              <p>No College Foud</p>
             )}
           </div>
         </div>

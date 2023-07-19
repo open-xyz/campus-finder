@@ -8,6 +8,7 @@ import Star from "../Institute/Institute_logo/ic_round-star.svg";
 import Profile from "../Institute/Institute_logo/carbon_user-avatar-filled.svg";
 import { useParams } from "react-router-dom";
 import { useCollegeContext } from "../../context/collegeContext";
+import Skeleton from "../College/SingleCollegeSkeleton";
 const Institute = () => {
   const { collegeName } = useParams();
   const collegeContext = useCollegeContext();
@@ -56,6 +57,7 @@ const Institute = () => {
     (college) => college.name === collegeName
   );
 
+  console.log(selectedCollege);
   const handleSave = () => {
     if (isCollegeSaved) {
       // College is already saved, so remove it
@@ -81,7 +83,11 @@ const Institute = () => {
   };
 
   if (!selectedCollege) {
-    return <div>College not found.</div>;
+    return (
+      <div className="container mx-auto">
+        <Skeleton />
+      </div>
+    );
   }
 
   return (
@@ -119,23 +125,24 @@ const Institute = () => {
               </div>
             </div>
             <button
+              style={{ background: isCollegeSaved ? "yellow" : "#FFF" }}
               onClick={handleSave}
-              className="btn save-btn border-2 border-red-900"
+              className="btn saves-btn "
             >
-              <i class="fa-regular fa-bookmark">
-                <span className="ml-2">
-                  {isCollegeSaved ? "SAVED" : "SAVE"}
-                </span>
-              </i>
+              <i class="fa-regular fa-bookmark"></i>
+              <span>{isCollegeSaved ? "Saved" : "Save"}</span>
             </button>
           </div>
         </div>
         <div className="institute-aboutus container mx-auto mt-8">
           <div class="container mx-auto px-4">
-            <h1 class="text-3xl font-bold mt-8 mb-4">About Institute</h1>
-            <p class="text-lg text-gray-700">
-              {selectedCollege["About College"]}
-            </p>
+            <h1 class="heading">About Institute</h1>
+            <div
+              style={{ fontSize: "1rem", fontWeight: "400", marginTop: "1rem" }}
+              class="descp"
+            >
+              {selectedCollege.description}
+            </div>
           </div>
         </div>
         <div className="institute-information container mx-auto mt-8">
@@ -147,7 +154,9 @@ const Institute = () => {
                 </span>
               </h5>
               <h3>
-                <span className="exam-info-span2">JEE MAIN , MHT-CET</span>
+                {selectedCollege.exams.map((e, index) =>
+                  index === selectedCollege.exams.length - 1 ? e : e + " , "
+                )}
               </h3>
             </div>
             <hr />
@@ -172,7 +181,15 @@ const Institute = () => {
                 </span>
               </h3>
               <h5>
-                <span className="fees-info-span font-bold">10000</span>
+                <span className="fees-info-span fees-cost">
+                  {selectedCollege.fees.BE
+                    ? selectedCollege.fees.BE.toLocaleString("en-IN", {
+                        style: "currency",
+                        currency: "INR",
+                        minimumFractionDigits: 0,
+                      })
+                    : "-"}
+                </span>
               </h5>
               <h3>
                 <span className="fees-info-span2">
@@ -180,7 +197,15 @@ const Institute = () => {
                 </span>
               </h3>
               <h5>
-                <span className="fees-info-span font-bold">110000</span>
+                <span className="fees-info-span fees-cost">
+                  {selectedCollege.fees.MCA
+                    ? selectedCollege.fees.MCA.toLocaleString("en-IN", {
+                        style: "currency",
+                        currency: "INR",
+                        minimumFractionDigits: 0,
+                      })
+                    : "-"}
+                </span>
               </h5>
             </div>
           </div>
@@ -192,7 +217,7 @@ const Institute = () => {
               </div>
               <div className="contact-detail">
                 <h4>
-                  <span>Viva Institute Of Techhology</span>
+                  <span>{selectedCollege.name}</span>
                 </h4>
                 <h1>
                   <span>Contact Information</span>
@@ -203,7 +228,7 @@ const Institute = () => {
               <div className="address-heading common-head">Address: </div>
               <div className="address-detail common-main">
                 <h4>
-                  <span>{selectedCollege["College Address"]}</span>
+                  <span>{selectedCollege.Address}</span>
                 </h4>
               </div>
             </div>
@@ -221,29 +246,40 @@ const Institute = () => {
               <div className="contact-img common-head">E-Mail: </div>
               <div className="contact-detail common-main">
                 <h4>
-                  <span> {selectedCollege.Email} </span>
+                  <span> {selectedCollege.email} </span>
                 </h4>
               </div>
             </div>
             <div className="button-to-webite">
-              <a target="_blank" href={selectedCollege["College Link"]}>
-                <button className="btn">Go To College Website</button>
+              <a target="_blank" href={selectedCollege.website}>
+                <button
+                  style={{
+                    backgroundColor: "#FFD233",
+                    padding: "0.5rem 0.5rem",
+                    border: "1px solid #000",
+                    borderRadius: "0.5rem",
+                  }}
+                >
+                  Go To College Website
+                </button>
               </a>
             </div>
           </div>
         </div>
-        <div className="institute-rating container mx-auto mt-8">
+        <div className="institute-rating container mx-auto mt-8 mb-8">
           <div className="left-rating">
             <div className="rating-img">
               <img src={Rating} alt="" srcset="" />
             </div>
             <div className="rating-detail">
               <h5>
-                <span>Viva Institute Of Technology</span>
+                <span style={{ fontSize: "0.9rem", color: "#444" }}>
+                  {selectedCollege.name}
+                </span>
               </h5>
               <h1>
-                <span className="font-extrabold">
-                  Stuents Rating And Review
+                <span style={{ fontSize: "1.5rem" }}>
+                  Students Rating And Review
                 </span>
               </h1>
             </div>
@@ -252,145 +288,49 @@ const Institute = () => {
             <div className="rating-svg">
               <img src={Star} alt="" srcset="" />
               <h1>
-                <span>1.1</span>/5
+                <span>{selectedCollege.ratings.toFixed(1)}</span>/5
               </h1>
             </div>
           </div>
         </div>
-        <div className="reviews container mx-auto mt-8">
-          <div className="reviewer-name">
-            <div className="profile-logo">
-              <img src={Profile} alt="" srcset="" />
-            </div>
-            <div className="identity">
-              <h1>
-                <span>Gaurav Madusudan Harayan</span>
-              </h1>
-              <h2>
-                <span>B.E. in Computer Engineering - Batch of 2023</span>
-              </h2>
-            </div>
-          </div>
-          <div className="summarized-review">
-            <h1>
-              <span>No Good Placements As Shown</span>
-            </h1>
-          </div>
-          <div className="placements-review">
-            <p>
-              <span>Placements: </span>Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Quaerat porro minima repudiandae reiciendis
-              dolor incidunt veniam atque nam earum quae odit officia dolore
-              eveniet praesentium velit error qui tempora, vel perspiciatis
-              beatae asperiores optio corporis cumque. Beatae assumenda, saepe
-              ratione pariatur ex cumque? Suscipit officiis dolor in vitae
-              consequuntur vel.
-            </p>
-          </div>
-          <div className="infrastructure-review">
-            <p>
-              <span>Infrastructure: </span>Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Quaerat porro minima repudiandae
-              reiciendis dolor incidunt veniam atque nam earum quae odit officia
-              dolore eveniet praesentium velit error qui tempora, vel
-              perspiciatis beatae asperiores optio corporis cumque. Beatae
-              assumenda, saepe ratione pariatur ex cumque? Suscipit officiis
-              dolor in vitae consequuntur vel.
-            </p>
-          </div>
-        </div>
-        <div className="reviews container mx-auto mt-8">
-          <div className="reviewer-name">
-            <div className="profile-logo">
-              <img src={Profile} alt="" srcset="" />
-            </div>
-            <div className="identity">
-              <h1>
-                <span>Gaurav Madusudan Harayan</span>
-              </h1>
-              <h2>
-                <span>B.E. in Computer Engineering - Batch of 2023</span>
-              </h2>
-            </div>
-          </div>
-          <div className="summarized-review">
-            <h1>
-              <span>No Good Placements As Shown</span>
-            </h1>
-          </div>
-          <div className="placements-review">
-            <p>
-              <span>Placements: </span>Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Quaerat porro minima repudiandae reiciendis
-              dolor incidunt veniam atque nam earum quae odit officia dolore
-              eveniet praesentium velit error qui tempora, vel perspiciatis
-              beatae asperiores optio corporis cumque. Beatae assumenda, saepe
-              ratione pariatur ex cumque? Suscipit officiis dolor in vitae
-              consequuntur vel.
-            </p>
-          </div>
-          <div className="infrastructure-review">
-            <p>
-              <span>Infrastructure: </span>Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Quaerat porro minima repudiandae
-              reiciendis dolor incidunt veniam atque nam earum quae odit officia
-              dolore eveniet praesentium velit error qui tempora, vel
-              perspiciatis beatae asperiores optio corporis cumque. Beatae
-              assumenda, saepe ratione pariatur ex cumque? Suscipit officiis
-              dolor in vitae consequuntur vel.
-            </p>
-          </div>
-        </div>
-        <div className="faq container mx-auto mt-8">
-          <div class="container mx-auto px-4">
-            <h1 class="text-3xl font-bold mt-8 mb-4">
-              Frequently Asked Questions
-            </h1>
 
-            <div class="accordion">
-              {/* <!-- FAQ Item 1 --> */}
-              <div class="accordion-item">
-                <h2 class="accordion-title">
-                  <button class="flex justify-between items-center w-full py-2 px-4 bg-gray-200 hover:bg-gray-300">
-                    <span class="text-lg font-medium">Question 1?</span>
-                    <span class="accordion-icon">&#43;</span>
-                  </button>
-                </h2>
-                <div class="accordion-content">
-                  <p class="text-gray-700">Answer to Question 1.</p>
+        {selectedCollege.reviews.length > 0 ? (
+          selectedCollege.reviews.map((review, index) => (
+            <div key={index}>
+              <div className="reviews container mx-auto mt-3">
+                <div className="top">
+                  <div className="img">
+                    <img src={Profile} alt="" />
+                  </div>
+                  <div className="right-star">
+                    <div className="name">{review.name}</div>
+                    <div className="mix-right">
+                      <div className="star-rating">
+                        {Array.from(
+                          {
+                            length: Math.floor(
+                              selectedCollege.ratings.toFixed(1)
+                            ),
+                          },
+                          (_, i) => (
+                            <span className="star" key={i}></span>
+                          )
+                        )}
+                      </div>
+                      <div style={{ fontSize: "0.8rem" }}>
+                        {" "}
+                        ({selectedCollege.ratings.toFixed(1)})
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <div className="bottom">{review.comment}</div>
               </div>
-
-              {/* <!-- FAQ Item 2 --> */}
-              <div class="accordion-item">
-                <h2 class="accordion-title">
-                  <button class="flex justify-between items-center w-full py-2 px-4 bg-gray-200 hover:bg-gray-300">
-                    <span class="text-lg font-medium">Question 2?</span>
-                    <span class="accordion-icon">&#43;</span>
-                  </button>
-                </h2>
-                <div class="accordion-content">
-                  <p class="text-gray-700">Answer to Question 2.</p>
-                </div>
-              </div>
-
-              {/* <!-- FAQ Item 3 --> */}
-              <div class="accordion-item">
-                <h2 class="accordion-title">
-                  <button class="flex justify-between items-center w-full py-2 px-4 bg-gray-200 hover:bg-gray-300">
-                    <span class="text-lg font-medium">Question 3?</span>
-                    <span class="accordion-icon">&#43;</span>
-                  </button>
-                </h2>
-                <div class="accordion-content">
-                  <p class="text-gray-700">Answer to Question 3.</p>
-                </div>
-              </div>
-
-              {/* <!-- Add more FAQ items as needed --> */}
             </div>
-          </div>
-        </div>
+          ))
+        ) : (
+          <div className="reviews container mx-auto mt-6">No reviews</div>
+        )}
       </div>
     </div>
   );
