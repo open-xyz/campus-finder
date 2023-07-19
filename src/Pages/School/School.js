@@ -3,13 +3,7 @@ import "../School/School.css";
 import "../Home/components/Hero/Hero.css";
 import "../College/College.css";
 import Clear from "../College/collegeImages/clear.svg";
-
-import schoollogo from "./image 10.png";
-// import Search from "../Home/components/Hero/HeroImages/search.svg";
-
 import usePageTitle from "../layout/metaData";
-
-// import schoollogo from "./image 10.png"
 
 const School = () => {
   // page title
@@ -64,6 +58,70 @@ const School = () => {
   const toggleBoardExpand = () => {
     setIsBoadrExpanded((prevState) => !prevState);
   };
+  const renderSelectedFilters = () => {
+    const selectedFilters = [];
+
+    if (selectedOwnership) {
+      selectedFilters.push(
+        <span
+          className="selected-option"
+          onClick={() => setSelectedOwnership("")}
+          key="ownership"
+        >
+          {selectedOwnership}
+          <span className="clear-option">x</span>
+        </span>
+      );
+    }
+
+    if (selectedLocation) {
+      selectedFilters.push(
+        <span
+          className="selected-option"
+          onClick={() => {
+            setSelectedLocation("");
+          }}
+          key="location"
+        >
+          {selectedLocation}
+          <span className="clear-option">x</span>
+        </span>
+      );
+    }
+
+    if (selectedFees) {
+      selectedFilters.push(
+        <span
+          className="selected-option"
+          onClick={() => setSelectedFees("")}
+          key="fees"
+        >
+          {selectedFees}
+          <span className="clear-option">x</span>
+        </span>
+      );
+    }
+
+    if (selectedBoard) {
+      selectedFilters.push(
+        <span
+          className="selected-option"
+          onClick={() => setselectedBoard("")}
+          key="specialization"
+        >
+          {selectedBoard}
+          <span className="clear-option">x</span>
+        </span>
+      );
+    }
+
+
+    return selectedFilters.length > 0 ? (
+      selectedFilters
+    ) : (
+      <div>No filters selected.</div>
+    );
+  };
 
   const clearAll = () => {
     setSelectedLocation("");
@@ -79,65 +137,41 @@ const School = () => {
   return (
     <div>
       <div className="main">
-        <div className="school-section">
-          <div className="school-filter">
-            <div className="selected-options">
-              {selectedOwnership && (
-                <span
-                  className="selected-option"
-                  onClick={() => setSelectedOwnership("")}
-                >
-                  {selectedOwnership}
-                  <span className="clear-option">x</span>
-                </span>
-              )}
-              {selectedLocation && (
-                <span
-                  className="selected-option"
-                  onClick={() => setSelectedLocation("")}
-                >
-                  {selectedLocation}
-                  <span className="clear-option">x</span>
-                </span>
-              )}
-              {selectedFees && (
-                <span
-                  className="selected-option"
-                  onClick={() => setSelectedFees("")}
-                >
-                  {selectedFees}
-                  <span className="clear-option">x</span>
-                </span>
-              )}
-              {selectedBoard && (
-                <span
-                  className="selected-option"
-                  onClick={() => setselectedBoard("")}
-                >
-                  {selectedBoard}
-                  <span className="clear-option">x</span>
-                </span>
-              )}
-            </div>
-            <div className="clear-filters">
-              {/* <button onClick={clearFilters}>Clear Filters</button> */}
+      <div className="college-component">
+        <div className="college-filter">
+          <div className="filter-component">
+            <div className="filter-text">
+              <div className="text">FILTERS</div>
+
               {selectedOwnership ||
               selectedLocation ||
               selectedFees ||
               selectedBoard ? (
-                <button onClick={clearAll}>Clear All</button>
-              ) : null}
-            </div>
-            <div className="filter-component">
-              <div className="filter-text">
-                <div className="text">FILTERS</div>
-                <div className="clear-button">
-                  <div className="clear-text">Clear All</div>
-                  <div className="clear-png">
-                    <img src={Clear} alt="" />
+                <div onClick={clearAll} className="clear-filters">
+                  <div className="clear-button">
+                    <div className="clear-text">Clear All</div>
+                    <div className="clear-png">
+                      <img src={Clear} alt="" />
+                    </div>
                   </div>
                 </div>
-              </div>
+              ) : null}
+            </div>
+            <div className="selected-filters">
+              {selectedOwnership ||
+              selectedLocation ||
+              selectedFees ||
+              selectedBoard ? (
+                <div className="selected-filter">
+                  <p>Selected Filter</p>
+                  <div className="selected-filter-filters">
+                    {renderSelectedFilters()}
+                  </div>
+                </div>
+              ) : (
+                <div className="no-filters">No filters selected.</div>
+              )}
+            </div>
               <div className="filters">
                 <div className="ownership">
                   <div
@@ -447,158 +481,96 @@ const School = () => {
             </div>
           </div>
           <div className="school-main">
-            {/* <div className="school-search">
-            <h1>Search School</h1>
-            <div className="hero__middle">
-              <div className="search-bar-school">
-                <div className="line"></div>
-                <img style={{ marginRight: "0.8rem" }} src={Search} alt="" />
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  placeholder="Search..."
+            <div class="search">
+              <div class="heading">Search Colleges</div>
+              <div class="inputs">
+                <div>
+                  <img
+                    src="/static/media/search.71ffe9769b8bf12f49db93b60e6958fd.svg"
+                    alt=""
+                  />
+                </div>
+                <input type="text" placeholder="Search..." value="" />
+                <button>Search</button>
+              </div>
+            </div>
+            <div className="school-list">
+            <div class="school-card">
+              <div class="rank">
+                <div class="rank-ranks">1</div>
+                <div class="rank-ranking-institute">
+                  <div>NIRF '23</div>
+                  <div>(All India)</div>
+                </div>
+              </div>
+              <div class="image">
+                <img
+                  src="https://images.shiksha.com/mediadata/images/1605086820phpSFQlAR.jpg  "
+                  alt="college_logo"
                 />
-                <div className="src-button"><button>Search</button></div>
-                
               </div>
-            </div>
-          </div> */}
-            <div className="school-result">
-              <div className="school-result__rank">
-                <div className="rank__number">1</div>
-                <div className="rank__city">(Mumbai)</div>
-              </div>
-              <div className="school-result__img">
-                <img src={schoollogo} alt="School logo" srcset="" />
-              </div>
-              <div className="school-result__details">
-                <div className="school-name">
-                  <span>St Fransis D'Assisi High School</span>
-                </div>
-                <div className="school-shortdetail">
-                  <div className="shortdetal__location">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <span>Borivali, Mumbai</span>
+              <div class="collge-info">
+                <a href="/colleges/Indian Institute of Technology Bombay">
+                  <div class="collge-name">
+                    Indian Institute of Technology Bombay
                   </div>
-                  <div className="seprator"></div>
-                  <div className="school__rating">
-                    <span>rating 4</span>
+                </a>
+                <div class="info-two">
+                  <div class="locations">
+                    <div class="img">
+                      <img
+                        src="/static/media/location.c158d9fd56fc42a0845ff70178f1a02d.svg"
+                        alt="location"
+                      />
+                    </div>
+                    <div class="address">Mumbai</div>
                   </div>
-                  <div className="seprator"></div>
-                  <div className="school__fees">
-                    <span>50K - 1L</span>
+                  <div class="verticalline">|</div>
+                  <div class="rating">
+                    <div class="rate">3.1666666666666665</div>
+                    <div class="star-rating">
+                      <span class="star"></span>
+                      <span class="star"></span>
+                      <span class="star"></span>
+                    </div>
                   </div>
-                </div>
-                <div className="school-board">
-                  <h1>Board : State , CBSC , ICSC</h1>
-                  <div className="visitschool">
-                    <button type="button">Visit School</button>
+                  <div class="verticalline">|</div>
+                  <div class="college-fees">
+                    <span>Fees:</span> ₹ 100000
                   </div>
                 </div>
-              </div>
-            </div>
-            <div className="school-result">
-              <div className="school-result__rank">
-                <div className="rank__number">1</div>
-                <div className="rank__city">(Mumbai)</div>
-              </div>
-              <div className="school-result__img">
-                <img src={schoollogo} alt="School logo" srcset="" />
-              </div>
-              <div className="school-result__details">
-                <div className="school-name">
-                  <span>St Fransis D'Assisi High School</span>
-                </div>
-                <div className="school-shortdetail">
-                  <div className="shortdetal__location">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <span>Borivali, Mumbai</span>
-                  </div>
-                  <div className="seprator"></div>
-                  <div className="school__rating">
-                    <span>rating 4</span>
-                  </div>
-                  <div className="seprator"></div>
-                  <div className="school__fees">
-                    <span>50K - 1L</span>
+                <div class="info-three">
+                  <div class="salary">
+                    <span>Ownership:</span> Public
                   </div>
                 </div>
-                <div className="school-board">
-                  <h1>Board : State , CBSC , ICSC</h1>
-                  <div className="visitschool">
-                    <button type="button">Visit School</button>
+                <div class="info-four">
+                  <div class="admission">
+                    <a href="/colleges/Indian Institute of Technology Bombay">
+                      Admission
+                    </a>
                   </div>
+                  <div class="dot">
+                    <img
+                      src="/static/media/dot.3ee289e691f42e4e0c9708dce5716bbe.svg"
+                      alt="dot"
+                    />
+                  </div>
+                  <a href="/colleges/Indian Institute of Technology Bombay">
+                    Courses &amp; Fees
+                  </a>
+                  <div class="dot">
+                    <img
+                      src="/static/media/dot.3ee289e691f42e4e0c9708dce5716bbe.svg"
+                      alt="dot"
+                    />
+                  </div>
+                  <a href="/colleges/Indian Institute of Technology Bombay">
+                    Placement
+                  </a>
                 </div>
               </div>
             </div>
-            <div className="school-result">
-              <div className="school-result__rank">
-                <div className="rank__number">1</div>
-                <div className="rank__city">(Mumbai)</div>
-              </div>
-              <div className="school-result__img">
-                <img src={schoollogo} alt="School logo" srcset="" />
-              </div>
-              <div className="school-result__details">
-                <div className="school-name">
-                  <span>St Fransis D'Assisi High School</span>
-                </div>
-                <div className="school-shortdetail">
-                  <div className="shortdetal__location">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <span>Borivali, Mumbai</span>
-                  </div>
-                  <div className="seprator"></div>
-                  <div className="school__rating">
-                    <span>rating 4</span>
-                  </div>
-                  <div className="seprator"></div>
-                  <div className="school__fees">
-                    <span>50K - 1L</span>
-                  </div>
-                </div>
-                <div className="school-board">
-                  <h1>Board : State , CBSC , ICSC</h1>
-                  <div className="visitschool">
-                    <button type="button">Visit School</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="school-result">
-              <div className="school-result__rank">
-                <div className="rank__number">1</div>
-                <div className="rank__city">(Mumbai)</div>
-              </div>
-              <div className="school-result__img">
-                <img src={schoollogo} alt="School logo" srcset="" />
-              </div>
-              <div className="school-result__details">
-                <div className="school-name">
-                  <span>St Fransis D'Assisi High School</span>
-                </div>
-                <div className="school-shortdetail">
-                  <div className="shortdetal__location">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <span>Borivali, Mumbai</span>
-                  </div>
-                  <div className="seprator"></div>
-                  <div className="school__rating">
-                    <span>rating 4</span>
-                  </div>
-                  <div className="seprator"></div>
-                  <div className="school__fees">
-                    <span>50K - 1L</span>
-                  </div>
-                </div>
-                <div className="school-board">
-                  <h1>Board : State , CBSC , ICSC</h1>
-                  <div className="visitschool">
-                    <button type="button">Visit School</button>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
