@@ -165,7 +165,7 @@ const Institute = () => {
               <div className="small-detail">
                 <h1 className="small-detail-address ml-1">
                   <i className="fa-solid fa-location-dot"></i>{" "}
-                  <span>Virar, Palghar</span>
+                  <span>{selectedCollege.location.city}</span>
                 </h1>
                 <div className="small-detail-govern ml-3 rounded">Private</div>
                 <div className="small-detail-university ml-3 ">
@@ -477,7 +477,7 @@ const Institute = () => {
                       </div>
                       <div style={{ fontSize: "0.8rem" }}>
                         {" "}
-                        ({review.rating}) hello
+                        ({review.rating})
                       </div>
                     </div>
                   </div>
