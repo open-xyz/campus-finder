@@ -409,14 +409,14 @@ const School = () => {
                             <div className="option">
                               <input
                                 type="checkbox"
-                                id="State"
+                                id="State Board"
                                 name="specialization"
-                                value="State"
-                                checked={selectedBoard === "State"}
+                                value="State Board"
+                                checked={selectedBoard === "State Board"}
                                 onChange={handleBoardChange}
                               />
-                              <label htmlFor="State" className="checkbox-label">
-                                State
+                              <label htmlFor="State Board" className="checkbox-label">
+                              State Board
                               </label>
                             </div>
                             <div className="option">
@@ -448,14 +448,14 @@ const School = () => {
                             <div className="option">
                               <input
                                 type="checkbox"
-                                id="IG"
+                                id="SSC"
                                 name="specialization"
-                                value="IG"
-                                checked={selectedBoard === "IG"}
+                                value="SSC"
+                                checked={selectedBoard === "SSC"}
                                 onChange={handleBoardChange}
                               />
-                              <label htmlFor="IG" className="checkbox-label">
-                                IG
+                              <label htmlFor="SSC" className="checkbox-label">
+                                SSC
                               </label>
                             </div>
                             <div className="option">
