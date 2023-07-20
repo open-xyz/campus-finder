@@ -477,7 +477,7 @@ const Institute = () => {
                       </div>
                       <div style={{ fontSize: "0.8rem" }}>
                         {" "}
-                        ({selectedCollege.ratings.toFixed(1)})
+                        ({review.rating}) hello
                       </div>
                     </div>
                   </div>

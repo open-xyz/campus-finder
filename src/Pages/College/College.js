@@ -194,6 +194,9 @@ export default function College() {
         college.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
+    if (searchQuery.length === 0) {
+      setFilteredColleges(colleges.collegeList || []);
+    }
 
     setFilteredColleges(filtered);
   };
@@ -206,6 +209,7 @@ export default function College() {
   const handleSearchChange = (event) => {
     const { value } = event.target;
     setSearchQuery(value);
+    filterColleges();
   };
   const handleFeesChange = (event) => {
     const { value } = event.target;
