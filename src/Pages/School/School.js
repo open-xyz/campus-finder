@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../School/School.css";
 import "../Home/components/Hero/Hero.css";
-import "../College/College.css";
+import "../School/School.css";
 import Clear from "../College/collegeImages/clear.svg";
 import usePageTitle from "../layout/metaData";
-
+import Search from "../College/collegeImages/search.svg";
 const School = () => {
   // page title
-  const pageTitle = "colleges | campusFinder";
+  const pageTitle = "Schools | campusFinder";
   usePageTitle(pageTitle);
-
+  useEffect(() => {
+    fetch("http://localhost:5000/api/school")
+      .then((response) => response.json())
+      .then((data) => setSchool(data))
+      .catch((error) => console.error("Error fetching Schools:", error));
+  }, []);
+  const [School, setSchool] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedOwnership, setSelectedOwnership] = useState("");
   const [selectedFees, setSelectedFees] = useState("");
@@ -17,7 +23,67 @@ const School = () => {
   const [isOwnershipExpanded, setIsOwnershipExpanded] = useState(true);
   const [isLocationExpanded, setIsLocationExpanded] = useState(true);
   const [isFeesExpanded, setIsFeesExpanded] = useState(true);
-  const [isBoadrExpanded, setIsBoadrExpanded] = useState(true);
+  const [isBoardExpanded, setisBoardExpanded] = useState(true);
+  const [FilteredSchool, setFilteredSchool] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  console.log(School);
+  useEffect(() => {
+    setFilteredSchool(School || []);
+  }, [School]);
+  const filterSchools = () => {
+    let filtered = School || [];
+
+    // Filter by location
+    if (selectedLocation) {
+      filtered = filtered.filter(
+        (School) =>
+          School.location &&
+          School.location.city &&
+          School.location.city.toLowerCase() === selectedLocation.toLowerCase()
+      );
+    }
+
+    // Filter by fees range
+    if (selectedFees.length > 0) {
+      filtered = filtered.filter((School) => {
+        if (School) {
+          const courseFees = School.fees.BE;
+          const [lowerRange, upperRange] = selectedFees.split("-");
+
+          if (selectedFees === "1 Lakh") {
+            return courseFees < 100000;
+          } else if (selectedFees === "6 Lakh") {
+            return courseFees > 600000;
+          } else if (upperRange) {
+            return (
+              courseFees >= parseInt(lowerRange) * 100000 &&
+              courseFees <= parseInt(upperRange) * 100000
+            );
+          }
+        }
+        return false;
+      });
+    }
+
+    //Filter by ownership
+    if (selectedOwnership.length > 0) {
+      filtered = filtered.filter(
+        (School) =>
+          School.Ownership &&
+          School.Ownership.toLowerCase() === selectedOwnership.toLowerCase()
+      );
+    }
+
+    // Filter by search query
+    if (searchQuery.length > 0) {
+      filtered = filtered.filter((School) =>
+        School.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    setFilteredSchool(filtered);
+  };
+
 
   const handleLocationChange = (event) => {
     const { value } = event.target;
@@ -25,7 +91,10 @@ const School = () => {
       prevSelected === value ? "" : value
     );
   };
-
+  const handleSearchChange = (event) => {
+    const { value } = event.target;
+    setSearchQuery(value);
+  };
   const handleOwnershipChange = (event) => {
     const { value } = event.target;
     setSelectedOwnership((prevSelected) =>
@@ -56,7 +125,7 @@ const School = () => {
   };
 
   const toggleBoardExpand = () => {
-    setIsBoadrExpanded((prevState) => !prevState);
+    setisBoardExpanded((prevState) => !prevState);
   };
   const renderSelectedFilters = () => {
     const selectedFilters = [];
@@ -131,14 +200,14 @@ const School = () => {
     setIsOwnershipExpanded(false);
     setIsLocationExpanded(false);
     setIsFeesExpanded(false);
-    setIsBoadrExpanded(false);
+    setisBoardExpanded(false);
   };
 
   return (
     <div>
       <div className="main">
-      <div className="college-component">
-        <div className="college-filter">
+      <div className="school-component">
+        <div className="school-filter">
           <div className="filter-component">
             <div className="filter-text">
               <div className="text">FILTERS</div>
@@ -393,7 +462,7 @@ const School = () => {
                   <div>
                     <div
                       className={`dropdown ${
-                        isBoadrExpanded ? "expanded" : ""
+                        isBoardExpanded ? "expanded" : ""
                       }`}
                     >
                       <label htmlFor="specialization">Board:</label>
@@ -402,9 +471,9 @@ const School = () => {
                           className="toggle-button"
                           onClick={toggleBoardExpand}
                         >
-                          {isBoadrExpanded ? "▲" : "▼"}
+                          {isBoardExpanded ? "▲" : "▼"}
                         </button>
-                        {isBoadrExpanded && (
+                        {isBoardExpanded && (
                           <div className="options">
                             <div className="option">
                               <input
@@ -481,23 +550,32 @@ const School = () => {
             </div>
           </div>
           <div className="school-main">
-            <div class="search">
-              <div class="heading">Search Colleges</div>
-              <div class="inputs">
-                <div>
-                  <img
-                    src="/static/media/search.71ffe9769b8bf12f49db93b60e6958fd.svg"
-                    alt=""
-                  />
-                </div>
-                <input type="text" placeholder="Search..." value="" />
-                <button>Search</button>
+            <div className="search">
+            <div className="heading">Search school</div>
+            <div className="inputs">
+              <div>
+                <img src={Search} alt="" />
               </div>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                onKeyPress={(event) => {
+                  if (event.key === "Enter") {
+                    filterSchools();
+                  }
+                }}
+                placeholder="Search..."
+              />
+              <button onClick={filterSchools}>Search</button>
             </div>
+          </div>
             <div className="school-list">
+            {School.length > 0 ? (
+              School.map((School, index) => (
             <div class="school-card">
               <div class="rank">
-                <div class="rank-ranks">1</div>
+                <div class="rank-ranks">{index + 1}</div>
                 <div class="rank-ranking-institute">
                   <div>NIRF '23</div>
                   <div>(All India)</div>
@@ -506,13 +584,13 @@ const School = () => {
               <div class="image">
                 <img
                   src="https://images.shiksha.com/mediadata/images/1605086820phpSFQlAR.jpg  "
-                  alt="college_logo"
+                  alt="School_logo"
                 />
               </div>
               <div class="collge-info">
-                <a href="/colleges/Indian Institute of Technology Bombay">
+                <a href="/Schools/Indian Institute of Technology Bombay">
                   <div class="collge-name">
-                    Indian Institute of Technology Bombay
+                   {School.name}
                   </div>
                 </a>
                 <div class="info-two">
@@ -523,7 +601,7 @@ const School = () => {
                         alt="location"
                       />
                     </div>
-                    <div class="address">Mumbai</div>
+                    <div class="address">{School.location.city}</div>
                   </div>
                   <div class="verticalline">|</div>
                   <div class="rating">
@@ -535,18 +613,18 @@ const School = () => {
                     </div>
                   </div>
                   <div class="verticalline">|</div>
-                  <div class="college-fees">
-                    <span>Fees:</span> ₹ 100000
+                  <div class="School-fees">
+                    <span>Fees:</span> {School.fees}
                   </div>
                 </div>
                 <div class="info-three">
                   <div class="salary">
-                    <span>Ownership:</span> Public
+                    <span>Ownership:</span> {School.type_Of_school}
                   </div>
                 </div>
                 <div class="info-four">
                   <div class="admission">
-                    <a href="/colleges/Indian Institute of Technology Bombay">
+                    <a href="/Schools/Indian Institute of Technology Bombay">
                       Admission
                     </a>
                   </div>
@@ -556,7 +634,7 @@ const School = () => {
                       alt="dot"
                     />
                   </div>
-                  <a href="/colleges/Indian Institute of Technology Bombay">
+                  <a href="/Schools/Indian Institute of Technology Bombay">
                     Courses &amp; Fees
                   </a>
                   <div class="dot">
@@ -565,12 +643,16 @@ const School = () => {
                       alt="dot"
                     />
                   </div>
-                  <a href="/colleges/Indian Institute of Technology Bombay">
+                  <a href="/Schools/Indian Institute of Technology Bombay">
                     Placement
                   </a>
                 </div>
               </div>
             </div>
+            ))
+            ) : (
+              <p>No colleges found.</p>
+            )}
             </div>
           </div>
         </div>
