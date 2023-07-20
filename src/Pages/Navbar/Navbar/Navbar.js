@@ -2,6 +2,7 @@ import { Fragment, useState, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, useNavigate } from "react-router-dom";
+import { BsFillBookmarksFill } from "react-icons/bs";
 import Cookies from "js-cookie";
 const navigation = [
   { name: "Home", href: "/", current: false },
@@ -14,8 +15,20 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 function Navbar() {
+  const [filteredColleges, setFilteredColleges] = useState([]);
+  const [filteredCollegesLength, setFilteredCollegesLength] = useState(0);
   const [userDetails, setUserDetails] = useState({});
   const host = "http://localhost:4080";
+
+  useEffect(() => {
+    const storedData = localStorage.getItem("savedColleges");
+    const parsedData = JSON.parse(storedData);
+    setFilteredColleges(parsedData);
+  }, []);
+
+  useEffect(() => {
+    setFilteredCollegesLength(filteredColleges.length);
+  }, [filteredColleges]);
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -119,14 +132,19 @@ function Navbar() {
                   </div>
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                  <button
-                    type="button"
-                    className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                  >
-                    <span className="sr-only">View notifications</span>
-                    <BellIcon className="h-6 w-6" aria-hidden="true" />
-                  </button>
-
+                  <div style={{ color: "white", marginRight: "0.5rem" }}>
+                    ({filteredCollegesLength})
+                  </div>
+                  <Link to="/bookmarks">
+                    <button
+                      type="button"
+                      className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                    >
+                      <span className="sr-only">View notifications</span>
+                      {/* <BellIcon className="h-6 w-6" aria-hidden="true" /> */}
+                      <BsFillBookmarksFill className="h-6 w-6 p-1" />
+                    </button>
+                  </Link>
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">
                     <div>

@@ -10,6 +10,7 @@ import Singup from "./Pages/Signup/Signup";
 import Investor from "./Pages/Investor/Investor";
 import { SkeletonTheme } from "react-loading-skeleton";
 import Institute from "./Pages/Institute/Institute";
+import Bookmark from "./Pages/Bookmark/Bookmark";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Singup />} />
             <Route path="/investor" element={<Investor />} />
+            <Route path="/bookmarks" element={<Bookmark />} />
           </Routes>
         </div>
         <div style={{ marginTop: "2rem" }}>

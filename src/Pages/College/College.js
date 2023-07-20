@@ -25,6 +25,7 @@ export default function College() {
       .then((data) => setColleges(data))
       .catch((error) => console.error("Error fetching colleges:", error));
   }, []);
+
   const [colleges, setColleges] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedOwnership, setSelectedOwnership] = useState("");
@@ -43,7 +44,6 @@ export default function College() {
   useEffect(() => {
     setFilteredColleges(colleges.collegeList || []);
   }, [colleges]);
-
   useEffect(() => {
     setFilteredColleges(colleges.collegeList || []);
     setTimeout(() => {
