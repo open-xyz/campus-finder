@@ -14,19 +14,85 @@ import Cookies from "js-cookie";
 
 const Institute = () => {
   const { collegeName } = useParams();
-  const collegeContext = useCollegeContext();
-  // const [colleges, setColleges] = useState([]);
   const [savedColleges, setSavedColleges] = useState([]);
-
+  const [already, setAlready] = useState(false);
   const [colleges, setColleges] = useState([]);
   const ref = useRef(null);
   const ref1 = useRef(null);
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
   const [comment, setComment] = useState("");
+  const [filteredColleges, setFilteredColleges] = useState([]);
+  const [bookmarkcollege, setBookMarkCollege] = useState([]);
+  const [isCollegeSaved, setIsCollegeSaved] = useState(false);
+  useEffect(() => {
+    setFilteredColleges(colleges.collegeList || []);
+  }, [colleges]);
+
+  // Selected Collge is the current college
+
+  const selectedCollege = filteredColleges.find(
+    (college) => college.name === collegeName
+  );
+  useEffect(() => {
+    const fetchBookmarkedColleges = async () => {
+      try {
+        const token = Cookies.get("token");
+        const response = await fetch("http://localhost:4080/api/collegecart", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            token: token,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const isSaved = data.savedColleges.some(
+            (bookmark) => bookmark.college._id === selectedCollege?._id
+          );
+          setIsCollegeSaved(isSaved);
+        } else {
+          console.error("Error fetching bookmarked colleges");
+          // Handle the case where the API call was not successful
+        }
+      } catch (error) {
+        console.error("Error fetching bookmarked colleges:", error);
+      }
+    };
+
+    fetchBookmarkedColleges();
+  }, [selectedCollege]);
 
   const handleCommentChange = (e) => {
     setComment(e.target.value);
+  };
+
+  const handleBookmark = (e) => {
+    e.preventDefault();
+    const token = Cookies.get("token"); // Replace with your logic to get the token from cookies
+    const collegeId = selectedCollege._id;
+    // If the college is already saved, remove it from the savedColleges array
+
+    // If the college is not saved, add it to the savedColleges array
+    fetch(`http://localhost:4080/api/collegecart/${collegeId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        token: token,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("College submitted:", data);
+        setSavedColleges((prevSavedColleges) => [
+          ...prevSavedColleges,
+          collegeId,
+        ]);
+      })
+      .catch((error) => {
+        console.error("Error College review:", error);
+      });
   };
 
   const handleSubmit = (e) => {
@@ -67,64 +133,6 @@ const Institute = () => {
       .catch((error) => console.error("Error fetching colleges:", error));
   }, []);
 
-  const [filteredColleges, setFilteredColleges] = useState([]);
-  useEffect(() => {
-    setFilteredColleges(colleges.collegeList || []);
-  }, [colleges]);
-
-  const [isCollegeSaved, setIsCollegeSaved] = useState(() => {
-    const sv = localStorage.getItem("savedColleges");
-    const savedColleges = JSON.parse(sv);
-    return (
-      savedColleges &&
-      savedColleges.some((savedCollege) => savedCollege.name === collegeName)
-    );
-  });
-
-  useEffect(() => {
-    setColleges(collegeContext);
-  }, [collegeContext]);
-
-  useEffect(() => {
-    const savedCollegesData = localStorage.getItem("savedColleges");
-    if (savedCollegesData) {
-      setSavedColleges(JSON.parse(savedCollegesData));
-    }
-  }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem("savedColleges", JSON.stringify(savedColleges));
-  // }, [savedColleges]);
-
-  const selectedCollege = filteredColleges.find(
-    (college) => college.name === collegeName
-  );
-
-  console.log(selectedCollege);
-  const handleSave = () => {
-    if (isCollegeSaved) {
-      // College is already saved, so remove it
-      const updatedSavedColleges = savedColleges.filter(
-        (savedCollege) => savedCollege.name !== selectedCollege.name
-      );
-      setSavedColleges(updatedSavedColleges);
-      localStorage.setItem(
-        "savedColleges",
-        JSON.stringify(updatedSavedColleges)
-      );
-      setIsCollegeSaved(false);
-    } else {
-      // College is not saved, so add it
-      const updatedSavedColleges = [...savedColleges, selectedCollege];
-      setSavedColleges(updatedSavedColleges);
-      localStorage.setItem(
-        "savedColleges",
-        JSON.stringify(updatedSavedColleges)
-      );
-      setIsCollegeSaved(true);
-    }
-  };
-
   if (!selectedCollege) {
     return (
       <div className="container mx-auto">
@@ -132,12 +140,15 @@ const Institute = () => {
       </div>
     );
   }
+
   const getModal = () => {
     ref.current.click();
   };
   const closeModal = () => {
     ref1.current.click();
   };
+  console.log(selectedCollege);
+  console.log(already);
 
   return (
     <div style={{ backgroundColor: "#F3F2EF" }}>
@@ -147,13 +158,13 @@ const Institute = () => {
             className="institute-banner rounded-lg"
             src={selectedCollege.images.college_img[0]}
             alt=""
-            srcset=""
+            srcSet=""
           />
           <img
             src={selectedCollege.images.logo_img}
             className="institute-logo border-2 border-black rounded-lg ml-6 mb-6"
             alt=""
-            srcset=""
+            srcSet=""
           />
           <div className="banner-detail mt-4">
             <div className="banner-detail__name">
@@ -168,14 +179,12 @@ const Institute = () => {
                   <span>{selectedCollege.location.city}</span>
                 </h1>
                 <div className="small-detail-govern ml-3 rounded">Private</div>
-                <div className="small-detail-university ml-3 ">
-                  University {savedColleges.length}{" "}
-                </div>
+                <div className="small-detail-university ml-3 ">University</div>
               </div>
             </div>
             <button
-              style={{ background: isCollegeSaved ? "#FFD233" : "#FFF" }}
-              onClick={handleSave}
+              style={{ background: "#FFF" }}
+              onClick={handleBookmark}
               className="btn saves-btn "
             >
               <i className="fa-regular fa-bookmark"></i>
@@ -187,7 +196,11 @@ const Institute = () => {
           <div className="container mx-auto px-4">
             <h1 className="heading">About Institute</h1>
             <div
-              style={{ fontSize: "1rem", fontWeight: "400", marginTop: "1rem" }}
+              style={{
+                fontSize: "1rem",
+                fontWeight: "400",
+                marginTop: "1rem",
+              }}
               className="descp"
             >
               {selectedCollege.description}
@@ -226,7 +239,7 @@ const Institute = () => {
               </h5>
               <h3>
                 <span className="fees-info-span2">
-                  Bachlor of Technology(BE)
+                  Bachelor of Technology(BE)
                 </span>
               </h3>
               <h5>
@@ -318,7 +331,7 @@ const Institute = () => {
         <div className="institute-rating container mx-auto mt-8 mb-2">
           <div className="left-rating">
             <div className="rating-img">
-              <img src={Rating} alt="" srcset="" />
+              <img src={Rating} alt="" srcSet="" />
             </div>
             <div className="rating-detail">
               <h5>
@@ -335,7 +348,7 @@ const Institute = () => {
           </div>
           <div className="right-rating">
             <div className="rating-svg">
-              <img src={Star} alt="" srcset="" />
+              <img src={Star} alt="" srcSet="" />
               <h1>
                 <span>{selectedCollege.ratings.toFixed(1)}</span>/5
               </h1>
@@ -371,7 +384,7 @@ const Institute = () => {
         <div
           className="modal fade"
           id="exampleModal"
-          tabindex="-1"
+          tabIndex="-1"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >
@@ -415,12 +428,12 @@ const Institute = () => {
                 })}
 
                 <form action="">
-                  <div class="form-group">
-                    <label for="exampleFormControlTextarea1">
+                  <div className="form-group">
+                    <label htmlFor="exampleFormControlTextarea1">
                       Write a review
                     </label>
                     <textarea
-                      class="form-control"
+                      className="form-control"
                       id="exampleFormControlTextarea1"
                       value={comment}
                       onChange={handleCommentChange}
