@@ -1,0 +1,9 @@
+.mains {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.lists {
+  width: 60%;
+  min-height: 100vh;
+}

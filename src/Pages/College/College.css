@@ -108,6 +108,8 @@ body {
 
 .filter-heading {
   width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .fees {
