@@ -12,7 +12,7 @@ import InvestorRoute from "./RoutePage/InvestorRoute";
 import BookMarkRoute from "./RoutePage/BookMarkRoute";
 import Page404 from "./Pages/Page404.js/Page404";
 import InstituteRoute from "./RoutePage/InstituteRoute";
-
+import SingleSchoolRoute from "./RoutePage/SingleSchoolRoute";
 function App() {
   return (
     <SkeletonTheme baseColor="#d3d3d3" highlightColor="#e3e3d3">
@@ -24,6 +24,7 @@ function App() {
             <Route path="/college" element={<CollegeRoute />} />
             <Route path="/school" element={<SchoolRoute />} />
             <Route path="/colleges/:collegeName" element={<InstituteRoute />} />
+            <Route path="/schools/:schoolName" element={<SingleSchoolRoute />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Singup />} />
             <Route path="/investor" element={<InvestorRoute />} />
