@@ -11,7 +11,7 @@ const School = () => {
   const pageTitle = "Schools | campusFinder";
   usePageTitle(pageTitle);
   useEffect(() => {
-    fetch("http://localhost:5000/api/school")
+    fetch("http://localhost:4080/api/school")
       .then((response) => response.json())
       .then((data) => setSchool(data))
       .catch((error) => console.error("Error fetching Schools:", error));
@@ -27,27 +27,17 @@ const School = () => {
   const [isBoardExpanded, setisBoardExpanded] = useState(true);
   const [FilteredSchool, setFilteredSchool] = useState(School);
   const [searchQuery, setSearchQuery] = useState("");
-  // console.log(School);
-  
-  console.log(School.fees);
-  // useEffect(() => {
-  //   setFilteredSchool(School || []);
-  // }, [School]);
+  console.log("array of 20 " , School.schoolList);
   useEffect(() => {
     // Filtering logic here...
-    let filtered = School || [];
-
-    // ... (Your filtering logic)
-
-    // Update the filteredSchool state with the filtered results
+    let filtered = School.schoolList || [];
     setFilteredSchool(filtered);
   }, [School]);
-console.log("filtered " , FilteredSchool);
+// console.log("filtered " , FilteredSchool);
 
   const filterSchools = () => {
-    console.log("schol" + School);
-    let filtered = School || [];
-    console.log(filtered);
+    let filtered = School.schoolList || [];
+    // console.log(filtered);
   
     // Filter by location
     if (selectedLocation) {
@@ -581,8 +571,7 @@ console.log("filtered " , FilteredSchool);
               <div class="rank">
                 <div class="rank-ranks">{index + 1}</div>
                 <div class="rank-ranking-institute">
-                  <div>NIRF '23</div>
-                  <div>(All India)</div>
+                  <div>SR .NO</div>
                 </div>
               </div>
               <div class="image">
@@ -607,11 +596,14 @@ console.log("filtered " , FilteredSchool);
                   </div>
                   <div class="verticalline">|</div>
                   <div class="rating">
-                    <div class="rate">3.1666666666666665</div>
+                    <div class="rate">{School.ratings}</div>
                     <div class="star-rating">
-                      <span class="star"></span>
-                      <span class="star"></span>
-                      <span class="star"></span>
+                    {Array.from(
+                            { length: Math.floor(School.ratings) },
+                            (_, i) => (
+                              <span className="star" key={i}></span>
+                            )
+                          )}
                     </div>
                   </div>
                   <div class="verticalline">|</div>
@@ -627,7 +619,7 @@ console.log("filtered " , FilteredSchool);
                 <div class="info-four">
                   <div class="admission">
                     <a href="/Schools/Indian Institute of Technology Bombay">
-                      Admission
+                      Board : <span>{School.type_Of_board}</span>
                     </a>
                   </div>
                   <div class="dot">

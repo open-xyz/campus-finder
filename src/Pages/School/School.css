@@ -105,7 +105,9 @@
   margin-top: 1rem;
 }
 
-
+.admission span{
+  margin-left: 0.5rem;
+}
 .school-result {
   display: flex;
   width: 100%;
