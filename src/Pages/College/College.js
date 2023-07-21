@@ -509,7 +509,7 @@ export default function College() {
               </div>
 
               <div className="line"></div>
-              <div className="fees">
+              <div className="feess">
                 <div>
                   <div
                     className={`dropdown ${isFeesExpanded ? "expanded" : ""}`}
