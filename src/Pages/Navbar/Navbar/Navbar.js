@@ -3,6 +3,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, useNavigate } from "react-router-dom";
 import { BsFillBookmarksFill } from "react-icons/bs";
+import { useBookmarkContext } from "../../../context/bookMarkContext";
 import Cookies from "js-cookie";
 const navigation = [
   { name: "Home", href: "/", current: false },
@@ -18,18 +19,42 @@ function Navbar() {
   const [filteredColleges, setFilteredColleges] = useState([]);
   const [filteredCollegesLength, setFilteredCollegesLength] = useState(0);
   const [userDetails, setUserDetails] = useState({});
+  const [bookmarkcollege, setBookMarkCollege] = useState([]);
+  // const [bookMarkLength, setbookMarkLength] = useState(0);
   const host = "http://localhost:4080";
-
-  useEffect(() => {
-    const storedData = localStorage.getItem("savedColleges");
-    const parsedData = JSON.parse(storedData);
-    setFilteredColleges(parsedData);
-  }, []);
+  const { bookMarkLength } = useBookmarkContext();
 
   useEffect(() => {
     setFilteredCollegesLength(filteredColleges.length);
   }, [filteredColleges]);
 
+  useEffect(() => {
+    const fetchBookmarkedColleges = async () => {
+      try {
+        const token = Cookies.get("token");
+        const response = await fetch("http://localhost:4080/api/collegecart", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            token: token,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+
+          setBookMarkCollege(data.savedColleges);
+        } else {
+          console.error("Error fetching bookmarked colleges");
+          // Handle the case where the API call was not successful
+        }
+      } catch (error) {
+        console.error("Error fetching bookmarked colleges:", error);
+      }
+    };
+
+    fetchBookmarkedColleges();
+  }, []);
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
@@ -133,7 +158,7 @@ function Navbar() {
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                   <div style={{ color: "white", marginRight: "0.5rem" }}>
-                    ({filteredCollegesLength})
+                    ({bookMarkLength})
                   </div>
                   <Link to="/bookmarks">
                     <button

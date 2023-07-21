@@ -7,15 +7,14 @@ import Rating from "../Institute/Institute_logo/image 18.png";
 import Star from "../Institute/Institute_logo/ic_round-star.svg";
 import Profile from "../Institute/Institute_logo/carbon_user-avatar-filled.svg";
 import { useParams } from "react-router-dom";
-import { useCollegeContext } from "../../context/collegeContext";
 import Skeleton from "../College/SingleCollegeSkeleton";
 import { FaStar } from "react-icons/fa";
 import Cookies from "js-cookie";
+import { useBookmarkContext } from "../../context/bookMarkContext";
 
 const Institute = () => {
   const { collegeName } = useParams();
   const [savedColleges, setSavedColleges] = useState([]);
-  const [already, setAlready] = useState(false);
   const [colleges, setColleges] = useState([]);
   const ref = useRef(null);
   const ref1 = useRef(null);
@@ -49,8 +48,10 @@ const Institute = () => {
         if (response.ok) {
           const data = await response.json();
           const isSaved = data.savedColleges.some(
-            (bookmark) => bookmark.college._id === selectedCollege?._id
+            (bookmark) => bookmark.college.name === collegeName
           );
+          setBookMarkCollege(data.savedColleges);
+
           setIsCollegeSaved(isSaved);
         } else {
           console.error("Error fetching bookmarked colleges");
@@ -62,7 +63,7 @@ const Institute = () => {
     };
 
     fetchBookmarkedColleges();
-  }, [selectedCollege]);
+  }, [selectedCollege, bookmarkcollege]);
 
   const handleCommentChange = (e) => {
     setComment(e.target.value);
@@ -147,8 +148,9 @@ const Institute = () => {
   const closeModal = () => {
     ref1.current.click();
   };
-  console.log(selectedCollege);
-  console.log(already);
+  // console.log(selectedCollege);
+  // console.log("college" + isCollegeSaved);
+  // console.log("length" + bookMarkLength);
 
   return (
     <div style={{ backgroundColor: "#F3F2EF" }}>
@@ -187,7 +189,11 @@ const Institute = () => {
               onClick={handleBookmark}
               className="btn saves-btn "
             >
-              <i className="fa-regular fa-bookmark"></i>
+              <i
+                className={
+                  isCollegeSaved ? "fa fa-bookmark" : "fa-regular fa-bookmark"
+                }
+              ></i>
               <span>{isCollegeSaved ? "Saved" : "Save"}</span>
             </button>
           </div>
