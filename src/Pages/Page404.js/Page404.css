@@ -1,0 +1,36 @@
+.page404_container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.page404_gif {
+  display: flex;
+  justify-content: center;
+}
+
+.page404_content {
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.page404_content .page404_main {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+p {
+  font-size: 1.3rem;
+  padding: 0.7rem 0;
+}
+
+.page_404-button {
+  padding: 1rem;
+  border-radius: 15px;
+  outline: none;
+  border: none;
+  background: #0f0c2d;
+  color: #fff;
+  font-size: 1.3rem;
+  cursor: pointer;
+}

@@ -108,10 +108,13 @@ body {
 
 .filter-heading {
   width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
-.fees {
+.feess {
   width: 100%;
+  padding: 0.5rem 1rem;
 }
 
 .fees .options {

@@ -1,4 +1,8 @@
+
+import React, { useEffect, useState } from "react";
+
 import React, { useState, useEffect } from "react";
+
 import "../School/School.css";
 import "../Home/components/Hero/Hero.css";
 import "../School/School.css";
@@ -24,6 +28,16 @@ const School = () => {
   const [isOwnershipExpanded, setIsOwnershipExpanded] = useState(true);
   const [isLocationExpanded, setIsLocationExpanded] = useState(true);
   const [isFeesExpanded, setIsFeesExpanded] = useState(true);
+
+  const [isBoadrExpanded, setIsBoadrExpanded] = useState(true);
+  const [schools, setSchools] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:4080/api/school")
+      .then((response) => response.json())
+      .then((data) => setSchools(data))
+      .catch((error) => console.error("Error fetching colleges:", error));
+  }, []);
+
   const [isBoardExpanded, setisBoardExpanded] = useState(true);
   const [FilteredSchool, setFilteredSchool] = useState(School);
   const [searchQuery, setSearchQuery] = useState("");
@@ -79,6 +93,7 @@ const School = () => {
     const { value } = event.target;
     setSelectedFees((prevSelected) => (prevSelected === value ? "" : value));
   };
+
 
   const handleLocationChange = (event) => {
     const { value } = event.target;

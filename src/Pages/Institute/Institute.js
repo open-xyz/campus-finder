@@ -1,20 +1,169 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../Institute/Institute.css";
-import Banner from "../Institute/Institute_logo/viva-institute-of-technology-vit-thane.jpg";
-import Logo from "../Institute/Institute_logo/download.png";
 import Mail from "../Institute/Institute_logo/image 17.png";
 import Rating from "../Institute/Institute_logo/image 18.png";
 import Star from "../Institute/Institute_logo/ic_round-star.svg";
 import Profile from "../Institute/Institute_logo/carbon_user-avatar-filled.svg";
 import { useParams } from "react-router-dom";
-import { useCollegeContext } from "../../context/collegeContext";
+import Skeleton from "../College/SingleCollegeSkeleton";
+import { FaStar } from "react-icons/fa";
+import Cookies from "js-cookie";
+
 const Institute = () => {
   const { collegeName } = useParams();
-  const collegeContext = useCollegeContext();
-  // const [colleges, setColleges] = useState([]);
-  const [savedColleges, setSavedColleges] = useState([]);
-
   const [colleges, setColleges] = useState([]);
+  const ref = useRef(null);
+  const ref1 = useRef(null);
+  const [rating, setRating] = useState(null);
+  const [hover, setHover] = useState(null);
+  const [comment, setComment] = useState("");
+  const [filteredColleges, setFilteredColleges] = useState([]);
+  const [bookmarkcollege, setBookMarkCollege] = useState([]);
+  const [isCollegeSaved, setIsCollegeSaved] = useState(false);
+  useEffect(() => {
+    setFilteredColleges(colleges.collegeList || []);
+  }, [colleges]);
+
+  const [filteredCollegess, setFilteredCollegess] = useState([]);
+  const [bookmarkObject, setBookmarkObject] = useState({});
+
+  useEffect(() => {
+    const token = Cookies.get("token");
+    fetch("http://localhost:4080/api/collegecart", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        token: token,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          setFilteredCollegess(data.savedColleges);
+        } else {
+          // Handle the case where data.success is false (API call was not successful)
+          console.error("Error fetching bookmarked colleges");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching bookmarked colleges:", error);
+      });
+  }, []);
+
+  const selectedCollege = filteredColleges.find(
+    (college) => college.name === collegeName
+  );
+  useEffect(() => {
+    const fetchBookmarkedColleges = async () => {
+      try {
+        const token = Cookies.get("token");
+        const response = await fetch("http://localhost:4080/api/collegecart", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            token: token,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const isSaved = data.savedColleges.some(
+            (bookmark) => bookmark.college.name === collegeName
+          );
+          setBookMarkCollege(data.savedColleges);
+
+          setIsCollegeSaved(isSaved);
+        } else {
+          console.error("Error fetching bookmarked colleges");
+          // Handle the case where the API call was not successful
+        }
+      } catch (error) {
+        console.error("Error fetching bookmarked colleges:", error);
+      }
+    };
+
+    fetchBookmarkedColleges();
+  }, [selectedCollege, bookmarkcollege]);
+
+  const handleCommentChange = (e) => {
+    setComment(e.target.value);
+  };
+
+  useEffect(() => {
+    // Find the bookmark object that matches the selected college id
+    if (selectedCollege && filteredCollegess.length > 0) {
+      const bookmarkedCollege = filteredCollegess.find(
+        (bookmark) =>
+          bookmark.college && bookmark.college._id === selectedCollege._id
+      );
+
+      setBookmarkObject(bookmarkedCollege);
+    }
+  }, [selectedCollege, filteredCollegess]);
+
+  //   // Log the _id property of the first element in the filteredCollegess array
+  //   console.log(filteredCollegess[0]?._id);
+  // }, [filteredCollegess]);
+
+  // console.log("bookmark" + bookmarkcollege);
+
+  // const handleBookmark = (e) => {
+  //   e.preventDefault();
+  //   const token = Cookies.get("token"); // Replace with your logic to get the token from cookies
+  //   const collegeId = selectedCollege._id;
+  //   // If the college is already saved, remove it from the savedColleges array
+
+  //   // If the college is not saved, add it to the savedColleges array
+  //   fetch(`http://localhost:4080/api/collegecart/${collegeId}`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       token: token,
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log("College submitted:", data);
+  //       setSavedColleges((prevSavedColleges) => [
+  //         ...prevSavedColleges,
+  //         collegeId,
+  //       ]);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error College review:", error);
+  //     });
+  // };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const review = {
+      rating: rating,
+      comment: comment,
+      collegeId: selectedCollege._id,
+    };
+    const token = Cookies.get("token"); // Replace with your logic to get the token from cookies
+
+    fetch("http://localhost:4080/api/college/review", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        token: token,
+      },
+      body: JSON.stringify(review),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Review submitted:", data);
+        setRating(null);
+        setComment("");
+      })
+      .catch((error) => {
+        console.error("Error submitting review:", error);
+      });
+
+    window.location.reload();
+    closeModal();
+  };
 
   useEffect(() => {
     fetch("http://localhost:4080/api/colleges")
@@ -23,82 +172,85 @@ const Institute = () => {
       .catch((error) => console.error("Error fetching colleges:", error));
   }, []);
 
-  const [filteredColleges, setFilteredColleges] = useState([]);
-  useEffect(() => {
-    setFilteredColleges(colleges.collegeList || []);
-  }, [colleges]);
-
-  const [isCollegeSaved, setIsCollegeSaved] = useState(() => {
-    const sv = localStorage.getItem("savedColleges");
-    const savedColleges = JSON.parse(sv);
+  if (!selectedCollege) {
     return (
-      savedColleges &&
-      savedColleges.some((savedCollege) => savedCollege.name === collegeName)
+      <div className="container mx-auto">
+        <Skeleton />
+      </div>
     );
-  });
+  }
 
-  useEffect(() => {
-    setColleges(collegeContext);
-  }, [collegeContext]);
+  const getModal = () => {
+    ref.current.click();
+  };
+  const closeModal = () => {
+    ref1.current.click();
+  };
+  const handleBookmark = (e) => {
+    e.preventDefault();
+    const token = Cookies.get("token");
+    const collegeId = selectedCollege._id;
+    console.log("collegeid" + collegeId);
 
-  useEffect(() => {
-    const savedCollegesData = localStorage.getItem("savedColleges");
-    if (savedCollegesData) {
-      setSavedColleges(JSON.parse(savedCollegesData));
-    }
-  }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem("savedColleges", JSON.stringify(savedColleges));
-  // }, [savedColleges]);
-
-  const selectedCollege = filteredColleges.find(
-    (college) => college.name === collegeName
-  );
-
-  const handleSave = () => {
     if (isCollegeSaved) {
-      // College is already saved, so remove it
-      const updatedSavedColleges = savedColleges.filter(
-        (savedCollege) => savedCollege.name !== selectedCollege.name
-      );
-      setSavedColleges(updatedSavedColleges);
-      localStorage.setItem(
-        "savedColleges",
-        JSON.stringify(updatedSavedColleges)
-      );
-      setIsCollegeSaved(false);
+      // If the college is already saved, remove it from the savedColleges array
+      if (bookmarkObject && bookmarkObject._id) {
+        const bookmarkIdToRemove = bookmarkObject._id;
+        fetch(`http://localhost:4080/api/collegecart/${bookmarkIdToRemove}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            token: token,
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("College removed from bookmarks:", data);
+            // Update the state to reflect that the college is no longer saved
+            setIsCollegeSaved(false);
+          })
+          .catch((error) => {
+            console.error("Error removing college from bookmarks:", error);
+          });
+      } else {
+        console.error("Bookmark object or bookmark ID not found.");
+      }
     } else {
-      // College is not saved, so add it
-      const updatedSavedColleges = [...savedColleges, selectedCollege];
-      setSavedColleges(updatedSavedColleges);
-      localStorage.setItem(
-        "savedColleges",
-        JSON.stringify(updatedSavedColleges)
-      );
-      setIsCollegeSaved(true);
+      // If the college is not saved, add it to the savedColleges array
+      fetch(`http://localhost:4080/api/collegecart/${collegeId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          token: token,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("College added to bookmarks:", data);
+          // Update the state to reflect that the college is now saved
+          setIsCollegeSaved(true);
+        })
+        .catch((error) => {
+          console.error("Error adding college to bookmarks:", error);
+        });
     }
   };
 
-  if (!selectedCollege) {
-    return <div>College not found.</div>;
-  }
-
   return (
     <div style={{ backgroundColor: "#F3F2EF" }}>
-      <div class="institute-main ">
+      <div className="institute-main ">
         <div className="institute-banner-section container mx-auto mt-8">
           <img
             className="institute-banner rounded-lg"
             src={selectedCollege.images.college_img[0]}
             alt=""
-            srcset=""
+            srcSet=""
           />
           <img
             src={selectedCollege.images.logo_img}
             className="institute-logo border-2 border-black rounded-lg ml-6 mb-6"
             alt=""
-            srcset=""
+            srcSet=""
           />
           <div className="banner-detail mt-4">
             <div className="banner-detail__name">
@@ -109,33 +261,40 @@ const Institute = () => {
               </h1>
               <div className="small-detail">
                 <h1 className="small-detail-address ml-1">
-                  <i class="fa-solid fa-location-dot"></i>{" "}
-                  <span>Virar, Palghar</span>
+                  <i className="fa-solid fa-location-dot"></i>{" "}
+                  <span>{selectedCollege.location.city}</span>
                 </h1>
                 <div className="small-detail-govern ml-3 rounded">Private</div>
-                <div className="small-detail-university ml-3 ">
-                  University {savedColleges.length}{" "}
-                </div>
+                <div className="small-detail-university ml-3 ">University</div>
               </div>
             </div>
             <button
-              onClick={handleSave}
-              className="btn save-btn border-2 border-red-900"
+              style={{ background: "#FFF" }}
+              onClick={handleBookmark}
+              className="btn saves-btn "
             >
-              <i class="fa-regular fa-bookmark">
-                <span className="ml-2">
-                  {isCollegeSaved ? "SAVED" : "SAVE"}
-                </span>
-              </i>
+              <i
+                className={
+                  isCollegeSaved ? "fa fa-bookmark" : "fa-regular fa-bookmark"
+                }
+              ></i>
+              <span>{isCollegeSaved ? "Saved" : "Save"}</span>
             </button>
           </div>
         </div>
         <div className="institute-aboutus container mx-auto mt-8">
-          <div class="container mx-auto px-4">
-            <h1 class="text-3xl font-bold mt-8 mb-4">About Institute</h1>
-            <p class="text-lg text-gray-700">
-              {selectedCollege["About College"]}
-            </p>
+          <div className="container mx-auto px-4">
+            <h1 className="heading">About Institute</h1>
+            <div
+              style={{
+                fontSize: "1rem",
+                fontWeight: "400",
+                marginTop: "1rem",
+              }}
+              className="descp"
+            >
+              {selectedCollege.description}
+            </div>
           </div>
         </div>
         <div className="institute-information container mx-auto mt-8">
@@ -147,7 +306,9 @@ const Institute = () => {
                 </span>
               </h5>
               <h3>
-                <span className="exam-info-span2">JEE MAIN , MHT-CET</span>
+                {selectedCollege.exams.map((e, index) =>
+                  index === selectedCollege.exams.length - 1 ? e : e + " , "
+                )}
               </h3>
             </div>
             <hr />
@@ -168,11 +329,19 @@ const Institute = () => {
               </h5>
               <h3>
                 <span className="fees-info-span2">
-                  Bachlor of Technology(BE)
+                  Bachelor of Technology(BE)
                 </span>
               </h3>
               <h5>
-                <span className="fees-info-span font-bold">10000</span>
+                <span className="fees-info-span fees-cost">
+                  {selectedCollege.fees.BE
+                    ? selectedCollege.fees.BE.toLocaleString("en-IN", {
+                        style: "currency",
+                        currency: "INR",
+                        minimumFractionDigits: 0,
+                      })
+                    : "-"}
+                </span>
               </h5>
               <h3>
                 <span className="fees-info-span2">
@@ -180,7 +349,15 @@ const Institute = () => {
                 </span>
               </h3>
               <h5>
-                <span className="fees-info-span font-bold">110000</span>
+                <span className="fees-info-span fees-cost">
+                  {selectedCollege.fees.MCA
+                    ? selectedCollege.fees.MCA.toLocaleString("en-IN", {
+                        style: "currency",
+                        currency: "INR",
+                        minimumFractionDigits: 0,
+                      })
+                    : "-"}
+                </span>
               </h5>
             </div>
           </div>
@@ -192,7 +369,7 @@ const Institute = () => {
               </div>
               <div className="contact-detail">
                 <h4>
-                  <span>Viva Institute Of Techhology</span>
+                  <span>{selectedCollege.name}</span>
                 </h4>
                 <h1>
                   <span>Contact Information</span>
@@ -203,7 +380,7 @@ const Institute = () => {
               <div className="address-heading common-head">Address: </div>
               <div className="address-detail common-main">
                 <h4>
-                  <span>{selectedCollege["College Address"]}</span>
+                  <span>{selectedCollege.Address}</span>
                 </h4>
               </div>
             </div>
@@ -221,176 +398,200 @@ const Institute = () => {
               <div className="contact-img common-head">E-Mail: </div>
               <div className="contact-detail common-main">
                 <h4>
-                  <span> {selectedCollege.Email} </span>
+                  <span> {selectedCollege.email} </span>
                 </h4>
               </div>
             </div>
             <div className="button-to-webite">
-              <a target="_blank" href={selectedCollege["College Link"]}>
-                <button className="btn">Go To College Website</button>
+              <a target="_blank" href={selectedCollege.website}>
+                <button
+                  style={{
+                    backgroundColor: "#FFD233",
+                    padding: "0.5rem 0.5rem",
+                    border: "1px solid #000",
+                    borderRadius: "0.5rem",
+                  }}
+                >
+                  Go To College Website
+                </button>
               </a>
             </div>
           </div>
         </div>
-        <div className="institute-rating container mx-auto mt-8">
+        <div className="institute-rating container mx-auto mt-8 mb-2">
           <div className="left-rating">
             <div className="rating-img">
-              <img src={Rating} alt="" srcset="" />
+              <img src={Rating} alt="" srcSet="" />
             </div>
             <div className="rating-detail">
               <h5>
-                <span>Viva Institute Of Technology</span>
+                <span style={{ fontSize: "0.9rem", color: "#444" }}>
+                  {selectedCollege.name}
+                </span>
               </h5>
               <h1>
-                <span className="font-extrabold">
-                  Stuents Rating And Review
+                <span style={{ fontSize: "1.5rem" }}>
+                  Students Rating And Review
                 </span>
               </h1>
             </div>
           </div>
           <div className="right-rating">
             <div className="rating-svg">
-              <img src={Star} alt="" srcset="" />
+              <img src={Star} alt="" srcSet="" />
               <h1>
-                <span>1.1</span>/5
+                <span>{selectedCollege.ratings.toFixed(1)}</span>/5
               </h1>
             </div>
           </div>
         </div>
-        <div className="reviews container mx-auto mt-8">
-          <div className="reviewer-name">
-            <div className="profile-logo">
-              <img src={Profile} alt="" srcset="" />
-            </div>
-            <div className="identity">
-              <h1>
-                <span>Gaurav Madusudan Harayan</span>
-              </h1>
-              <h2>
-                <span>B.E. in Computer Engineering - Batch of 2023</span>
-              </h2>
-            </div>
+        <div
+          onClick={getModal}
+          className="addyourreview container mx-auto mb-8"
+        >
+          {" "}
+          <div>
+            <img
+              style={{ width: "45px", marginLeft: "2rem" }}
+              src="https://img.icons8.com/?size=512&id=48129&format=png"
+              alt=""
+            />
           </div>
-          <div className="summarized-review">
-            <h1>
-              <span>No Good Placements As Shown</span>
-            </h1>
-          </div>
-          <div className="placements-review">
-            <p>
-              <span>Placements: </span>Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Quaerat porro minima repudiandae reiciendis
-              dolor incidunt veniam atque nam earum quae odit officia dolore
-              eveniet praesentium velit error qui tempora, vel perspiciatis
-              beatae asperiores optio corporis cumque. Beatae assumenda, saepe
-              ratione pariatur ex cumque? Suscipit officiis dolor in vitae
-              consequuntur vel.
-            </p>
-          </div>
-          <div className="infrastructure-review">
-            <p>
-              <span>Infrastructure: </span>Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Quaerat porro minima repudiandae
-              reiciendis dolor incidunt veniam atque nam earum quae odit officia
-              dolore eveniet praesentium velit error qui tempora, vel
-              perspiciatis beatae asperiores optio corporis cumque. Beatae
-              assumenda, saepe ratione pariatur ex cumque? Suscipit officiis
-              dolor in vitae consequuntur vel.
-            </p>
-          </div>
+          <div style={{ fontSize: "1.2rem" }}>Add your Review</div>
         </div>
-        <div className="reviews container mx-auto mt-8">
-          <div className="reviewer-name">
-            <div className="profile-logo">
-              <img src={Profile} alt="" srcset="" />
-            </div>
-            <div className="identity">
-              <h1>
-                <span>Gaurav Madusudan Harayan</span>
-              </h1>
-              <h2>
-                <span>B.E. in Computer Engineering - Batch of 2023</span>
-              </h2>
-            </div>
-          </div>
-          <div className="summarized-review">
-            <h1>
-              <span>No Good Placements As Shown</span>
-            </h1>
-          </div>
-          <div className="placements-review">
-            <p>
-              <span>Placements: </span>Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Quaerat porro minima repudiandae reiciendis
-              dolor incidunt veniam atque nam earum quae odit officia dolore
-              eveniet praesentium velit error qui tempora, vel perspiciatis
-              beatae asperiores optio corporis cumque. Beatae assumenda, saepe
-              ratione pariatur ex cumque? Suscipit officiis dolor in vitae
-              consequuntur vel.
-            </p>
-          </div>
-          <div className="infrastructure-review">
-            <p>
-              <span>Infrastructure: </span>Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Quaerat porro minima repudiandae
-              reiciendis dolor incidunt veniam atque nam earum quae odit officia
-              dolore eveniet praesentium velit error qui tempora, vel
-              perspiciatis beatae asperiores optio corporis cumque. Beatae
-              assumenda, saepe ratione pariatur ex cumque? Suscipit officiis
-              dolor in vitae consequuntur vel.
-            </p>
-          </div>
-        </div>
-        <div className="faq container mx-auto mt-8">
-          <div class="container mx-auto px-4">
-            <h1 class="text-3xl font-bold mt-8 mb-4">
-              Frequently Asked Questions
-            </h1>
 
-            <div class="accordion">
-              {/* <!-- FAQ Item 1 --> */}
-              <div class="accordion-item">
-                <h2 class="accordion-title">
-                  <button class="flex justify-between items-center w-full py-2 px-4 bg-gray-200 hover:bg-gray-300">
-                    <span class="text-lg font-medium">Question 1?</span>
-                    <span class="accordion-icon">&#43;</span>
-                  </button>
-                </h2>
-                <div class="accordion-content">
-                  <p class="text-gray-700">Answer to Question 1.</p>
-                </div>
+        <button
+          ref={ref}
+          style={{ display: "none" }}
+          type="button"
+          className="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Launch demo modal
+        </button>
+
+        <div
+          className="modal fade"
+          id="exampleModal"
+          tabIndex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">
+                  Add your Review
+                </h5>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
               </div>
+              <div className="">
+                {[...Array(5)].map((star, index) => {
+                  const currentRating = index + 1;
+                  return (
+                    <label key={index}>
+                      <input
+                        type="radio"
+                        name="rating"
+                        value={currentRating}
+                        onClick={() => setRating(currentRating)}
+                      />
+                      <FaStar
+                        className="stars"
+                        size={20}
+                        color={
+                          currentRating <= (hover || rating)
+                            ? "#ffc107"
+                            : "#e4e5e9"
+                        }
+                        onMouseEnter={() => setHover(currentRating)}
+                        onMouseLeave={() => setHover(null)}
+                      />
+                    </label>
+                  );
+                })}
 
-              {/* <!-- FAQ Item 2 --> */}
-              <div class="accordion-item">
-                <h2 class="accordion-title">
-                  <button class="flex justify-between items-center w-full py-2 px-4 bg-gray-200 hover:bg-gray-300">
-                    <span class="text-lg font-medium">Question 2?</span>
-                    <span class="accordion-icon">&#43;</span>
-                  </button>
-                </h2>
-                <div class="accordion-content">
-                  <p class="text-gray-700">Answer to Question 2.</p>
-                </div>
+                <form action="">
+                  <div className="form-group">
+                    <label htmlFor="exampleFormControlTextarea1">
+                      Write a review
+                    </label>
+                    <textarea
+                      className="form-control"
+                      id="exampleFormControlTextarea1"
+                      value={comment}
+                      onChange={handleCommentChange}
+                      required
+                      placeholder="Write a comment..."
+                      rows="3"
+                    ></textarea>
+                  </div>
+                  <div className="modal-footer">
+                    <button
+                      ref={ref1}
+                      type="button"
+                      className="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button
+                      onClick={handleSubmit}
+                      type="button"
+                      className="btn btn-primary"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </form>
               </div>
-
-              {/* <!-- FAQ Item 3 --> */}
-              <div class="accordion-item">
-                <h2 class="accordion-title">
-                  <button class="flex justify-between items-center w-full py-2 px-4 bg-gray-200 hover:bg-gray-300">
-                    <span class="text-lg font-medium">Question 3?</span>
-                    <span class="accordion-icon">&#43;</span>
-                  </button>
-                </h2>
-                <div class="accordion-content">
-                  <p class="text-gray-700">Answer to Question 3.</p>
-                </div>
-              </div>
-
-              {/* <!-- Add more FAQ items as needed --> */}
             </div>
           </div>
         </div>
+
+        {selectedCollege.reviews.length > 0 ? (
+          selectedCollege.reviews.map((review, index) => (
+            <div key={index}>
+              <div className="reviews container mx-auto mt-3">
+                <div className="top">
+                  <div className="img">
+                    <img src={Profile} alt="" />
+                  </div>
+                  <div className="right-star">
+                    <div className="name">{review.name}</div>
+                    <div className="mix-right">
+                      <div className="star-rating">
+                        {Array.from(
+                          {
+                            length: Math.floor(
+                              selectedCollege.ratings.toFixed(1)
+                            ),
+                          },
+                          (_, i) => (
+                            <span className="star" key={i}></span>
+                          )
+                        )}
+                      </div>
+                      <div style={{ fontSize: "0.8rem" }}>
+                        {" "}
+                        ({review.rating})
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bottom">{review.comment}</div>
+              </div>
+            </div>
+          ))
+        ) : (
+          <div className="reviews container mx-auto mt-6">No reviews</div>
+        )}
       </div>
     </div>
   );
