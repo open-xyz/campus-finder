@@ -5,6 +5,7 @@ import "../School/School.css";
 import Clear from "../College/collegeImages/clear.svg";
 import usePageTitle from "../layout/metaData";
 import Search from "../College/collegeImages/search.svg";
+import { Link } from "react-router-dom";
 const School = () => {
   // page title
   const pageTitle = "Schools | campusFinder";
@@ -24,66 +25,70 @@ const School = () => {
   const [isLocationExpanded, setIsLocationExpanded] = useState(true);
   const [isFeesExpanded, setIsFeesExpanded] = useState(true);
   const [isBoardExpanded, setisBoardExpanded] = useState(true);
-  const [FilteredSchool, setFilteredSchool] = useState([]);
+  const [FilteredSchool, setFilteredSchool] = useState(School);
   const [searchQuery, setSearchQuery] = useState("");
-  console.log(School);
+  // console.log(School);
+  
+  console.log(School.fees);
+  // useEffect(() => {
+  //   setFilteredSchool(School || []);
+  // }, [School]);
   useEffect(() => {
-    setFilteredSchool(School || []);
-  }, [School]);
-  const filterSchools = () => {
+    // Filtering logic here...
     let filtered = School || [];
 
+    // ... (Your filtering logic)
+
+    // Update the filteredSchool state with the filtered results
+    setFilteredSchool(filtered);
+  }, [School]);
+console.log("filtered " , FilteredSchool);
+
+  const filterSchools = () => {
+    console.log("schol" + School);
+    let filtered = School || [];
+    console.log(filtered);
+  
     // Filter by location
     if (selectedLocation) {
       filtered = filtered.filter(
-        (School) =>
-          School.location &&
-          School.location.city &&
-          School.location.city.toLowerCase() === selectedLocation.toLowerCase()
+        (school) =>
+          school.location &&
+          school.location.city &&
+          school.location.city.toLowerCase() === selectedLocation.toLowerCase()
       );
     }
-
-    // Filter by fees range
-    if (selectedFees.length > 0) {
-      filtered = filtered.filter((School) => {
-        if (School) {
-          const courseFees = School.fees.BE;
-          const [lowerRange, upperRange] = selectedFees.split("-");
-
-          if (selectedFees === "1 Lakh") {
-            return courseFees < 100000;
-          } else if (selectedFees === "6 Lakh") {
-            return courseFees > 600000;
-          } else if (upperRange) {
-            return (
-              courseFees >= parseInt(lowerRange) * 100000 &&
-              courseFees <= parseInt(upperRange) * 100000
-            );
-          }
-        }
-        return false;
-      });
-    }
-
+  
     //Filter by ownership
     if (selectedOwnership.length > 0) {
-      filtered = filtered.filter(
-        (School) =>
-          School.Ownership &&
-          School.Ownership.toLowerCase() === selectedOwnership.toLowerCase()
-      );
+      filtered = filtered.filter((school) => {
+        const typeOfSchool = school.type_Of_school && school.type_Of_school[0];
+        return typeOfSchool && typeOfSchool.toLowerCase() === selectedOwnership.toLowerCase();
+      });
     }
-
+  
     // Filter by search query
     if (searchQuery.length > 0) {
-      filtered = filtered.filter((School) =>
-        School.name.toLowerCase().includes(searchQuery.toLowerCase())
+      filtered = filtered.filter((school) =>
+        school.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
-
+  
     setFilteredSchool(filtered);
+  
   };
+  // console.log(`filtered ${FilteredSchool}`);
+  // console.log(JSON.stringify(FilteredSchool, null, 2));
 
+  useEffect(() => {
+    filterSchools();
+  }, [selectedLocation, selectedFees, selectedOwnership]);
+
+
+  const handleFeesChange = (event) => {
+    const { value } = event.target;
+    setSelectedFees((prevSelected) => (prevSelected === value ? "" : value));
+  };
 
   const handleLocationChange = (event) => {
     const { value } = event.target;
@@ -102,14 +107,11 @@ const School = () => {
     );
   };
 
-  const handleFeesChange = (event) => {
-    const { value } = event.target;
-    setSelectedFees((prevSelected) => (prevSelected === value ? "" : value));
-  };
 
   const handleBoardChange = (event) => {
     const { value } = event.target;
-    setselectedBoard((prevSelected) => (prevSelected === value ? "" : value));
+    setselectedBoard((prevSelected) => 
+    (prevSelected === value ? "" : value));
   };
 
   const toggleOwnershipExpand = () => {
@@ -197,10 +199,11 @@ const School = () => {
     setSelectedOwnership("");
     setSelectedFees("");
     setselectedBoard("");
-    setIsOwnershipExpanded(false);
-    setIsLocationExpanded(false);
-    setIsFeesExpanded(false);
-    setisBoardExpanded(false);
+    setIsOwnershipExpanded(true);
+    setIsLocationExpanded(true);
+    setIsFeesExpanded(true);
+    setisBoardExpanded(true);
+    setFilteredSchool(School || []);
   };
 
   return (
@@ -277,6 +280,7 @@ const School = () => {
                               id="private"
                               name="ownership"
                               value="Private"
+                              onClick={filterSchools}
                               checked={selectedOwnership === "Private"}
                               onChange={handleOwnershipChange}
                             />
@@ -571,8 +575,8 @@ const School = () => {
             </div>
           </div>
             <div className="school-list">
-            {School.length > 0 ? (
-              School.map((School, index) => (
+            {FilteredSchool.length > 0 ? (
+              FilteredSchool.map((School, index) => (
             <div class="school-card">
               <div class="rank">
                 <div class="rank-ranks">{index + 1}</div>
@@ -588,11 +592,9 @@ const School = () => {
                 />
               </div>
               <div class="collge-info">
-                <a href="/Schools/Indian Institute of Technology Bombay">
-                  <div class="collge-name">
-                   {School.name}
-                  </div>
-                </a>
+              <Link to={`#`}>
+                  <div class="collge-name">{School.name}</div>
+                  </Link>
                 <div class="info-two">
                   <div class="locations">
                     <div class="img">
@@ -643,9 +645,6 @@ const School = () => {
                       alt="dot"
                     />
                   </div>
-                  <a href="/Schools/Indian Institute of Technology Bombay">
-                    Placement
-                  </a>
                 </div>
               </div>
             </div>
