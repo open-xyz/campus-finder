@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Campus Finder
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 🎓🏫🔍🌟📚
 
-## Available Scripts
+**The Campus Finder is an app that allows users to discover colleges, schools, and potential investors. It offers a user-friendly interface with a wide range of features, including search options, filtering capabilities, and a review and rating system, all protected by authentication. Users can also bookmark their favorite colleges and schools for easy access.**
 
-In the project directory, you can run:
+## 🚀 Quick Start
 
-### `npm start`
+Follow these steps to quickly set up and run the Campus Finder Frontend:
+1. Clone the repository:   
+```
+git clone https://github.com/chetandivekar/campus-finder.git
+```
+2. Navigate to the frontend directory:
+```
+cd campus-finder/
+```
+3. Install dependencies:
+```
+nmp install
+```
+4. Start the development server:
+```
+npm Start
+```
+5. Open your browser and visit `http://localhost:3000` to see the app running.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🧰 Features
+The Campus Finder Frontend offers a range of features to enhance the user experience:
+- 🏫 College and School Search: Users can search for colleges and schools based on criteria such as name, location, or courses offered.
+- 🔍 Filter Options: Users can apply filters to refine their search results, such as filtering by location, rating, and more.
+- 🌟 Review and Rating: Users can read reviews and ratings for colleges and schools submitted by other users. They can also submit their own reviews and ratings to share their experiences.
+- 📚 Bookmarking: Users have the ability to bookmark their favorite colleges and schools for quick access and future reference.
+- 🔐 Authentication: To access certain features like submitting reviews or bookmarking, users need to create an account and log in to the app securely.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Technologies Used
 
-### `npm test`
+The Campus Finder Frontend is built using the following technologies and libraries:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React.js: A JavaScript library for building user interfaces.
+- React Router: A routing library for React.js applications.
+- Fetch: A promise-based HTTP client for making API requests.
+- Material-UI: A popular UI component library for React.js.
+- CSS: Cascading Style Sheets for styling the components.
 
-### `npm run build`
+## Contributing
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Please make sure to update tests as appropriate.
