@@ -1,3 +1,24 @@
+
+.school-section {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  /* margin-top: 5rem; */
+}
+.school-filter {
+  width: 30%;
+  min-height: 100%;
+}
+.school-section {
+  display: flex;
+  gap: 5%;
+  width: 70%;
+  height: 100%;
+  /* background-color: black; */
+}
+
 .main {
   height: 85vh;
   width: 100%;
@@ -136,66 +157,66 @@
 }
 .school-result__details {
   /* border: 3px solid purple; */
-  width:100%;
+  width: 100%;
   margin-left: 0.3rem;
   padding: 0.3rem;
 }
-.rank__number{
+.rank__number {
   text-align: center;
   font-size: 2rem;
 }
-.rank__city{
+.rank__city {
   font-size: 1.2rem;
 }
-.school-result__img img{
+.school-result__img img {
   height: 80%;
   width: 80%;
 }
-.seprator{
-  height:1.5rem;
+.seprator {
+  height: 1.5rem;
   width: 0.21rem;
   background-color: #000;
 }
-.school-shortdetail{
+.school-shortdetail {
   display: flex;
   margin: 0.71rem 0rem;
   /* border: 1px solid black; */
 }
-.school-name{
+.school-name {
   /* border: 1px solid blue; */
   width: 100%;
   font-weight: bolder;
 }
-.school-name span{
+.school-name span {
   font-size: 1.5rem;
   font-weight: 500;
 }
-.shortdetal__location{
+.shortdetal__location {
   margin-left: 0.5rem;
 }
-.shortdetal__location span{
+.shortdetal__location span {
   margin: 0rem 1rem;
 }
 .school__rating span {
   margin: 0rem 1rem;
 }
-.school__fees span{
+.school__fees span {
   margin: 0rem 1rem;
 }
-.school-board{
+.school-board {
   display: flex;
   justify-content: space-between;
 }
-.visitschool{
+.visitschool {
   margin-left: 1rem;
 }
-.visitschool button{
-  background-color: #ffd700;;
+.visitschool button {
+  background-color: #ffd700;
   border: 1px solid black;
   border-radius: 5px;
   width: 10rem;
 }
-.src-button button{
+.src-button button {
   position: relative;
   left: 9rem;
   background-color: #ffd700;
@@ -210,6 +231,12 @@
   font-weight: 300;
   line-height: normal;
 }
+
+.feess {
+  width: 100%;
+  padding: 0.5rem 1rem;
+}
+
 .school-main{
     width: 75%;
     overflow-y: scroll;
@@ -219,3 +246,4 @@
   width: 100%;
   padding: 0.5rem 1rem;
 }
+
