@@ -34,7 +34,6 @@ function App() {
 
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Singup />} />
-          <Route path="/profile" element={<Profile/>} />
 
         </Routes>
       </div>
