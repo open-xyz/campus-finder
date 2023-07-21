@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../School/School.css";
 import "../Home/components/Hero/Hero.css";
 import "../College/College.css";
@@ -13,7 +13,7 @@ import usePageTitle from "../layout/metaData";
 
 const School = () => {
   // page title
-  const pageTitle = "colleges | campusFinder";
+  const pageTitle = "Schools | campusFinder";
   usePageTitle(pageTitle);
 
   const [selectedLocation, setSelectedLocation] = useState("");
@@ -24,6 +24,13 @@ const School = () => {
   const [isLocationExpanded, setIsLocationExpanded] = useState(true);
   const [isFeesExpanded, setIsFeesExpanded] = useState(true);
   const [isBoadrExpanded, setIsBoadrExpanded] = useState(true);
+  const [schools, setSchools] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:4080/api/school")
+      .then((response) => response.json())
+      .then((data) => setSchools(data))
+      .catch((error) => console.error("Error fetching colleges:", error));
+  }, []);
 
   const handleLocationChange = (event) => {
     const { value } = event.target;

@@ -1,7 +1,9 @@
 import { Fragment, useState, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, useNavigate } from "react-router-dom";
+import { BsFillBookmarksFill } from "react-icons/bs";
+import { useBookmarkContext } from "../../../context/bookMarkContext";
 import Cookies from "js-cookie";
 const navigation = [
   { name: "Home", href: "/", current: false },
@@ -14,9 +16,44 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 function Navbar() {
+  const [filteredColleges] = useState([]);
   const [userDetails, setUserDetails] = useState({});
+  const [setBookMarkCollege] = useState([]);
+  // const [bookMarkLength, setbookMarkLength] = useState(0);
   const host = "http://localhost:4080";
+  const { bookMarkLength, setBookMarkLength } = useBookmarkContext();
 
+  useEffect(() => {
+    setBookMarkLength(filteredColleges.length);
+  }, [filteredColleges]);
+
+  useEffect(() => {
+    const fetchBookmarkedColleges = async () => {
+      try {
+        const token = Cookies.get("token");
+        const response = await fetch("http://localhost:4080/api/collegecart", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            token: token,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+
+          setBookMarkCollege(data.savedColleges);
+        } else {
+          console.error("Error fetching bookmarked colleges");
+          // Handle the case where the API call was not successful
+        }
+      } catch (error) {
+        console.error("Error fetching bookmarked colleges:", error);
+      }
+    };
+
+    fetchBookmarkedColleges();
+  }, []);
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
@@ -119,14 +156,19 @@ function Navbar() {
                   </div>
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                  <button
-                    type="button"
-                    className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                  >
-                    <span className="sr-only">View notifications</span>
-                    <BellIcon className="h-6 w-6" aria-hidden="true" />
-                  </button>
-
+                  <div style={{ color: "white", marginRight: "0.5rem" }}>
+                    ({bookMarkLength})
+                  </div>
+                  <Link to="/bookmarks">
+                    <button
+                      type="button"
+                      className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                    >
+                      <span className="sr-only">View notifications</span>
+                      {/* <BellIcon className="h-6 w-6" aria-hidden="true" /> */}
+                      <BsFillBookmarksFill className="h-6 w-6 p-1" />
+                    </button>
+                  </Link>
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">
                     <div>

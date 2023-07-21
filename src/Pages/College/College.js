@@ -7,6 +7,7 @@ import Search from "./collegeImages/search.svg";
 
 import usePageTitle from "../layout/metaData";
 import { Link } from "react-router-dom";
+import CollegeSkeleton from "./CollegeSkeleton";
 // import colleges from "./college_api";
 
 // export default function College() {
@@ -24,6 +25,7 @@ export default function College() {
       .then((data) => setColleges(data))
       .catch((error) => console.error("Error fetching colleges:", error));
   }, []);
+
   const [colleges, setColleges] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedOwnership, setSelectedOwnership] = useState("");
@@ -36,13 +38,19 @@ export default function College() {
   const [isSpecializationExpanded, setIsSpecializationExpanded] =
     useState(true);
   const [isExamExpanded, setIsExamExpanded] = useState(true);
+  const [showSkeleton, setShowSkeleton] = useState(true);
   const [filteredColleges, setFilteredColleges] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   useEffect(() => {
     setFilteredColleges(colleges.collegeList || []);
   }, [colleges]);
+  useEffect(() => {
+    setFilteredColleges(colleges.collegeList || []);
+    setTimeout(() => {
+      setShowSkeleton(false);
+    }, 400);
+  }, [colleges]);
 
-  // const filterColleges = () => {
   //   let filtered = colleges;
 
   //   if (selectedLocation.length > 0) {
@@ -174,8 +182,8 @@ export default function College() {
     if (selectedOwnership.length > 0) {
       filtered = filtered.filter(
         (college) =>
-          college.Ownership &&
-          college.Ownership.toLowerCase() === selectedOwnership.toLowerCase()
+          college.Owenrship &&
+          college.Owenrship.toLowerCase() === selectedOwnership.toLowerCase()
       );
     }
 
@@ -184,6 +192,9 @@ export default function College() {
       filtered = filtered.filter((college) =>
         college.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
+    }
+    if (searchQuery.length === 0) {
+      setFilteredColleges(colleges.collegeList || []);
     }
 
     setFilteredColleges(filtered);
@@ -197,6 +208,7 @@ export default function College() {
   const handleSearchChange = (event) => {
     const { value } = event.target;
     setSearchQuery(value);
+    filterColleges();
   };
   const handleFeesChange = (event) => {
     const { value } = event.target;
@@ -214,18 +226,6 @@ export default function College() {
     setSelectedOwnership(value);
     console.log(value);
   };
-
-  // const handleOwnershipChange = (event) => {
-  //   const { value } = event.target;
-  //   setSelectedOwnership((prevSelected) =>
-  //     prevSelected === value ? "" : value
-  //   );
-  // };
-
-  // const handleFeesChange = (event) => {
-  //   const { value } = event.target;
-  //   setSelectedFees((prevSelected) => (prevSelected === value ? "" : value));
-  // };
 
   const handleSpecializationChange = (event) => {
     const { value } = event.target;
@@ -415,6 +415,7 @@ export default function College() {
                             id="public"
                             name="ownership"
                             value="Public"
+                            // onClick={filterColleges}
                             checked={selectedOwnership === "Public"}
                             onChange={handleOwnershipChange}
                           />
@@ -428,7 +429,7 @@ export default function College() {
                             id="private"
                             name="ownership"
                             value="Private"
-                            onClick={filterColleges}
+                            // onClick={filterColleges}
                             checked={selectedOwnership === "Private"}
                             onChange={handleOwnershipChange}
                           />
@@ -775,11 +776,13 @@ export default function College() {
           </div>
 
           <div className="college-list">
-            {filteredColleges.length > 0 ? (
+            {showSkeleton ? (
+              <CollegeSkeleton cards={8} />
+            ) : filteredColleges.length > 0 ? (
               filteredColleges.map((college, index) => (
                 <div className="college-card" key={index}>
                   <div className="rank">
-                    <div className="rank-ranks">{index + 1}</div>
+                    <div className="rank-ranks">{college.ranking}</div>
                     <div className="rank-ranking-institute">
                       <div>NIRF '23</div>
                       <div>(All India)</div>
@@ -804,10 +807,10 @@ export default function College() {
                       </div>
                       <div className="verticalline">|</div>
                       <div className="rating">
-                        <div className="rate">{college.ratings}</div>
+                        <div className="rate">{college.ratings.toFixed(1)}</div>
                         <div className="star-rating">
                           {Array.from(
-                            { length: Math.floor(college.ratings) },
+                            { length: Math.floor(college.ratings.toFixed(1)) },
                             (_, i) => (
                               <span className="star" key={i}></span>
                             )
@@ -843,7 +846,7 @@ export default function College() {
                 </div>
               ))
             ) : (
-              <p>No colleges found.</p>
+              <p>No College Foud</p>
             )}
           </div>
         </div>
