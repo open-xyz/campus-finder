@@ -4,9 +4,11 @@ import "./Bookmark.css";
 import Dot from "../College/collegeImages/dot.svg";
 import Location from "../College/collegeImages/location.svg";
 import Cookies from "js-cookie";
+import CollegeSkeleton from "../College/CollegeSkeleton";
 
 const Bookmark = () => {
   const [filteredColleges, setFilteredColleges] = useState([]);
+  const [showSkeleton, setShowSkeleton] = useState(true);
 
   useEffect(() => {
     const token = Cookies.get("token");
@@ -30,11 +32,26 @@ const Bookmark = () => {
         console.error("Error fetching bookmarked colleges:", error);
       });
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowSkeleton(false);
+    }, 1000);
+  }, [filteredColleges]);
+
+  console.log(filteredColleges);
   return (
     <div className="mains">
       <div className="lists">
+        <h1
+          style={{ fontSize: "1.6rem", marginTop: "1rem", fontWeight: "500" }}
+        >
+          Your Saved Colleges
+        </h1>
         <div className="college-list">
-          {filteredColleges.length > 0 ? (
+          {showSkeleton ? (
+            <CollegeSkeleton cards={8} />
+          ) : filteredColleges.length > 0 ? (
             filteredColleges.map((college) => (
               <div className="college-card" key={college._id}>
                 <div className="rank">

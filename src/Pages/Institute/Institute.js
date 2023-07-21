@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import "../Institute/Institute.css";
-import Banner from "../Institute/Institute_logo/viva-institute-of-technology-vit-thane.jpg";
-import Logo from "../Institute/Institute_logo/download.png";
 import Mail from "../Institute/Institute_logo/image 17.png";
 import Rating from "../Institute/Institute_logo/image 18.png";
 import Star from "../Institute/Institute_logo/ic_round-star.svg";
@@ -10,11 +8,9 @@ import { useParams } from "react-router-dom";
 import Skeleton from "../College/SingleCollegeSkeleton";
 import { FaStar } from "react-icons/fa";
 import Cookies from "js-cookie";
-import { useBookmarkContext } from "../../context/bookMarkContext";
 
 const Institute = () => {
   const { collegeName } = useParams();
-  const [savedColleges, setSavedColleges] = useState([]);
   const [colleges, setColleges] = useState([]);
   const ref = useRef(null);
   const ref1 = useRef(null);
@@ -28,7 +24,31 @@ const Institute = () => {
     setFilteredColleges(colleges.collegeList || []);
   }, [colleges]);
 
-  // Selected Collge is the current college
+  const [filteredCollegess, setFilteredCollegess] = useState([]);
+  const [bookmarkObject, setBookmarkObject] = useState({});
+
+  useEffect(() => {
+    const token = Cookies.get("token");
+    fetch("http://localhost:4080/api/collegecart", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        token: token,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          setFilteredCollegess(data.savedColleges);
+        } else {
+          // Handle the case where data.success is false (API call was not successful)
+          console.error("Error fetching bookmarked colleges");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching bookmarked colleges:", error);
+      });
+  }, []);
 
   const selectedCollege = filteredColleges.find(
     (college) => college.name === collegeName
@@ -69,32 +89,50 @@ const Institute = () => {
     setComment(e.target.value);
   };
 
-  const handleBookmark = (e) => {
-    e.preventDefault();
-    const token = Cookies.get("token"); // Replace with your logic to get the token from cookies
-    const collegeId = selectedCollege._id;
-    // If the college is already saved, remove it from the savedColleges array
+  useEffect(() => {
+    // Find the bookmark object that matches the selected college id
+    if (selectedCollege && filteredCollegess.length > 0) {
+      const bookmarkedCollege = filteredCollegess.find(
+        (bookmark) =>
+          bookmark.college && bookmark.college._id === selectedCollege._id
+      );
 
-    // If the college is not saved, add it to the savedColleges array
-    fetch(`http://localhost:4080/api/collegecart/${collegeId}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        token: token,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("College submitted:", data);
-        setSavedColleges((prevSavedColleges) => [
-          ...prevSavedColleges,
-          collegeId,
-        ]);
-      })
-      .catch((error) => {
-        console.error("Error College review:", error);
-      });
-  };
+      setBookmarkObject(bookmarkedCollege);
+    }
+  }, [selectedCollege, filteredCollegess]);
+
+  //   // Log the _id property of the first element in the filteredCollegess array
+  //   console.log(filteredCollegess[0]?._id);
+  // }, [filteredCollegess]);
+
+  // console.log("bookmark" + bookmarkcollege);
+
+  // const handleBookmark = (e) => {
+  //   e.preventDefault();
+  //   const token = Cookies.get("token"); // Replace with your logic to get the token from cookies
+  //   const collegeId = selectedCollege._id;
+  //   // If the college is already saved, remove it from the savedColleges array
+
+  //   // If the college is not saved, add it to the savedColleges array
+  //   fetch(`http://localhost:4080/api/collegecart/${collegeId}`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       token: token,
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log("College submitted:", data);
+  //       setSavedColleges((prevSavedColleges) => [
+  //         ...prevSavedColleges,
+  //         collegeId,
+  //       ]);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error College review:", error);
+  //     });
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -148,9 +186,55 @@ const Institute = () => {
   const closeModal = () => {
     ref1.current.click();
   };
-  // console.log(selectedCollege);
-  // console.log("college" + isCollegeSaved);
-  // console.log("length" + bookMarkLength);
+  const handleBookmark = (e) => {
+    e.preventDefault();
+    const token = Cookies.get("token");
+    const collegeId = selectedCollege._id;
+    console.log("collegeid" + collegeId);
+
+    if (isCollegeSaved) {
+      // If the college is already saved, remove it from the savedColleges array
+      if (bookmarkObject && bookmarkObject._id) {
+        const bookmarkIdToRemove = bookmarkObject._id;
+        fetch(`http://localhost:4080/api/collegecart/${bookmarkIdToRemove}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            token: token,
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("College removed from bookmarks:", data);
+            // Update the state to reflect that the college is no longer saved
+            setIsCollegeSaved(false);
+          })
+          .catch((error) => {
+            console.error("Error removing college from bookmarks:", error);
+          });
+      } else {
+        console.error("Bookmark object or bookmark ID not found.");
+      }
+    } else {
+      // If the college is not saved, add it to the savedColleges array
+      fetch(`http://localhost:4080/api/collegecart/${collegeId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          token: token,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("College added to bookmarks:", data);
+          // Update the state to reflect that the college is now saved
+          setIsCollegeSaved(true);
+        })
+        .catch((error) => {
+          console.error("Error adding college to bookmarks:", error);
+        });
+    }
+  };
 
   return (
     <div style={{ backgroundColor: "#F3F2EF" }}>

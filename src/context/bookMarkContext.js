@@ -8,6 +8,7 @@ const BookmarkContext = createContext();
 export const BookmarkProvider = ({ children }) => {
   const [bookMarkLength, setBookMarkLength] = useState(0);
   const [bookmarkcollege, setBookMarkCollege] = useState([]);
+  const [bookMarkId, setsetBookMarkId] = useState("");
 
   useEffect(() => {
     const token = Cookies.get("token");
@@ -18,10 +19,11 @@ export const BookmarkProvider = ({ children }) => {
         token: token,
       },
     })
-      .then((response) => response.json())
+      .then((response) => response.jsn())
       .then((data) => {
         if (data.success) {
           setBookMarkCollege(data.savedColleges);
+          setsetBookMarkId(data);
           setBookMarkLength(bookmarkcollege.length);
         } else {
           // Handle the case where data.success is false (API call was not successful)
@@ -38,7 +40,9 @@ export const BookmarkProvider = ({ children }) => {
   }, [bookmarkcollege]);
 
   return (
-    <BookmarkContext.Provider value={{ bookMarkLength, setBookMarkLength }}>
+    <BookmarkContext.Provider
+      value={{ bookMarkLength, setBookMarkLength, bookMarkId }}
+    >
       {children}
     </BookmarkContext.Provider>
   );

@@ -51,7 +51,6 @@ export default function College() {
     }, 400);
   }, [colleges]);
 
-  // const filterColleges = () => {
   //   let filtered = colleges;
 
   //   if (selectedLocation.length > 0) {
@@ -227,18 +226,6 @@ export default function College() {
     setSelectedOwnership(value);
     console.log(value);
   };
-
-  // const handleOwnershipChange = (event) => {
-  //   const { value } = event.target;
-  //   setSelectedOwnership((prevSelected) =>
-  //     prevSelected === value ? "" : value
-  //   );
-  // };
-
-  // const handleFeesChange = (event) => {
-  //   const { value } = event.target;
-  //   setSelectedFees((prevSelected) => (prevSelected === value ? "" : value));
-  // };
 
   const handleSpecializationChange = (event) => {
     const { value } = event.target;

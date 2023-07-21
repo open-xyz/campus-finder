@@ -1,6 +1,6 @@
 import { Fragment, useState, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, useNavigate } from "react-router-dom";
 import { BsFillBookmarksFill } from "react-icons/bs";
 import { useBookmarkContext } from "../../../context/bookMarkContext";
@@ -16,16 +16,15 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 function Navbar() {
-  const [filteredColleges, setFilteredColleges] = useState([]);
-  const [filteredCollegesLength, setFilteredCollegesLength] = useState(0);
+  const [filteredColleges] = useState([]);
   const [userDetails, setUserDetails] = useState({});
-  const [bookmarkcollege, setBookMarkCollege] = useState([]);
+  const [setBookMarkCollege] = useState([]);
   // const [bookMarkLength, setbookMarkLength] = useState(0);
   const host = "http://localhost:4080";
-  const { bookMarkLength } = useBookmarkContext();
+  const { bookMarkLength, setBookMarkLength } = useBookmarkContext();
 
   useEffect(() => {
-    setFilteredCollegesLength(filteredColleges.length);
+    setBookMarkLength(filteredColleges.length);
   }, [filteredColleges]);
 
   useEffect(() => {
