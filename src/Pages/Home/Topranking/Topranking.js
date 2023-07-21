@@ -25,7 +25,7 @@ export default function Topranking() {
               </div>
               <div className="school-name-text">
                 <div className="head">
-                  Dhirubhai Ambani <br /> International School
+                  Dhirubhai Ambani International School
                 </div>
                 <div className="sub-head">Bandra, Mumbai </div>
               </div>
@@ -125,15 +125,15 @@ export default function Topranking() {
                   alt=""
                 />
               </div>
-              <div className="school-name-text">
+              <div className="college-name-text">
                 <div className="head">IIT Bombay</div>
                 <div className="sub-head">Mumbai, Maharashtra</div>
               </div>
             </div>
-            <div className="board">
+            <div className="nirf">
               NIRF ranking <span>3</span> out of 200 in 2023
             </div>
-            <div className="fees">₹ 2.28 L</div>
+            <div className="college_fees">₹ 2.28 L</div>
           </div>
           <div className="school school-row-1">
             <div className="rank">#2</div>
@@ -144,15 +144,15 @@ export default function Topranking() {
                   alt=""
                 />
               </div>
-              <div className="school-name-text">
+              <div className="college-name-text">
                 <div className="head">ICT Mumbai</div>
                 <div className="sub-head">Mumbai, Maharashtra</div>
               </div>
             </div>
-            <div className="board">
+            <div className="nirf">
               NIRF ranking <span>24</span> out of 200 in 2023
             </div>
-            <div className="fees">₹ 95 K</div>
+            <div className="college_fees">₹ 95 K</div>
           </div>
           <div className="school school-row-1">
             <div className="rank">#3</div>
@@ -163,15 +163,15 @@ export default function Topranking() {
                   alt=""
                 />
               </div>
-              <div className="school-name-text">
+              <div className="college-name-text">
                 <div className="head">NITIE Mumbai</div>
                 <div className="sub-head">Mumbai, Maharashtra </div>
               </div>
             </div>
-            <div className="board">
+            <div className="nirf">
               NIRF ranking <span>66</span> out of 200 in 2023
             </div>
-            <div className="fees">₹ 5.98 L</div>
+            <div className="college_fees">₹ 5.98 L</div>
           </div>
           <div className="school school-row-1">
             <div className="rank">#4</div>
@@ -182,15 +182,15 @@ export default function Topranking() {
                   alt=""
                 />
               </div>
-              <div className="school-name-text">
+              <div className="college-name-text">
                 <div className="head">VJTI Mumbai</div>
                 <div className="sub-head">Mumbai, Maharashtra </div>
               </div>
             </div>
-            <div className="board">
+            <div className="nirf">
               NIRF ranking <span>101</span> out of 200 in 2023
             </div>
-            <div className="fees">₹ 84.05 K</div>
+            <div className="college_fees">₹ 84.05 K</div>
           </div>{" "}
           <div style={{ borderBottom: "none" }} className="school school-row-1">
             <div className="rank">#5</div>
@@ -201,15 +201,15 @@ export default function Topranking() {
                   alt=""
                 />
               </div>
-              <div className="school-name-text">
+              <div className="college-name-text">
                 <div className="head">SPIT Mumbai</div>
                 <div className="sub-head">Mumbai, Maharashtra </div>
               </div>
             </div>
-            <div className="board">
+            <div className="nirf">
               NIRF ranking <span>167</span> out of 200 in 2023
             </div>
-            <div className="fees">₹ 1.70 L</div>
+            <div className="college_fees">₹ 1.70 L</div>
           </div>
         </div>
       </div>

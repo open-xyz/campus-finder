@@ -3,6 +3,7 @@ import schoollogo from "../Category/selectcategoryimages/icons8-school-100.png";
 import collegelogo from "../Category/selectcategoryimages/icons8-college-100.png";
 import investorlogo from "../Category/selectcategoryimages/875bb98a-f031-4517-856e-9f1f83dc7b44.jpeg";
 import "./SelectCategory.css";
+import { Link } from "react-router-dom";
 const SelectCategory = () => {
   return (
     <>
@@ -18,9 +19,9 @@ const SelectCategory = () => {
               <h3>For You</h3>
             </div>
             <div className="card__button">
-              <button className="btn" type="button">
+              <Link to={"school"} className="btn" type="button">
                 Explore School
-              </button>
+              </Link>
             </div>
           </div>
           <div className="card">
@@ -32,9 +33,9 @@ const SelectCategory = () => {
               <h3>For You</h3>
             </div>
             <div className="card__button">
-              <button className="btn" type="button">
+              <Link to={"college"} className="btn" type="button">
                 Explore College
-              </button>
+              </Link>
             </div>
           </div>
           <div className="card">
@@ -46,9 +47,9 @@ const SelectCategory = () => {
               <h3>For You</h3>
             </div>
             <div className="card__button">
-              <button className="btn" type="button">
+              <Link to={"investor"} className="btn" type="button">
                 Explore Investors
-              </button>
+              </Link>
             </div>
           </div>
         </div>

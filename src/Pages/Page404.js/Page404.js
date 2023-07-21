@@ -5,7 +5,10 @@ export default function Page404() {
     <div className="page404_body">
       <div className="page404_container">
         <div className="page404_gif">
-          <img src="https://i.postimg.cc/2yrFyxKv/giphy.gif" alt="gif_ing" />
+          <img
+            src="https://media.tenor.com/RsDpKNVNBXkAAAAC/bhai-kya-kar-raha-hai-tu-ashneer.gif"
+            alt="gif_ing"
+          />
         </div>
         <div className="page404_content">
           <h1 className="page404_main-heading">This page is gone.</h1>
