@@ -10,6 +10,7 @@ import CollegeRoute from "./RoutePage/CollegeRoute";
 import SchoolRoute from "./RoutePage/SchoolRoute";
 import InvestorRoute from "./RoutePage/InvestorRoute";
 import BookMarkRoute from "./RoutePage/BookMarkRoute";
+import Page404 from "./Pages/Page404.js/Page404";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/signup" element={<Singup />} />
             <Route path="/investor" element={<InvestorRoute />} />
             <Route path="/bookmarks" element={<BookMarkRoute />} />
+            <Route path="*" element={<Page404/>} />
           </Routes>
         </div>
       </Router>
