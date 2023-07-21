@@ -16,16 +16,16 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 function Navbar() {
-  const [filteredColleges] = useState([]);
+  const [filteredColleges, setSetFilteredColleges] = useState([]);
   const [userDetails, setUserDetails] = useState({});
-  const [setBookMarkCollege] = useState([]);
+  const [bookMarkCollege, setBookMarkCollege] = useState([]);
   // const [bookMarkLength, setbookMarkLength] = useState(0);
   const host = "http://localhost:4080";
   const { bookMarkLength, setBookMarkLength } = useBookmarkContext();
 
   useEffect(() => {
-    setBookMarkLength(filteredColleges.length);
-  }, [filteredColleges]);
+    setBookMarkLength(bookMarkCollege.length);
+  }, [bookMarkCollege]);
 
   useEffect(() => {
     const fetchBookmarkedColleges = async () => {
@@ -53,7 +53,7 @@ function Navbar() {
     };
 
     fetchBookmarkedColleges();
-  }, []);
+  }, [bookMarkCollege]);
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
