@@ -182,8 +182,8 @@ export default function College() {
     if (selectedOwnership.length > 0) {
       filtered = filtered.filter(
         (college) =>
-          college.Ownership &&
-          college.Ownership.toLowerCase() === selectedOwnership.toLowerCase()
+          college.Owenrship &&
+          college.Owenrship.toLowerCase() === selectedOwnership.toLowerCase()
       );
     }
 
@@ -415,6 +415,7 @@ export default function College() {
                             id="public"
                             name="ownership"
                             value="Public"
+                            // onClick={filterColleges}
                             checked={selectedOwnership === "Public"}
                             onChange={handleOwnershipChange}
                           />
@@ -428,7 +429,7 @@ export default function College() {
                             id="private"
                             name="ownership"
                             value="Private"
-                            onClick={filterColleges}
+                            // onClick={filterColleges}
                             checked={selectedOwnership === "Private"}
                             onChange={handleOwnershipChange}
                           />
