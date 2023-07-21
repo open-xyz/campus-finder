@@ -215,3 +215,7 @@
     overflow-y: scroll;
     position: relative;
 }
+.feess{
+  width: 100%;
+  padding: 0.5rem 1rem;
+}

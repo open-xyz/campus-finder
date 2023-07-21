@@ -191,53 +191,7 @@ function Navbar() {
                     </button>
                   </Link>
                   {/* Profile dropdown */}
-                  <div className="relative ml-3">
-      <div>
-        <Menu>
-          <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-            <span className="sr-only">Open user menu</span>
-            <img
-              className="h-8 w-8 rounded-full"
-              src={avatarURL}
-              alt="avatar"
-            />
-          </Menu.Button>
-          {isModalOpen && (
-            <div
-              className="fixed inset-0 z-50 flex items-center justify-center"
-              onClick={handleOutsideClick}
-            >
-              <div className="absolute inset-0 bg-black opacity-50 modal-overlay"></div>
-              <div className="absolute z-10 w-80 bg-white p-4 rounded-md shadow-lg">
-                <button
-                  className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
-                  onClick={closeModal}
-                >
-                  X
-                </button>
-                <h2 className="text-xl font-bold mb-4">user1</h2>
-                <p className="text-gray-700 mb-4">useremail</p>
-                <img
-                  className="h-40 w-40 rounded-full mx-auto"
-                  src={img}
-                  alt="avatar"
-                />
-                <div className="mt-4 flex justify-end">
-                  <button
-                    onClick={handleSignOut}
-                    className="px-4 py-2 text-sm text-white bg-red-500 rounded"
-                  >
-                    Sign out
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-          {/* Rest of your Menu items */}
-          {/* ... */}
-        </Menu>
-      </div>
-    </div>
+
                   <div className="relative ml-3">
                     <div>
                       <Menu>

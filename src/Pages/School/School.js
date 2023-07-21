@@ -1,8 +1,6 @@
 
 import React, { useEffect, useState } from "react";
 
-import React, { useState, useEffect } from "react";
-
 import "../School/School.css";
 import "../Home/components/Hero/Hero.css";
 import "../School/School.css";
@@ -81,9 +79,6 @@ const School = () => {
     setFilteredSchool(filtered);
   
   };
-  // console.log(`filtered ${FilteredSchool}`);
-  // console.log(JSON.stringify(FilteredSchool, null, 2));
-
   useEffect(() => {
     filterSchools();
   }, [selectedLocation, selectedFees, selectedOwnership]);
@@ -365,7 +360,7 @@ const School = () => {
                   </div>
                 </div>
                 <div className="line"></div>
-                <div className="fees">
+                <div className="feess">
                   <div>
                     <div
                       className={`dropdown ${isFeesExpanded ? "expanded" : ""}`}
@@ -596,7 +591,7 @@ const School = () => {
                 />
               </div>
               <div class="collge-info">
-              <Link to={`#`}>
+              <Link to={`/schools/${School.name}`}>
                   <div class="collge-name">{School.name}</div>
                   </Link>
                 <div class="info-two">
