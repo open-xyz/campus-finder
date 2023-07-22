@@ -445,9 +445,9 @@ const Institute = () => {
             </div>
           </div>
         </div>
-        <div 
+        <div
           onClick={getModal}
-          className="addyourreview container mx-auto mb-8" 
+          className="addyourreview container mx-auto mb-8"
         >
           {" "}
           <div>
