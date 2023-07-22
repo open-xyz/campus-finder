@@ -25,7 +25,7 @@ function Navbar() {
   const [userDetails, setUserDetails] = useState({});
   const [bookMarkCollege, setBookMarkCollege] = useState([]);
   // const [bookMarkLength, setbookMarkLength] = useState(0);
-  const host = "http://localhost:4080";
+  const host = "https://testcampus-finder.onrender.com";
   const { bookMarkLength, setBookMarkLength } = useBookmarkContext();
 
   useEffect(() => {
@@ -36,7 +36,7 @@ function Navbar() {
     const fetchBookmarkedColleges = async () => {
       try {
         const token = Cookies.get("token");
-        const response = await fetch("http://localhost:4080/api/collegecart", {
+        const response = await fetch("https://testcampus-finder.onrender.com/api/collegecart", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -63,7 +63,6 @@ function Navbar() {
     const fetchUserDetails = async () => {
       try {
         const token = Cookies.get("token");
-        console.log(token);
         if (!token) {
           console.log("No token found");
           return;
@@ -78,7 +77,6 @@ function Navbar() {
 
         if (response.ok) {
           const data = await response.json();
-          console.log("data", data);
           setUserDetails(data.data);
         } else {
           console.log("Error fetching user details");
@@ -203,7 +201,7 @@ function Navbar() {
                             alt="avatar"
                           />
                         </Menu.Button>
-                        {isModalOpen && (
+                        {/* {isModalOpen && (
                           <div className="fixed inset-0 z-50 flex items-center justify-center">
                             <div
                               className="absolute inset-0 bg-black opacity-50"
@@ -227,7 +225,7 @@ function Navbar() {
                               </div>
                             </div>
                           </div>
-                        )}
+                        )} */}
                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                           <Menu.Item>
                             {({ active }) => (

@@ -7,7 +7,7 @@ const AppProvider = ({ children }) => {
   const [colleges, setColleges] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4080/api/colleges")
+    fetch("https://testcampus-finder.onrender.com/api/colleges")
       .then((response) => response.json())
       .then((data) => setColleges(data))
       .catch((error) => console.error("Error fetching colleges:", error));

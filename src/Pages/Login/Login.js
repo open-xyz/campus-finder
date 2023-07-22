@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
 const Login = () => {
-  const host = "http://localhost:4080";
+  const host = "https://testcampus-finder.onrender.com";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
@@ -20,7 +20,6 @@ const Login = () => {
       body: JSON.stringify({ email: email, password: password }),
     });
     const json = await response.json();
-    console.log(json);
     if (json.success) {
       // Save the auth token and redirect
       Cookies.set("token", json.token, { expires: 7 });

@@ -29,7 +29,7 @@ const Institute = () => {
 
   useEffect(() => {
     const token = Cookies.get("token");
-    fetch("http://localhost:4080/api/collegecart", {
+    fetch("https://testcampus-finder.onrender.com/api/collegecart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -57,7 +57,7 @@ const Institute = () => {
     const fetchBookmarkedColleges = async () => {
       try {
         const token = Cookies.get("token");
-        const response = await fetch("http://localhost:4080/api/collegecart", {
+        const response = await fetch("https://testcampus-finder.onrender.com/api/collegecart", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -166,7 +166,7 @@ const Institute = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:4080/api/colleges")
+    fetch("https://testcampus-finder.onrender.com/api/colleges")
       .then((response) => response.json())
       .then((data) => setColleges(data))
       .catch((error) => console.error("Error fetching colleges:", error));
@@ -196,7 +196,7 @@ const Institute = () => {
       // If the college is already saved, remove it from the savedColleges array
       if (bookmarkObject && bookmarkObject._id) {
         const bookmarkIdToRemove = bookmarkObject._id;
-        fetch(`http://localhost:4080/api/collegecart/${bookmarkIdToRemove}`, {
+        fetch(`https://testcampus-finder.onrender.com/api/collegecart/${bookmarkIdToRemove}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -217,7 +217,7 @@ const Institute = () => {
       }
     } else {
       // If the college is not saved, add it to the savedColleges array
-      fetch(`http://localhost:4080/api/collegecart/${collegeId}`, {
+      fetch(`https://testcampus-finder.onrender.com/api/collegecart/${collegeId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
