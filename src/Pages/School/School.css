@@ -1,3 +1,4 @@
+
 .school-section {
   height: 100vh;
   width: 100%;
@@ -10,21 +11,24 @@
   width: 30%;
   min-height: 100%;
 }
-.school-section{
+.school-section {
   display: flex;
   gap: 5%;
   width: 70%;
   height: 100%;
   /* background-color: black; */
 }
+
 .main {
-  height: 100vh;
+  height: 85vh;
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   margin-top: 5rem;
   font-family: SFProDispaly;
+  overflow: hidden;
+  margin-bottom: 3rem;
 }
 .filter-text {
   height: 2.9375rem;
@@ -58,6 +62,8 @@
   gap: 0.2rem;
 }
 .filter-component {
+  position: sticky;
+  top: 0;
   height: 100%;
 }
 .filters {
@@ -67,54 +73,61 @@
   min-height: 250px;
   max-height: 85%;
 }
-.school-main {
+
+.search {
+  justify-content: space-around;
+  width: 100%;
+  position: sticky;
+  
+}
+
+
+.search .heading {
+  font-size: 1.25rem;
+}
+
+.inputs button {
+  border-radius: 0.4375rem;
+  background: #ffd700;
+  padding: 0.2rem 0.5rem;
+  margin-right: 0.5rem;
+}
+.school-component {
+  display: flex;
+  gap: 5%;
   width: 70%;
   height: 100%;
-  /* border: 1px solid red; */
-  /* margin-left: 4rem; */
+  overflow: hidden;
 }
-.school-search {
-  /* border: 1px solid green; */
-  width: 100%;
-  height: 5.9375rem;
-  display: flex;
-  flex-shrink: 0;
+.school-filter {
+  width: 30%;
+  min-height: 100%;
+  position: sticky;
+  top: 0;
 }
-.school-search h1 {
-  color: #000;
-  font-family: SF Pro Display;
-  font-size: 1.55rem;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-  /* border: 1px solid purple; */
-  width: 20%;
-  margin: auto;
-  margin-left: 1.2rem;
+
+/* image */
+.search img {
+  margin-left: 0.5rem;
 }
-.search-bar-school {
+.school-card {
   display: flex;
   align-items: center;
-  width: 33.5625rem;
-  height: 3.75rem;
-  flex-shrink: 0;
-  border-radius: 0.5rem;
-  border: 2px solid #000;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 1.5rem 0.3rem 1.5rem 0;
+  border-radius: 0.625rem;
   background: #fff;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
 }
-.search-bar-school button {
-  position: relative;
-  right: 0.5rem;
-  background-color: #ffd700;
-  width: 6.5625rem;
-  height: 2.4375rem;
-  border-radius: 0.4375rem;
-  color: #000;
-  font-family: SFProDispaly;
-  font-size: 1.2rem;
-  text-align: center;
-  font-weight: 300;
-  line-height: normal;
+.college-list {
+  width: 100%;
+  height: 100%;
+  margin-top: 1rem;
+}
+
+.admission span{
+  margin-left: 0.5rem;
 }
 .school-result {
   display: flex;
@@ -144,66 +157,66 @@
 }
 .school-result__details {
   /* border: 3px solid purple; */
-  width:100%;
+  width: 100%;
   margin-left: 0.3rem;
   padding: 0.3rem;
 }
-.rank__number{
+.rank__number {
   text-align: center;
   font-size: 2rem;
 }
-.rank__city{
+.rank__city {
   font-size: 1.2rem;
 }
-.school-result__img img{
+.school-result__img img {
   height: 80%;
   width: 80%;
 }
-.seprator{
-  height:1.5rem;
+.seprator {
+  height: 1.5rem;
   width: 0.21rem;
   background-color: #000;
 }
-.school-shortdetail{
+.school-shortdetail {
   display: flex;
   margin: 0.71rem 0rem;
   /* border: 1px solid black; */
 }
-.school-name{
+.school-name {
   /* border: 1px solid blue; */
   width: 100%;
   font-weight: bolder;
 }
-.school-name span{
+.school-name span {
   font-size: 1.5rem;
   font-weight: 500;
 }
-.shortdetal__location{
+.shortdetal__location {
   margin-left: 0.5rem;
 }
-.shortdetal__location span{
+.shortdetal__location span {
   margin: 0rem 1rem;
 }
 .school__rating span {
   margin: 0rem 1rem;
 }
-.school__fees span{
+.school__fees span {
   margin: 0rem 1rem;
 }
-.school-board{
+.school-board {
   display: flex;
   justify-content: space-between;
 }
-.visitschool{
+.visitschool {
   margin-left: 1rem;
 }
-.visitschool button{
-  background-color: #ffd700;;
+.visitschool button {
+  background-color: #ffd700;
   border: 1px solid black;
   border-radius: 5px;
   width: 10rem;
 }
-.src-button button{
+.src-button button {
   position: relative;
   left: 9rem;
   background-color: #ffd700;
@@ -218,3 +231,19 @@
   font-weight: 300;
   line-height: normal;
 }
+
+.feess {
+  width: 100%;
+  padding: 0.5rem 1rem;
+}
+
+.school-main{
+    width: 75%;
+    overflow-y: scroll;
+    position: relative;
+}
+.feess{
+  width: 100%;
+  padding: 0.5rem 1rem;
+}
+

@@ -11,6 +11,10 @@ body {
   background: #fff;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
 }
+.addyourreview{
+  width: 67.687rem;
+  margin-top: 0.5rem;
+}
 
 .institute-banner {
   object-fit: cover;
@@ -279,6 +283,8 @@ hr {
 }
 .faq {
   width: 67.6875rem;
+  background-color: white;
+  border-radius: 1rem;
 }
 .identity h1 {
   color: #000;

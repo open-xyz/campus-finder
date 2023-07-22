@@ -218,6 +218,7 @@ export default function College() {
 
   useEffect(() => {
     filterColleges();
+    console.log(filterColleges);
     // eslint-disable-next-line
   }, [selectedLocation, selectedFees, selectedOwnership]);
 
@@ -509,7 +510,7 @@ export default function College() {
               </div>
 
               <div className="line"></div>
-              <div className="fees">
+              <div className="feess">
                 <div>
                   <div
                     className={`dropdown ${isFeesExpanded ? "expanded" : ""}`}
@@ -767,6 +768,7 @@ export default function College() {
                 onKeyPress={(event) => {
                   if (event.key === "Enter") {
                     filterColleges();
+                    console.log(filterColleges);
                   }
                 }}
                 placeholder="Search..."

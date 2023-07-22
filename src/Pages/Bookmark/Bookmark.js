@@ -36,7 +36,7 @@ const Bookmark = () => {
   useEffect(() => {
     setTimeout(() => {
       setShowSkeleton(false);
-    }, 1000);
+    }, 2500);
   }, [filteredColleges]);
 
   console.log(filteredColleges);

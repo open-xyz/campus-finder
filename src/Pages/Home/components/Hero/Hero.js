@@ -120,7 +120,16 @@ export default function Hero() {
                 name="phone"
                 placeholder="Search..."
               />
-              <button onClick={handleSearchClick}>Search</button>
+              <button
+                onClick={handleSearchClick}
+                onKeyPress={(event) => {
+                  if (event.key === "Enter") {
+                    handleSearchClick();
+                  }
+                }}
+              >
+                Search
+              </button>
             </div>
           </div>
           <div className="hero__right">
@@ -128,7 +137,7 @@ export default function Hero() {
           </div>
         </div>
       </div>
-      <div className="college-list">
+      <div style={{ textAlign: "center" }} className="college-list">
         {redirectToCollege.length === 0 && flag && <div>No college found</div>}
       </div>
     </>

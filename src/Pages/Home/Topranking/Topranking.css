@@ -126,3 +126,46 @@
 .board span {
   font-weight: 500;
 }
+
+.school-name-school {
+  /* background-color: red;s */
+  width: 100%;
+}
+
+.board {
+  /* background-color: pink; */
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+
+.rank,
+.ranks {
+  margin-left: 0.5rem;
+}
+
+.fees {
+  width: 20%;
+  /* background-color: red; */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.school-name-text {
+  /* background-color: red; */
+  width: 100%;
+  margin-left: 1rem;
+}
+
+.nirf {
+  /* background-color: red; */
+  width: 30rem;
+  margin-right: 3rem;
+}
+
+.college_fees {
+  /* background-color: pink; */
+  margin-right: 1rem;
+  width: 17rem;
+}
