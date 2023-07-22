@@ -30,7 +30,7 @@ const SingleSchool = () => {
 
   useEffect(() => {
     const token = Cookies.get("token");
-    fetch("http://localhost:4080/api/school", {
+    fetch("https://testcampus-finder.onrender.com/api/school", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -78,7 +78,7 @@ const SingleSchool = () => {
     };
     const token = Cookies.get("token"); // Replace with your logic to get the token from cookies
 
-    fetch("http://localhost:4080/api/school/review", {
+    fetch("https://testcampus-finder.onrender.com/api/school/review", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

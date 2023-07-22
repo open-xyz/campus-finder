@@ -12,7 +12,7 @@ export const BookmarkProvider = ({ children }) => {
 
   useEffect(() => {
     const token = Cookies.get("token");
-    fetch("http://localhost:4080/api/collegecart", {
+    fetch("https://testcampus-finder.onrender.com/api/collegecart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

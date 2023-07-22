@@ -11,7 +11,7 @@ const Singup = () => {
   const [avatar, setAvatar] = useState("");
 
   let Navigate = useNavigate();
-  const host = "http://localhost:4080";
+  const host = "https://testcampus-finder.onrender.com";
 
   const signupSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +28,6 @@ const Singup = () => {
       }),
     });
     const json = await response.json();
-    console.log(json);
     if (json.success) {
       // Save the auth token and redirect
       Cookies.set("token", json.token, { expires: 7 });
@@ -41,7 +40,6 @@ const Singup = () => {
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
-    console.log(base64);
     setAvatar(base64 || "");
   };
   return (

@@ -12,7 +12,7 @@ const Bookmark = () => {
 
   useEffect(() => {
     const token = Cookies.get("token");
-    fetch("http://localhost:4080/api/collegecart", {
+    fetch("https://testcampus-finder.onrender.com/api/collegecart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -38,8 +38,6 @@ const Bookmark = () => {
       setShowSkeleton(false);
     }, 2500);
   }, [filteredColleges]);
-
-  console.log(filteredColleges);
   return (
     <div className="mains">
       <div className="lists">

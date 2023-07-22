@@ -13,7 +13,7 @@ const School = () => {
   const pageTitle = "Schools | campusFinder";
   usePageTitle(pageTitle);
   useEffect(() => {
-    fetch("http://localhost:4080/api/school")
+    fetch("https://testcampus-finder.onrender.com/api/school")
       .then((response) => response.json())
       .then((data) => setSchool(data))
       .catch((error) => console.error("Error fetching Schools:", error));
@@ -30,7 +30,7 @@ const School = () => {
   const [isBoadrExpanded, setIsBoadrExpanded] = useState(true);
   const [schools, setSchools] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:4080/api/school")
+    fetch("https://testcampus-finder.onrender.com/api/school")
       .then((response) => response.json())
       .then((data) => setSchools(data))
       .catch((error) => console.error("Error fetching colleges:", error));
@@ -39,7 +39,6 @@ const School = () => {
   const [isBoardExpanded, setisBoardExpanded] = useState(true);
   const [FilteredSchool, setFilteredSchool] = useState(School);
   const [searchQuery, setSearchQuery] = useState("");
-  console.log("array of 20 " , School.schoolList);
   useEffect(() => {
     // Filtering logic here...
     let filtered = School.schoolList || [];
